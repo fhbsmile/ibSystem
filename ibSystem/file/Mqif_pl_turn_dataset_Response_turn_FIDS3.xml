@@ -1,0 +1,401 @@
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aodb="urn:com.tsystems.ac.aodb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<soap-env:Header>
+		<aodb:control>
+			<aodb:message-id>pineapple:14af7629:15d64b5c5ba:-7f2a</aodb:message-id>
+			<aodb:message-version>1.4</aodb:message-version>
+			<aodb:message-type>DATASET</aodb:message-type>
+			<aodb:confirm-type>ALL</aodb:confirm-type>
+			<aodb:correlation-id>FIDS@DCNA9133_2017-06-19T06:50:22.839</aodb:correlation-id>
+			<aodb:timestamp>2017-07-21T10:33:51.898</aodb:timestamp>
+			<aodb:sender>aodb</aodb:sender>
+		</aodb:control>
+	</soap-env:Header>
+	<soap-env:Body>
+		<pl_turn id="1000965310">
+			<pt_idseq>1000965310</pt_idseq>
+			<pl_stand_list>
+				<pl_stand>
+					<pst_idseq>1001144506</pst_idseq>
+					<pst_beginactual xsi:nil="true"/>
+					<pst_beginplan>2017-07-10T21:35:00Z</pst_beginplan>
+					<pst_createtime>2017-07-06T11:07:22Z</pst_createtime>
+					<pst_endactual xsi:nil="true"/>
+					<pst_endplan>2017-07-10T22:05:00Z</pst_endplan>
+					<pst_extraindicator xsi:nil="true"/>
+					<pst_gpuunits xsi:nil="true"/>
+					<pst_lockind>N</pst_lockind>
+					<pst_modtime>2017-07-09T15:43:34Z</pst_modtime>
+					<pst_moduser>day</pst_moduser>
+					<pst_note xsi:nil="true"/>
+					<pst_order>1</pst_order>
+					<pst_pt_turn>1000965310</pst_pt_turn>
+					<pst_rmsc_scenario>1</pst_rmsc_scenario>
+					<pst_rsta_laststand xsi:nil="true"/>
+					<pst_rsta_refstand>G01@1</pst_rsta_refstand>
+					<pst_rsta_stand>G01</pst_rsta_stand>
+					<pst_towbeginactual xsi:nil="true"/>
+					<pst_towbeginplan xsi:nil="true"/>
+					<pst_towindicator xsi:nil="true"/>
+				</pl_stand>
+			</pl_stand_list>
+			<pt_createtime>2017-07-06T11:07:22Z</pt_createtime>
+			<pt_modtime>2017-07-09T15:43:34Z</pt_modtime>
+			<pt_moduser>day</pt_moduser>
+			<pt_mttt>15</pt_mttt>
+			<pt_pa_arrival>1001547073<pl_arrival>
+					<pa_idseq>1001547073</pa_idseq>
+					<pa_aibt xsi:nil="true"/>
+					<pa_airbridges xsi:nil="true"/>
+					<pa_aldt xsi:nil="true"/>
+					<pa_arrivalgates xsi:nil="true"/>
+					<pa_assistingpax xsi:nil="true"/>
+					<pa_atcfplstatus>N</pa_atcfplstatus>
+					<pa_atotoutstation xsi:nil="true"/>
+					<pa_baggagebelts>A02</pa_baggagebelts>
+					<pa_baggagecarousels xsi:nil="true"/>
+					<pa_bibt>2017-07-10T21:35:00Z</pa_bibt>
+					<pa_billingcomments xsi:nil="true"/>
+					<pa_billingstatus>I</pa_billingstatus>
+					<pa_busind>N</pa_busind>
+					<pa_callsign>GIA413</pa_callsign>
+					<pa_cancellationtime xsi:nil="true"/>
+					<pa_cashamount xsi:nil="true"/>
+					<pa_cashind>N</pa_cashind>
+					<pa_cashlodgements xsi:nil="true"/>
+					<pa_chargeableexempt>YYYYY</pa_chargeableexempt>
+					<pa_chargeablepermit xsi:nil="true"/>
+					<pa_chargeformno xsi:nil="true"/>
+					<pa_codeshareflightnumbers xsi:nil="true"/>
+					<pa_createreason>create day process</pa_createreason>
+					<pa_createtime>2017-07-06T11:07:22Z</pa_createtime>
+					<pa_delayreasons xsi:nil="true"/>
+					<pa_displaycode>P</pa_displaycode>
+					<pa_diversiontime xsi:nil="true"/>
+					<pa_dooropentime xsi:nil="true"/>
+					<pa_doublegatewayind>N</pa_doublegatewayind>
+					<pa_eflt xsi:nil="true"/>
+					<pa_eibt xsi:nil="true"/>
+					<pa_eldt xsi:nil="true"/>
+					<pa_etotoutstation xsi:nil="true"/>
+					<pa_exit xsi:nil="true"/>
+					<pa_externalflightnumber>GA413</pa_externalflightnumber>
+					<pa_externalsystemid xsi:nil="true"/>
+					<pa_failediatamessages>0</pa_failediatamessages>
+					<pa_firstbag xsi:nil="true"/>
+					<pa_firt xsi:nil="true"/>
+					<pa_flightnumber>GA413</pa_flightnumber>
+					<pa_fnlt xsi:nil="true"/>
+					<pa_fplactivationtime xsi:nil="true"/>
+					<pa_fuelrequired xsi:nil="true"/>
+					<pa_gpu xsi:nil="true"/>
+					<pa_gpuid>Y</pa_gpuid>
+					<pa_iatapriority xsi:nil="true"/>
+					<pa_ifplid xsi:nil="true"/>
+					<pa_indicatorfield>------------</pa_indicatorfield>
+					<pa_lastbag xsi:nil="true"/>
+					<pa_milestoneindstring>_____</pa_milestoneindstring>
+					<pa_modtime>2017-07-10T10:23:52Z</pa_modtime>
+					<pa_moduser>background</pa_moduser>
+					<pa_nextinfotime xsi:nil="true"/>
+					<pa_onbridge xsi:nil="true"/>
+					<pa_operator>GIA</pa_operator>
+					<pa_operatorflightnumber>GA413</pa_operatorflightnumber>
+					<pa_opscomment xsi:nil="true"/>
+					<pa_pa_mainflight xsi:nil="true"/>
+					<pa_paymentmode>I</pa_paymentmode>
+					<pa_paymentreference xsi:nil="true"/>
+					<pa_pibt>2017-07-10T21:35:00Z</pa_pibt>
+					<pa_priorityfield xsi:nil="true"/>
+					<pa_prmlevypax xsi:nil="true"/>
+					<pa_prmpax xsi:nil="true"/>
+					<pa_publiccomment xsi:nil="true"/>
+					<pa_rac_aircraft>
+						<ref_aircraft/>
+					</pa_rac_aircraft>
+					<pa_ract_aircrafttype>738<ref_aircrafttype>
+							<ract_accessheight xsi:nil="true"/>
+							<ract_averageseatcapacity>189</ract_averageseatcapacity>
+							<ract_bonus>N</ract_bonus>
+							<ract_bridgerequiredind>Y</ract_bridgerequiredind>
+							<ract_createtime>2017-04-10T14:44:44Z</ract_createtime>
+							<ract_description>Boeing 737-800 Passenger</ract_description>
+							<ract_enginecount xsi:nil="true"/>
+							<ract_firstbag xsi:nil="true"/>
+							<ract_height>1250</ract_height>
+							<ract_iatasubtype>738</ract_iatasubtype>
+							<ract_iatatype>738</ract_iatatype>
+							<ract_icaotype>B738</ract_icaotype>
+							<ract_internalcode>738</ract_internalcode>
+							<ract_landingweight xsi:nil="true"/>
+							<ract_length>3950</ract_length>
+							<ract_manufacturer>Boeing</ract_manufacturer>
+							<ract_model>737-800 Passenger</ract_model>
+							<ract_modtime>2017-04-10T14:44:44Z</ract_modtime>
+							<ract_moduser>loaded</ract_moduser>
+							<ract_mtow>79000</ract_mtow>
+							<ract_mttt>15</ract_mttt>
+							<ract_opscreatedind>N</ract_opscreatedind>
+							<ract_payload xsi:nil="true"/>
+							<ract_piercompatibleind>Y</ract_piercompatibleind>
+							<ract_propulsion>J</ract_propulsion>
+							<ract_ret_enginetype>
+								<ref_enginetype/>
+							</ract_ret_enginetype>
+							<ract_rnca_noisecategory xsi:nil="true"/>
+							<ract_shadow xsi:nil="true"/>
+							<ract_sizecategory>C</ract_sizecategory>
+							<ract_statisweightcategory>M</ract_statisweightcategory>
+							<ract_symbolname xsi:nil="true"/>
+							<ract_taxifuelperminute xsi:nil="true"/>
+							<ract_widebodyind>N</ract_widebodyind>
+							<ract_width>3432</ract_width>
+						</ref_aircrafttype>
+					</pa_ract_aircrafttype>
+					<pa_ract_plannedact>738</pa_ract_plannedact>
+					<pa_ral_airline>GA<ref_airline>
+							<ral_2lc>GA</ral_2lc>
+							<ral_3lc>GIA</ral_3lc>
+							<ral_alliance xsi:nil="true"/>
+							<ral_callsign xsi:nil="true"/>
+							<ral_category xsi:nil="true"/>
+							<ral_createtime>2017-04-10T14:44:44Z</ral_createtime>
+							<ral_description>GARUDA</ral_description>
+							<ral_formatflightnumberind>Y</ral_formatflightnumberind>
+							<ral_ignorecreatedayind>N</ral_ignorecreatedayind>
+							<ral_ignorestatisticsind>N</ral_ignorestatisticsind>
+							<ral_internal>GA</ral_internal>
+							<ral_modtime>2017-04-10T14:44:44Z</ral_modtime>
+							<ral_moduser>loaded</ral_moduser>
+							<ral_name>GARUDA INDONESIA</ral_name>
+							<ral_opscreatedind>N</ral_opscreatedind>
+							<ral_paymentmode>I</ral_paymentmode>
+							<ral_rctr_country xsi:nil="true"/>
+							<ral_registrationcopyind>Y</ral_registrationcopyind>
+							<ral_rha_agentbag xsi:nil="true"/>
+							<ral_rha_agentci xsi:nil="true"/>
+							<ral_rtrm_terminal xsi:nil="true"/>
+						</ref_airline>
+					</pa_ral_airline>
+					<pa_ramphandlingagent xsi:nil="true"/>
+					<pa_rap_originairport>DPS</pa_rap_originairport>
+					<pa_rap_previousairport>DPS</pa_rap_previousairport>
+					<pa_rco_concourse>1A</pa_rco_concourse>
+					<pa_rctt_countrytype>D<ref_countrytype>
+							<rctt_availableforcountryind>Y</rctt_availableforcountryind>
+							<rctt_code>D</rctt_code>
+							<rctt_createtime>2017-04-10T14:44:44Z</rctt_createtime>
+							<rctt_description>Domestic</rctt_description>
+							<rctt_internalcode>D</rctt_internalcode>
+							<rctt_modtime>2017-04-10T14:44:44Z</rctt_modtime>
+							<rctt_moduser>loaded</rctt_moduser>
+						</ref_countrytype>
+					</pa_rctt_countrytype>
+					<pa_registration xsi:nil="true"/>
+					<pa_rfst_flightstatus>S</pa_rfst_flightstatus>
+					<pa_rfst_refflightstatus>AS<ref_flightstatus>
+							<rfst_arrdepind>A</rfst_arrdepind>
+							<rfst_code>S</rfst_code>
+							<rfst_code3l>PLN</rfst_code3l>
+							<rfst_createtime>2017-04-10T14:44:48Z</rfst_createtime>
+							<rfst_description>Scheduled, initial status after flight was created</rfst_description>
+							<rfst_idcode>AS</rfst_idcode>
+							<rfst_legacystatus>S</rfst_legacystatus>
+							<rfst_minimumturnorder xsi:nil="true"/>
+							<rfst_modtime>2017-04-10T14:44:48Z</rfst_modtime>
+							<rfst_moduser>loaded</rfst_moduser>
+							<rfst_order>0</rfst_order>
+							<rfst_rrmk_refremark xsi:nil="true"/>
+							<rfst_rrmk_remark xsi:nil="true"/>
+							<rfst_timestamp>PaSibt</rfst_timestamp>
+						</ref_flightstatus>
+					</pa_rfst_refflightstatus>
+					<pa_rha_agentbag xsi:nil="true"/>
+					<pa_rrmk_remark xsi:nil="true"/>
+					<pa_rrwy_runway xsi:nil="true"/>
+					<pa_rsta_refstand>G01@1<ref_stand>
+							<rsta_angle xsi:nil="true"/>
+							<rsta_capacity>1</rsta_capacity>
+							<rsta_code>G01</rsta_code>
+							<rsta_createtime>2017-04-18T17:40:53Z</rsta_createtime>
+							<rsta_description>Remote Stand Terminal 3</rsta_description>
+							<rsta_dockingind xsi:nil="true"/>
+							<rsta_eqconstraint>A</rsta_eqconstraint>
+							<rsta_externalid xsi:nil="true"/>
+							<rsta_fuelpitind xsi:nil="true"/>
+							<rsta_gpuind>N</rsta_gpuind>
+							<rsta_gpuname xsi:nil="true"/>
+							<rsta_idcode>G01@1</rsta_idcode>
+							<rsta_latitude xsi:nil="true"/>
+							<rsta_length xsi:nil="true"/>
+							<rsta_longitude xsi:nil="true"/>
+							<rsta_marsind xsi:nil="true"/>
+							<rsta_modtime>2017-04-20T18:33:09Z</rsta_modtime>
+							<rsta_moduser>admin</rsta_moduser>
+							<rsta_ral_airline xsi:nil="true"/>
+							<rsta_rco_concourse>3U</rsta_rco_concourse>
+							<rsta_rco_refconcourse>3U@1</rsta_rco_refconcourse>
+							<rsta_rctt_countrytype>A</rsta_rctt_countrytype>
+							<rsta_rgt_gate xsi:nil="true"/>
+							<rsta_rgt_refgate xsi:nil="true"/>
+							<rsta_rmsc_scenario>1</rsta_rmsc_scenario>
+							<rsta_validfrom xsi:nil="true"/>
+							<rsta_validto xsi:nil="true"/>
+							<rsta_width xsi:nil="true"/>
+						</ref_stand>
+					</pa_rsta_refstand>
+					<pa_rsta_stand>G01</pa_rsta_stand>
+					<pa_rsta_standardstand>G01</pa_rsta_standardstand>
+					<pa_rstc_servicetypecode>J</pa_rstc_servicetypecode>
+					<pa_rtrm_terminal>1</pa_rtrm_terminal>
+					<pa_safeind>Y</pa_safeind>
+					<pa_seats>189</pa_seats>
+					<pa_sflt xsi:nil="true"/>
+					<pa_sibt>2017-07-10T21:35:00Z</pa_sibt>
+					<pa_star xsi:nil="true"/>
+					<pa_stotoutstation xsi:nil="true"/>
+					<pa_tldt xsi:nil="true"/>
+					<pa_totalcrew xsi:nil="true"/>
+					<pa_totalextracrew xsi:nil="true"/>
+					<pa_totalpax>0</pa_totalpax>
+					<pa_transferpax xsi:nil="true"/>
+					<pa_transitpax xsi:nil="true"/>
+					<pa_vipcomment xsi:nil="true"/>
+					<pa_vipind>N</pa_vipind>
+					<pa_zerofreightind>N</pa_zerofreightind>
+					<pa_zeromailind>N</pa_zeromailind>
+					<pa_zeropaxind>N</pa_zeropaxind>
+					<pa_zerototalweightind>N</pa_zerototalweightind>
+					<pl_arrival_list/>
+					<pl_arrivalgate_list/>
+					<pl_arrivalloadstatistics_list>
+						<pl_arrivalloadstatistics>
+							<pals_adult xsi:nil="true"/>
+							<pals_adultc xsi:nil="true"/>
+							<pals_adultf xsi:nil="true"/>
+							<pals_adulty xsi:nil="true"/>
+							<pals_baggageweight xsi:nil="true"/>
+							<pals_cargoweight xsi:nil="true"/>
+							<pals_child xsi:nil="true"/>
+							<pals_childc xsi:nil="true"/>
+							<pals_childf xsi:nil="true"/>
+							<pals_childy xsi:nil="true"/>
+							<pals_exempt xsi:nil="true"/>
+							<pals_exemptc xsi:nil="true"/>
+							<pals_exemptf xsi:nil="true"/>
+							<pals_exempty xsi:nil="true"/>
+							<pals_infant xsi:nil="true"/>
+							<pals_infantc xsi:nil="true"/>
+							<pals_infantf xsi:nil="true"/>
+							<pals_infanty xsi:nil="true"/>
+							<pals_mailweight xsi:nil="true"/>
+							<pals_pad xsi:nil="true"/>
+							<pals_padc xsi:nil="true"/>
+							<pals_padf xsi:nil="true"/>
+							<pals_pady xsi:nil="true"/>
+							<pals_pax>0</pals_pax>
+							<pals_paxc xsi:nil="true"/>
+							<pals_paxf xsi:nil="true"/>
+							<pals_paxy xsi:nil="true"/>
+							<pals_rap_airportfrom>DPS</pals_rap_airportfrom>
+							<pals_rap_airportto>CGK</pals_rap_airportto>
+							<pals_totalweight>0</pals_totalweight>
+							<pals_type xsi:nil="true"/>
+						</pl_arrivalloadstatistics>
+						<pl_arrivalloadstatistics>
+							<pals_adult>0</pals_adult>
+							<pals_adultc>0</pals_adultc>
+							<pals_adultf>0</pals_adultf>
+							<pals_adulty>0</pals_adulty>
+							<pals_baggageweight>0</pals_baggageweight>
+							<pals_cargoweight>0</pals_cargoweight>
+							<pals_child>0</pals_child>
+							<pals_childc>0</pals_childc>
+							<pals_childf>0</pals_childf>
+							<pals_childy>0</pals_childy>
+							<pals_exempt>0</pals_exempt>
+							<pals_exemptc>0</pals_exemptc>
+							<pals_exemptf>0</pals_exemptf>
+							<pals_exempty>0</pals_exempty>
+							<pals_infant>0</pals_infant>
+							<pals_infantc>0</pals_infantc>
+							<pals_infantf>0</pals_infantf>
+							<pals_infanty>0</pals_infanty>
+							<pals_mailweight>0</pals_mailweight>
+							<pals_pad>0</pals_pad>
+							<pals_padc>0</pals_padc>
+							<pals_padf>0</pals_padf>
+							<pals_pady>0</pals_pady>
+							<pals_pax>0</pals_pax>
+							<pals_paxc>0</pals_paxc>
+							<pals_paxf>0</pals_paxf>
+							<pals_paxy>0</pals_paxy>
+							<pals_rap_airportfrom xsi:nil="true"/>
+							<pals_rap_airportto xsi:nil="true"/>
+							<pals_totalweight>0</pals_totalweight>
+							<pals_type xsi:nil="true"/>
+						</pl_arrivalloadstatistics>
+					</pl_arrivalloadstatistics_list>
+					<pl_atcarrival_list/>
+					<pl_baggagebelt_list>
+						<pl_baggagebelt>
+							<pbb_idseq>1000692383</pbb_idseq>
+							<pbb_beginactual xsi:nil="true"/>
+							<pbb_beginplan>2017-07-10T21:45:00Z</pbb_beginplan>
+							<pbb_checkinclassid xsi:nil="true"/>
+							<pbb_createtime>2017-07-06T11:07:22Z</pbb_createtime>
+							<pbb_endactual xsi:nil="true"/>
+							<pbb_endplan>2017-07-10T22:45:00Z</pbb_endplan>
+							<pbb_firstbag xsi:nil="true"/>
+							<pbb_lastbag xsi:nil="true"/>
+							<pbb_loadstatus>S</pbb_loadstatus>
+							<pbb_lockind>N</pbb_lockind>
+							<pbb_modtime>2017-07-10T10:23:52Z</pbb_modtime>
+							<pbb_moduser>background</pbb_moduser>
+							<pbb_note xsi:nil="true"/>
+							<pbb_pa_arrival>1001547073</pbb_pa_arrival>
+							<pbb_pa_flightnumber>GA413</pbb_pa_flightnumber>
+							<pbb_rbb_baggagebelt>A02</pbb_rbb_baggagebelt>
+							<pbb_rbb_lastbaggagebelt xsi:nil="true"/>
+							<pbb_rbb_refbaggagebelt>A02@1</pbb_rbb_refbaggagebelt>
+							<pbb_rbb_standardbelt xsi:nil="true"/>
+							<pbb_rdt_displaytext xsi:nil="true"/>
+							<pbb_rmsc_scenario>1</pbb_rmsc_scenario>
+							<pbb_seqno>1</pbb_seqno>
+							<pbb_status>S</pbb_status>
+						</pl_baggagebelt>
+					</pl_baggagebelt_list>
+					<pl_delayreason_list/>
+					<pl_genericarrivalres_list/>
+					<pl_handlingagent_list/>
+					<pl_routing_list>
+						<pl_routing>
+							<prt_idseq>1001341673</prt_idseq>
+							<prt_createtime>2017-07-06T11:07:22Z</prt_createtime>
+							<prt_displaycode>P</prt_displaycode>
+							<prt_modtime>2017-07-06T11:07:22Z</prt_modtime>
+							<prt_moduser>admin</prt_moduser>
+							<prt_numberinleg>1</prt_numberinleg>
+							<prt_pa_arrival>1001547073</prt_pa_arrival>
+							<prt_pd_departure xsi:nil="true"/>
+							<prt_rap_airport>DPS</prt_rap_airport>
+							<prt_rtr_trafficrestriction xsi:nil="true"/>
+							<prt_stastation xsi:nil="true"/>
+							<prt_stdstation xsi:nil="true"/>
+						</pl_routing>
+					</pl_routing_list>
+					<pl_transferpax_list/>
+				</pl_arrival>
+			</pt_pa_arrival>
+			<pt_pd_departure>
+				<pl_departure/>
+			</pt_pd_departure>
+			<pt_rmsc_scenario>1</pt_rmsc_scenario>
+			<pt_routing>KKJ-KNO</pt_routing>
+			<pt_routingiata3lc>KKJ-CGK</pt_routingiata3lc>
+			<pt_rsta_currentstand xsi:nil="true"/>
+			<pt_rsta_refcurrentstand>
+				<ref_stand/>
+			</pt_rsta_refcurrentstand>
+		</pl_turn>
+	</soap-env:Body>
+</soap-env:Envelope>

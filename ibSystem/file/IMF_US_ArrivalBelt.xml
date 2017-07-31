@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><IMFRoot xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SysInfo>
+<MessageSequenceID>rabbit.wuhan:6c52b383:15ce7d06f03:-7d8b</MessageSequenceID>
+<MessageType>FlightData</MessageType>
+<ServiceType>FSS1</ServiceType>
+<OperationMode>MOD</OperationMode>
+<SendDateTime>2017-06-27T05:51:57Z</SendDateTime>
+<CreateDateTime>2017-06-27T05:51:57Z</CreateDateTime>
+<OriginalDateTime>2017-06-27T05:51:57Z</OriginalDateTime>
+<Receiver>IMF</Receiver>
+<Sender>AODB</Sender>
+<Owner>AODB</Owner>
+<Priority>4</Priority>
+</SysInfo>
+<Data>
+<PrimaryKey>
+<FlightKey>
+<FlightScheduledDate>2017-06-26</FlightScheduledDate>
+<FlightIdentity>QZ7533</FlightIdentity>
+<FlightDirection>A</FlightDirection>
+<BaseAirport>
+<AirportIATACode>CGK</AirportIATACode>
+<AirportICAOCode>WIII</AirportICAOCode>
+</BaseAirport>
+<DetailedIdentity>
+<AirlineIATACode>QZ</AirlineIATACode>
+<AirlineICAOCode>AWQ</AirlineICAOCode>
+</DetailedIdentity>
+<InternalID>1001511857</InternalID>
+</FlightKey>
+</PrimaryKey>
+<FlightData>
+<General>
+<FlightScheduledDateTime>2017-06-27T06:05:00</FlightScheduledDateTime>
+</General>
+<Airport>
+<BaggageReclaim>
+<BaggageReclaimID>A01</BaggageReclaimID>
+<BaggageReclaimStatus OldValue="B">S</BaggageReclaimStatus>
+<ScheduledReclaimStartDateTime>2017-06-27T06:15:00</ScheduledReclaimStartDateTime>
+<ScheduledReclaimEndDateTime>2017-06-27T07:15:00</ScheduledReclaimEndDateTime>
+<ActualReclaimStartDateTime OldValue="2017-06-27T13:51:00" xsi:nil="true"/>
+<ActualReclaimEndDateTime xsi:nil="true"/>
+<FirstBaggageDateTime OldValue="2017-06-27T13:51:00" xsi:nil="true"/>
+<LastBaggageDateTime xsi:nil="true"/>
+</BaggageReclaim>
+</Airport>
+</FlightData>
+</Data>
+</IMFRoot>

@@ -1,0 +1,237 @@
+<IMFRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<SysInfo>
+		<MessageSequenceID>4</MessageSequenceID>
+		<MessageType>FlightData</MessageType>
+		<ServiceType>FSS2</ServiceType>
+		<OperationMode>NEW</OperationMode>
+		<SendDateTime>2017-01-16T11:35:07.775</SendDateTime>
+		<CreateDateTime>2017-01-16T11:35:07.697</CreateDateTime>
+		<OriginalDateTime>2017-01-16T11:18:32</OriginalDateTime>
+		<Receiver>IMG</Receiver>
+		<Sender>IMF</Sender>
+		<Owner>AODB</Owner>
+	</SysInfo>
+	<Data>
+		<PrimaryKey>
+			<FlightKey>
+				<FlightScheduledDate>2017-01-16</FlightScheduledDate>
+				<FlightIdentity>MU2345</FlightIdentity>
+				<FlightDirection>D</FlightDirection>
+				<BaseAirport>
+					<AirportIATACode>NKG</AirportIATACode>
+					<AirportICAOCode>ZSNJ</AirportICAOCode>
+				</BaseAirport>
+				<DetailedIdentity>
+					<AirlineIATACode>MU</AirlineIATACode>
+					<AirlineICAOCode>CES</AirlineICAOCode>
+					<FlightNumber>2345</FlightNumber>
+					<FlightSuffix/>
+				</DetailedIdentity>
+			</FlightKey>
+		</PrimaryKey>
+		<FlightData>
+			<General>
+				<FlightScheduledDateTime>2017-01-16T22:18:00</FlightScheduledDateTime>
+				<Registration/>
+				<CallSign>CES2345</CallSign>
+				<AircraftType>
+					<AircraftIATACode>ZZZ</AircraftIATACode>
+					<AircraftICAOCode/>
+				</AircraftType>
+				<FlightServiceType>W/Z</FlightServiceType>
+				<FlightRoute>
+					<IATARoute>
+						<IATANextAirport>PEK</IATANextAirport>
+						<IATADestinationAirport>PEK</IATADestinationAirport>
+					</IATARoute>
+					<ICAORoute>
+						<ICAONextAirport>ZBAA</ICAONextAirport>
+						<ICAODestinationAirport>ZBAA</ICAODestinationAirport>
+					</ICAORoute>
+				</FlightRoute>
+				<FlightCountryType>D</FlightCountryType>
+				<LinkFlight>
+					<FlightScheduledDate>2017-01-16</FlightScheduledDate>
+					<FlightIdentity>MU1234</FlightIdentity>
+					<FlightDirection>A</FlightDirection>
+					<BaseAirport>
+						<AirportIATACode>NKG</AirportIATACode>
+						<AirportICAOCode>ZSNJ</AirportICAOCode>
+					</BaseAirport>
+					<DetailedIdentity>
+						<AirlineIATACode>MU</AirlineIATACode>
+						<AirlineICAOCode>CES</AirlineICAOCode>
+						<FlightNumber>1234</FlightNumber>
+						<FlightSuffix/>
+					</DetailedIdentity>
+				</LinkFlight>
+				<IsMasterFlight>Y</IsMasterFlight>
+				<MasterOrSlaveFlight>
+					<FlightIdentity/>
+					<FlightScheduledDate xsi:nil="true"/>
+					<FlightDirection/>
+				</MasterOrSlaveFlight>
+				<FreeTextComment>
+					<PublicTextComment xsi:nil="true"/>
+				</FreeTextComment>
+			</General>
+			<OperationalDateTime>
+				<OffBlockDateTime>
+					<ScheduledOffBlockDateTime>2017-01-16T22:08:00</ScheduledOffBlockDateTime>
+					<EstimatedOffBlockDateTime>2017-01-16T22:08:00</EstimatedOffBlockDateTime>
+					<ActualOffBlockDateTime xsi:nil="true"/>
+				</OffBlockDateTime>
+				<TakeOffDateTime>
+					<ScheduledTakeOffDateTime>2017-01-16T22:18:00</ScheduledTakeOffDateTime>
+					<EstimatedTakeOffDateTime xsi:nil="true"/>
+					<ActualTakeOffDateTime xsi:nil="true"/>
+				</TakeOffDateTime>
+				<DoorCloseDateTime>
+					<ActualDoorCloseDateTime xsi:nil="true"/>
+				</DoorCloseDateTime>
+				<OffBridgeDateTime>
+					<ActualOffBridgeDateTime xsi:nil="true"/>
+				</OffBridgeDateTime>
+				<NextAirportArrivalDateTime>
+					<ScheduledNextAirportArrivalDateTime xsi:nil="true"/>
+					<EstimatedNextAirportArrivalDateTime xsi:nil="true"/>
+					<ActualNextAirportArrivalDateTime xsi:nil="true"/>
+				</NextAirportArrivalDateTime>
+				<BestKnownDateTime xsi:nil="true"/>
+			</OperationalDateTime>
+			<Status>
+				<OperationStatus/>
+				<FlightStatus>S</FlightStatus>
+				<DelayReason>
+					<DelayCode/>
+					<DelayFreeText/>
+				</DelayReason>
+				<DisplayCode>P</DisplayCode>
+				<IsTransitFlight xsi:nil="true"/>
+				<IsOverNightFlight>N</IsOverNightFlight>
+			</Status>
+			<Payload>
+				<DepartureAirport>NKG</DepartureAirport>
+				<DestinationAirport>PEK</DestinationAirport>
+				<Passenger>
+					<PassengersNumber>
+						<TotalPassengersNumber>0</TotalPassengersNumber>
+						<FirstClassPassengersNumber xsi:nil="true"/>
+						<BusinessClassPassengersNumber xsi:nil="true"/>
+						<EconomicClassPassengersNumber xsi:nil="true"/>
+					</PassengersNumber>
+					<AdultPassengers>
+						<TotalAdultPassengersNumber xsi:nil="true"/>
+						<FirstClassAdultPassengersNumber xsi:nil="true"/>
+						<BusinessClassAdultPassengersNumber xsi:nil="true"/>
+						<EconomicClassAdultPassengersNumber xsi:nil="true"/>
+					</AdultPassengers>
+					<ChildPassengers>
+						<TotalChildPassengersNumber xsi:nil="true"/>
+						<FirstClassChildPassengersNumber xsi:nil="true"/>
+						<BusinessClassChildPassengersNumber xsi:nil="true"/>
+						<EconomicClassChildPassengersNumber xsi:nil="true"/>
+					</ChildPassengers>
+					<InfantPassengers>
+						<TotalInfantPassengersNumber xsi:nil="true"/>
+						<FirstClassInfantPassengersNumber xsi:nil="true"/>
+						<BusinessClassInfantPassengersNumber xsi:nil="true"/>
+						<EconomicClassInfantPassengersNumber xsi:nil="true"/>
+					</InfantPassengers>
+				</Passenger>
+				<Weight>
+					<TotalWeight>0</TotalWeight>
+					<BaggageWeight xsi:nil="true"/>
+					<CargoWeight xsi:nil="true"/>
+					<MailWeight xsi:nil="true"/>
+				</Weight>
+			</Payload>
+			<Payload>
+				<DepartureAirport/>
+				<DestinationAirport/>
+				<Passenger>
+					<PassengersNumber>
+						<TotalPassengersNumber>0</TotalPassengersNumber>
+						<FirstClassPassengersNumber>0</FirstClassPassengersNumber>
+						<BusinessClassPassengersNumber>0</BusinessClassPassengersNumber>
+						<EconomicClassPassengersNumber>0</EconomicClassPassengersNumber>
+					</PassengersNumber>
+					<AdultPassengers>
+						<TotalAdultPassengersNumber>0</TotalAdultPassengersNumber>
+						<FirstClassAdultPassengersNumber>0</FirstClassAdultPassengersNumber>
+						<BusinessClassAdultPassengersNumber>0</BusinessClassAdultPassengersNumber>
+						<EconomicClassAdultPassengersNumber>0</EconomicClassAdultPassengersNumber>
+					</AdultPassengers>
+					<ChildPassengers>
+						<TotalChildPassengersNumber>0</TotalChildPassengersNumber>
+						<FirstClassChildPassengersNumber>0</FirstClassChildPassengersNumber>
+						<BusinessClassChildPassengersNumber>0</BusinessClassChildPassengersNumber>
+						<EconomicClassChildPassengersNumber>0</EconomicClassChildPassengersNumber>
+					</ChildPassengers>
+					<InfantPassengers>
+						<TotalInfantPassengersNumber>0</TotalInfantPassengersNumber>
+						<FirstClassInfantPassengersNumber>0</FirstClassInfantPassengersNumber>
+						<BusinessClassInfantPassengersNumber>0</BusinessClassInfantPassengersNumber>
+						<EconomicClassInfantPassengersNumber>0</EconomicClassInfantPassengersNumber>
+					</InfantPassengers>
+				</Passenger>
+				<Weight>
+					<TotalWeight>0</TotalWeight>
+					<BaggageWeight>0</BaggageWeight>
+					<CargoWeight>0</CargoWeight>
+					<MailWeight>0</MailWeight>
+				</Weight>
+			</Payload>
+			<Airport>
+				<Terminal>
+					<FlightTerminalID>T2</FlightTerminalID>
+					<AircraftTerminalID/>
+				</Terminal>
+				<Runway>
+					<RunwayID/>
+				</Runway>
+				<Stand>
+					<StandID>HOLD</StandID>
+					<ScheduledStandStartDateTime>2017-01-16T15:23:00</ScheduledStandStartDateTime>
+					<ScheduledStandEndDateTime>2017-01-16T22:08:00</ScheduledStandEndDateTime>
+					<ActualStandStartDateTime xsi:nil="true"/>
+					<ActualStandEndDateTime xsi:nil="true"/>
+				</Stand>
+				<BaggageMakeup>
+					<BaggageBeltID>HOLD</BaggageBeltID>
+					<BaggageBeltStatus>S</BaggageBeltStatus>
+					<ScheduledMakeupStartDateTime>2017-01-16T16:18:00</ScheduledMakeupStartDateTime>
+					<ScheduledMakeupEndDateTime>2017-01-16T21:58:00</ScheduledMakeupEndDateTime>
+					<ActualMakeupStartDateTime xsi:nil="true"/>
+					<ActualMakeupEndDateTime xsi:nil="true"/>
+				</BaggageMakeup>
+				<Gate>
+					<GateID>HOLD</GateID>
+					<GateStatus>S</GateStatus>
+					<ScheduledGateStartDateTime>2017-01-16T21:33:00</ScheduledGateStartDateTime>
+					<ScheduledGateEndDateTime>2017-01-16T22:08:00</ScheduledGateEndDateTime>
+					<ActualGateStartDateTime xsi:nil="true"/>
+					<ActualGateEndDateTime xsi:nil="true"/>
+					<BoardingStartDateTime xsi:nil="true"/>
+					<LastCallDateTime xsi:nil="true"/>
+					<BoardingEndDateTime xsi:nil="true"/>
+				</Gate>
+				<CheckInDesk>
+					<CheckInDeskID>MU</CheckInDeskID>
+					<CheckInType>Y</CheckInType>
+					<CheckInStatus>S</CheckInStatus>
+					<CheckInClassService>Y</CheckInClassService>
+					<ScheduledCheckInBeginDateTime>2017-01-16T19:48:00</ScheduledCheckInBeginDateTime>
+					<ScheduledCheckInEndDateTime>2017-01-16T21:48:00</ScheduledCheckInEndDateTime>
+					<ActualCheckInBeginDateTime xsi:nil="true"/>
+					<ActualCheckInEndDateTime xsi:nil="true"/>
+				</CheckInDesk>
+			</Airport>
+			     <CDMOperationDateTime>
+        <OffBlockDateTime>
+          <CalculatedOffBlockDateTime xsi:nil="true"/>
+        </OffBlockDateTime>
+      </CDMOperationDateTime>
+		</FlightData>
+	</Data>
+</IMFRoot>

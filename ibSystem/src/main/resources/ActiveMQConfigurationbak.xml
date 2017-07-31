@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<!-- <import resource="subsystems.xml"></import> ActiveMQ 连接工厂 -->
+	<!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供 -->
+	<bean id="connectinFactoryAODB" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="userName" value="HNA_AODB"></property>
+		<property name="password" value="HNA0A1O2D9B0945"></property>
+		<property name="brokerURL" value="failover://(tcp://10.25.153.215:61616)?initialReconnectDelay=100" />
+	</bean>
+
+	<!-- Spring Caching连接工厂 -->
+	<!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->
+	<bean id="cachingConnectionFactoryAODB" class="org.springframework.jms.connection.CachingConnectionFactory">
+		<!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+		<property name="targetConnectionFactory" ref="connectinFactoryAODB"></property>
+		<!-- Session缓存数量 -->
+		<property name="sessionCacheSize" value="100"></property>
+	</bean>
+
+	<!-- ActiveMQ 连接工厂 -->
+	<!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供 -->
+	<bean id="connectinFactoryIB" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="userName" value="HNA_AODB"></property>
+		<property name="password" value="HNA0A1O2D9B0945"></property>
+		<property name="brokerURL"
+			value="failover://(tcp://10.25.153.215:61616)?initialReconnectDelay=100" />
+	</bean>
+
+	<!-- Spring Caching连接工厂 -->
+	<!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->
+	<bean id="cachingConnectionFactoryIB" class="org.springframework.jms.connection.CachingConnectionFactory" primary="true">
+		<!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+		<property name="targetConnectionFactory" ref="connectinFactoryIB"></property>
+		<!-- Session缓存数量 -->
+		<property name="sessionCacheSize" value="100"></property>
+	</bean>
+
+	<!-- Spring JMS Template 配置JMS模版 -->
+	<bean id="jmsTemplateAODB" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="cachingConnectionFactoryAODB" />
+		<property name="pubSubDomain" value="false"></property>
+	</bean>
+
+	<!-- Spring JMS Template 配置JMS模版 -->
+	<bean id="jmsTemplateIB" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="cachingConnectionFactoryIB" />
+		<property name="pubSubDomain" value="false"></property>
+	</bean>
+
+
+	<bean id="fss2AdapterInterfaceProcesser" class="com.tsystems.si.aviation.imf.ibSystem.adapter.AdapterInterfaceProcesser"> 
+		<property name="adapterInterfaceProcesserName" value ="fss2AdapterInterfaceProcesser" /> 
+		<property name="messageProcesser" ref="ss2Aodb2ibMessageProcesser"></property> 
+	</bean> 
+	<bean id="fss2AdapterListenerAdapter" class="org.springframework.jms.listener.adapter.MessageListenerAdapter"> 
+		<property name="delegate" ref="fss2AdapterInterfaceProcesser" /> 
+	</bean> 
+	<bean id="bss2AdapterInterfaceProcesser" class="com.tsystems.si.aviation.imf.ibSystem.adapter.AdapterInterfaceProcesser"> 
+		<property name="adapterInterfaceProcesserName" value ="bss2AdapterInterfaceProcesser" /> 
+		<property name="messageProcesser" ref="ss2Aodb2ibMessageProcesser"></property> 
+	</bean> 
+	<bean id="bss2AdapterListenerAdapter" class="org.springframework.jms.listener.adapter.MessageListenerAdapter"> 
+		<property name="delegate" ref="bss2AdapterInterfaceProcesser" /> 
+	</bean> 
+		<bean id="rss2AdapterInterfaceProcesser" class="com.tsystems.si.aviation.imf.ibSystem.adapter.AdapterInterfaceProcesser"> 
+		<property name="adapterInterfaceProcesserName" value ="rss2AdapterInterfaceProcesser" /> 
+		<property name="messageProcesser" ref="ss2Aodb2ibMessageProcesser"></property> 
+	</bean> 
+	<bean id="rss2AdapterListenerAdapter" class="org.springframework.jms.listener.adapter.MessageListenerAdapter"> 
+		<property name="delegate" ref="rss2AdapterInterfaceProcesser" /> 
+	</bean> 
+	<bean id="fss2AdapterListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer"> 
+		<property name="connectionFactory" ref="cachingConnectionFactoryAODB" /> 
+		<property name="destinationName"   value="AQ.AODB.IB_FSS2" /> 
+		<property name="pubSubDomain"     value="false" /> 
+		<property name="messageListener" ref="fss2AdapterListenerAdapter" /> 
+	</bean> 
+	<bean id="bss2AdapterListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer"> 
+		<property name="connectionFactory" ref="cachingConnectionFactoryAODB" /> 
+		<property name="destinationName"   value="AQ.AODB.IB_BSS2" /> 
+		<property name="pubSubDomain"     value="false" /> 
+		<property name="messageListener" ref="bss2AdapterListenerAdapter" /> 
+	</bean>
+	<bean id="rss2AdapterListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer"> 
+		<property name="connectionFactory" ref="cachingConnectionFactoryAODB" /> 
+		<property name="destinationName"   value="AQ.AODB.IB_RSS2" /> 
+		<property name="pubSubDomain"     value="false" /> 
+		<property name="messageListener" ref="rss2AdapterListenerAdapter" /> 
+	</bean>
+	<!-- -->
+	<bean id="ss2Adapter2ImfSender" class="com.tsystems.si.aviation.imf.ibSystem.mq.ActiveMQAdapterSender" >
+		<property name="jmsTemplate" ref="jmsTemplateIB"></property>
+	</bean>
+	<bean id="ss2Adapter2ImfXmlTransformer" class="com.tsystems.si.aviation.imf.ibSystem.message.AdapterXmlTransformer" init-method="initialize">
+		<property name="xslPath" value="CGK_aodb_2_imf.xsl"></property>
+	</bean>
+	<bean id="ss2Adapter2ImfXmlTransformerDeparture" class="com.tsystems.si.aviation.imf.ibSystem.message.AdapterXmlTransformer" init-method="initialize">
+		<property name="xslPath" value="CGK_aodb_2_imf_departure.xsl"></property>
+	</bean>
+	<bean id="ss2Aodb2ibMessageProcesser" class="com.tsystems.si.aviation.imf.ibSystem.adapter.Aodb2ibMessageProcesser" >
+	<property name="xmlTransformer" ref="ss2Adapter2ImfXmlTransformer"></property>
+	<property name="xmlDepatureTransformer" ref="ss2Adapter2ImfXmlTransformerDeparture"></property>
+	<property name="activeMQSender" ref="ss2Adapter2ImfSender"></property>
+	<property name="processMode" value="P"></property>
+	<property name="validateIMFMessageindcator" value="false"></property>
+	</bean>
+	
+	<!-- US -->
+	<bean id="usAdapterInterfaceProcesser" class="com.tsystems.si.aviation.imf.ibSystem.adapter.AdapterInterfaceProcesser"> 
+		<property name="adapterInterfaceProcesserName" value ="usAdapterInterfaceProcesser" /> 
+		<property name="messageProcesser" ref="usAodb2ibMessageProcesser"></property> 
+	</bean> 
+	<bean id="usAdapterListenerAdapter" class="org.springframework.jms.listener.adapter.MessageListenerAdapter"> 
+		<property name="delegate" ref="usAdapterInterfaceProcesser" /> 
+	</bean> 
+	<bean id="usAdapterListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer"> 
+		<property name="connectionFactory" ref="cachingConnectionFactoryAODB" /> 
+		<property name="destinationName"   value="AQ.AODB.IB_US" /> 
+		<property name="pubSubDomain"     value="false" /> 
+		<property name="messageListener" ref="usAdapterListenerAdapter" /> 
+	</bean> 
+	<bean id="usAdapter2ImfSender" class="com.tsystems.si.aviation.imf.ibSystem.mq.ActiveMQAdapterSender" >
+		<property name="jmsTemplate" ref="jmsTemplateIB"></property>
+	</bean>
+	<bean id="usAdapter2ImfXmlTransformer" class="com.tsystems.si.aviation.imf.ibSystem.message.AdapterXmlTransformer" init-method="initialize">
+		<property name="xslPath" value="CGK_aodb_2_imf.xsl"></property>
+	</bean>
+		<bean id="usAdapter2ImfXmlTransformerDeparture" class="com.tsystems.si.aviation.imf.ibSystem.message.AdapterXmlTransformer" init-method="initialize">
+		<property name="xslPath" value="CGK_aodb_2_imf_departure.xsl"></property>
+	</bean>
+	<bean id="usAodb2ibMessageProcesser" class="com.tsystems.si.aviation.imf.ibSystem.adapter.Aodb2ibMessageProcesser" >
+	<property name="xmlTransformer" ref="usAdapter2ImfXmlTransformer"></property>
+	<property name="xmlDepatureTransformer" ref="usAdapter2ImfXmlTransformerDeparture"></property>
+	<property name="activeMQSender" ref="usAdapter2ImfSender"></property>
+	<property name="processMode" value="P"></property>
+	<property name="validateIMFMessageindcator" value="false"></property>
+	</bean>
+	
+	<!-- SS1 -->
+	
+		<bean id="ss1AdapterInterfaceProcesser" class="com.tsystems.si.aviation.imf.ibSystem.adapter.AdapterInterfaceProcesser"> 
+		<property name="adapterInterfaceProcesserName" value ="ss1AdapterInterfaceProcesser" /> 
+		<property name="messageProcesser" ref="ss1Aodb2ibMessageProcesser"></property> 
+	</bean> 
+	<bean id="ss1AdapterListenerAdapter" class="org.springframework.jms.listener.adapter.MessageListenerAdapter"> 
+		<property name="delegate" ref="ss1AdapterInterfaceProcesser" /> 
+	</bean> 
+	<bean id="ss1AdapterListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer"> 
+		<property name="connectionFactory" ref="cachingConnectionFactoryAODB" /> 
+		<property name="destinationName"   value="AQ.AODB.IB_SS1" /> 
+		<property name="pubSubDomain"     value="false" /> 
+		<property name="messageListener" ref="ss1AdapterListenerAdapter" /> 
+	</bean> 
+	<bean id="ss1Adapter2ImfSender" class="com.tsystems.si.aviation.imf.ibSystem.mq.ActiveMQAdapterSender" >
+		<property name="jmsTemplate" ref="jmsTemplateIB"></property>
+	</bean>
+	<bean id="ss1Adapter2ImfXmlTransformer" class="com.tsystems.si.aviation.imf.ibSystem.message.AdapterXmlTransformer" init-method="initialize">
+		<property name="xslPath" value="CGK_aodb_2_imf.xsl"></property>
+	</bean>
+		<bean id="ss1Adapter2ImfXmlTransformerDeparture" class="com.tsystems.si.aviation.imf.ibSystem.message.AdapterXmlTransformer" init-method="initialize">
+		<property name="xslPath" value="CGK_aodb_2_imf_departure.xsl"></property>
+	</bean>
+	<bean id="ss1Aodb2ibMessageProcesser" class="com.tsystems.si.aviation.imf.ibSystem.adapter.Aodb2ibMessageProcesser" >
+	<property name="xmlTransformer" ref="ss1Adapter2ImfXmlTransformer"></property>
+	<property name="xmlDepatureTransformer" ref="ss1Adapter2ImfXmlTransformerDeparture"></property>
+	<property name="activeMQSender" ref="ss1Adapter2ImfSender"></property>
+	<property name="processMode" value="P"></property>
+	<property name="validateIMFMessageindcator" value="false"></property>
+	</bean>
+	
+</beans>

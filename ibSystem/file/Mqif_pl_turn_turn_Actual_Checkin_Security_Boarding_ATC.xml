@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aodb="urn:com.tsystems.ac.aodb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soap-env:Header>
+    <aodb:control>
+      <aodb:message-id>rabbit.wuhan:518d9991:15d11ec090b:-7893</aodb:message-id>
+      <aodb:message-version>1.4</aodb:message-version>
+      <aodb:message-type>UPDATE</aodb:message-type>
+      <aodb:correlation-id>AA000002</aodb:correlation-id>
+      <aodb:originator>INTERFACE[US]</aodb:originator>
+      <aodb:timestamp>2017-07-07T02:04:58.670</aodb:timestamp>
+      <aodb:sender>AODB</aodb:sender>
+      <aodb:station>CGK</aodb:station>
+    </aodb:control>
+  </soap-env:Header>
+  <soap-env:Body>
+    <pl_turn id="1000955053">
+      <pt_idseq>1000955053</pt_idseq>
+      <pl_stand_list>
+        <pl_stand>
+          <pst_idseq>1001128019</pst_idseq>
+          <pst_beginactual xsi:nil="true"/>
+          <pst_beginplan>2017-07-06T22:15:00Z</pst_beginplan>
+          <pst_createtime>2017-07-05T15:40:44Z</pst_createtime>
+          <pst_endactual xsi:nil="true"/>
+          <pst_endplan>2017-07-06T23:50:00Z</pst_endplan>
+          <pst_extraindicator xsi:nil="true"/>
+          <pst_gpuunits xsi:nil="true"/>
+          <pst_lockind>N</pst_lockind>
+          <pst_modtime>2017-07-05T15:40:44Z</pst_modtime>
+          <pst_moduser>day</pst_moduser>
+          <pst_note xsi:nil="true"/>
+          <pst_order>0</pst_order>
+          <pst_pt_turn>1000955053</pst_pt_turn>
+          <pst_rmsc_scenario>1</pst_rmsc_scenario>
+          <pst_rsta_laststand xsi:nil="true"/>
+          <pst_rsta_refstand>HOLD@1</pst_rsta_refstand>
+          <pst_rsta_stand>HOLD</pst_rsta_stand>
+          <pst_towbeginactual xsi:nil="true"/>
+          <pst_towbeginplan xsi:nil="true"/>
+          <pst_towindicator xsi:nil="true"/>
+        </pl_stand>
+      </pl_stand_list>
+      <pt_createtime>2017-07-05T15:40:44Z</pt_createtime>
+      <pt_modtime>2017-07-05T15:40:44Z</pt_modtime>
+      <pt_moduser>day</pt_moduser>
+      <pt_mttt>60</pt_mttt>
+      <pt_pa_arrival>1001525753
+        <pl_arrival>
+          <pa_idseq>1001525753</pa_idseq>
+          <pa_aibt xsi:nil="true"/>
+          <pa_airbridges xsi:nil="true"/>
+          <pa_aldt xsi:nil="true"/>
+          <pa_arrivalgates xsi:nil="true"/>
+          <pa_assistingpax xsi:nil="true"/>
+          <pa_atcfplstatus>N</pa_atcfplstatus>
+          <pa_atotoutstation xsi:nil="true"/>
+          <pa_baggagebelts>HOLD</pa_baggagebelts>
+          <pa_baggagecarousels xsi:nil="true"/>
+          <pa_bibt>2017-07-06T22:15:00Z</pa_bibt>
+          <pa_billingcomments xsi:nil="true"/>
+          <pa_billingstatus>I</pa_billingstatus>
+          <pa_busind>N</pa_busind>
+          <pa_callsign>AAR761</pa_callsign>
+          <pa_cancellationtime xsi:nil="true"/>
+          <pa_cashamount xsi:nil="true"/>
+          <pa_cashind>N</pa_cashind>
+          <pa_cashlodgements xsi:nil="true"/>
+          <pa_chargeableexempt>YYYYY</pa_chargeableexempt>
+          <pa_chargeablepermit xsi:nil="true"/>
+          <pa_chargeformno xsi:nil="true"/>
+          <pa_codeshareflightnumbers xsi:nil="true"/>
+          <pa_createreason>create day process</pa_createreason>
+          <pa_createtime>2017-07-05T15:40:44Z</pa_createtime>
+          <pa_delayreasons xsi:nil="true"/>
+          <pa_displaycode>P</pa_displaycode>
+          <pa_diversiontime xsi:nil="true"/>
+          <pa_dooropentime xsi:nil="true"/>
+          <pa_doublegatewayind>N</pa_doublegatewayind>
+          <pa_eflt xsi:nil="true"/>
+          <pa_eibt xsi:nil="true"/>
+          <pa_eldt xsi:nil="true"/>
+          <pa_etotoutstation xsi:nil="true"/>
+          <pa_exit xsi:nil="true"/>
+          <pa_externalflightnumber>OZ761</pa_externalflightnumber>
+          <pa_externalsystemid xsi:nil="true"/>
+          <pa_failediatamessages>0</pa_failediatamessages>
+          <pa_firstbag xsi:nil="true"/>
+          <pa_firt xsi:nil="true"/>
+          <pa_flightnumber>OZ761</pa_flightnumber>
+          <pa_fnlt xsi:nil="true"/>
+          <pa_fplactivationtime xsi:nil="true"/>
+          <pa_fuelrequired xsi:nil="true"/>
+          <pa_gpu xsi:nil="true"/>
+          <pa_gpuid>Y</pa_gpuid>
+          <pa_iatapriority xsi:nil="true"/>
+          <pa_ifplid xsi:nil="true"/>
+          <pa_indicatorfield>------------</pa_indicatorfield>
+          <pa_lastbag xsi:nil="true"/>
+          <pa_milestoneindstring>_____</pa_milestoneindstring>
+          <pa_modtime>2017-07-05T15:40:44Z</pa_modtime>
+          <pa_moduser>day</pa_moduser>
+          <pa_nextinfotime xsi:nil="true"/>
+          <pa_onbridge xsi:nil="true"/>
+          <pa_operator>AAR</pa_operator>
+          <pa_operatorflightnumber>OZ761</pa_operatorflightnumber>
+          <pa_opscomment xsi:nil="true"/>
+          <pa_pa_mainflight xsi:nil="true"/>
+          <pa_paymentmode>I</pa_paymentmode>
+          <pa_paymentreference xsi:nil="true"/>
+          <pa_pibt>2017-07-06T22:15:00Z</pa_pibt>
+          <pa_priorityfield xsi:nil="true"/>
+          <pa_prmlevypax xsi:nil="true"/>
+          <pa_prmpax xsi:nil="true"/>
+          <pa_publiccomment xsi:nil="true"/>
+          <pa_rac_aircraft>
+            <ref_aircraft/>
+          </pa_rac_aircraft>
+          <pa_ract_aircrafttype>333
+            <ref_aircrafttype>
+              <ract_accessheight xsi:nil="true"/>
+              <ract_averageseatcapacity>440</ract_averageseatcapacity>
+              <ract_bonus>N</ract_bonus>
+              <ract_bridgerequiredind>Y</ract_bridgerequiredind>
+              <ract_createtime>2017-04-10T14:44:44Z</ract_createtime>
+              <ract_description>Airbus Industrie A330-300</ract_description>
+              <ract_enginecount xsi:nil="true"/>
+              <ract_firstbag xsi:nil="true"/>
+              <ract_height>1685</ract_height>
+              <ract_iatasubtype>333</ract_iatasubtype>
+              <ract_iatatype>333</ract_iatatype>
+              <ract_icaotype>A333</ract_icaotype>
+              <ract_internalcode>333</ract_internalcode>
+              <ract_landingweight xsi:nil="true"/>
+              <ract_length>6360</ract_length>
+              <ract_manufacturer>Airbus</ract_manufacturer>
+              <ract_model>A330-300</ract_model>
+              <ract_modtime>2017-04-10T14:44:44Z</ract_modtime>
+              <ract_moduser>loaded</ract_moduser>
+              <ract_mtow>213000</ract_mtow>
+              <ract_mttt>60</ract_mttt>
+              <ract_opscreatedind>N</ract_opscreatedind>
+              <ract_payload xsi:nil="true"/>
+              <ract_piercompatibleind>Y</ract_piercompatibleind>
+              <ract_propulsion>J</ract_propulsion>
+              <ract_ret_enginetype>
+                <ref_enginetype/>
+              </ract_ret_enginetype>
+              <ract_rnca_noisecategory xsi:nil="true"/>
+              <ract_shadow xsi:nil="true"/>
+              <ract_sizecategory>E</ract_sizecategory>
+              <ract_statisweightcategory>L</ract_statisweightcategory>
+              <ract_symbolname xsi:nil="true"/>
+              <ract_taxifuelperminute xsi:nil="true"/>
+              <ract_widebodyind>Y</ract_widebodyind>
+              <ract_width>6030</ract_width>
+            </ref_aircrafttype>
+          </pa_ract_aircrafttype>
+          <pa_ract_plannedact>333</pa_ract_plannedact>
+          <pa_ral_airline>OZ
+            <ref_airline>
+              <ral_2lc>OZ</ral_2lc>
+              <ral_3lc>AAR</ral_3lc>
+              <ral_alliance xsi:nil="true"/>
+              <ral_callsign xsi:nil="true"/>
+              <ral_category xsi:nil="true"/>
+              <ral_createtime>2017-04-10T14:44:44Z</ral_createtime>
+              <ral_description>ASIANA AIRLINES</ral_description>
+              <ral_formatflightnumberind>Y</ral_formatflightnumberind>
+              <ral_ignorecreatedayind>N</ral_ignorecreatedayind>
+              <ral_ignorestatisticsind>N</ral_ignorestatisticsind>
+              <ral_internal>OZ</ral_internal>
+              <ral_modtime>2017-04-10T14:44:44Z</ral_modtime>
+              <ral_moduser>loaded</ral_moduser>
+              <ral_name>ASIANA AIRLINES INC</ral_name>
+              <ral_opscreatedind>N</ral_opscreatedind>
+              <ral_paymentmode>I</ral_paymentmode>
+              <ral_rctr_country xsi:nil="true"/>
+              <ral_registrationcopyind>Y</ral_registrationcopyind>
+              <ral_rha_agentbag xsi:nil="true"/>
+              <ral_rha_agentci xsi:nil="true"/>
+              <ral_rtrm_terminal>3</ral_rtrm_terminal>
+            </ref_airline>
+          </pa_ral_airline>
+          <pa_ramphandlingagent xsi:nil="true"/>
+          <pa_rap_originairport>ICN</pa_rap_originairport>
+          <pa_rap_previousairport>ICN</pa_rap_previousairport>
+          <pa_rap_refdiversionairport>
+            <ref_airport/>
+          </pa_rap_refdiversionairport>
+          <pa_rap_reforiginairport>ICN
+            <ref_airport>
+              <rap_city xsi:nil="true"/>
+              <rap_city3lc xsi:nil="true"/>
+              <rap_createtime>2017-04-10T14:44:47Z</rap_createtime>
+              <rap_distance xsi:nil="true"/>
+              <rap_federalstate xsi:nil="true"/>
+              <rap_iataregion xsi:nil="true"/>
+              <rap_modtime>2017-04-10T14:44:47Z</rap_modtime>
+              <rap_moduser>loaded</rap_moduser>
+              <rap_name2>Incheon</rap_name2>
+              <rap_name3>Incheon</rap_name3>
+              <rap_name4 xsi:nil="true"/>
+              <rap_name5 xsi:nil="true"/>
+              <rap_opscreatedind>N</rap_opscreatedind>
+              <rap_rctt_countrytype>I</rap_rctt_countrytype>
+              <rap_slg_additionallanguage xsi:nil="true"/>
+              <rap_syst_station xsi:nil="true"/>
+              <rap_timezone xsi:nil="true"/>
+              <ref_airportversion_list/>
+            </ref_airport>
+          </pa_rap_reforiginairport>
+          <pa_rap_refpreviousairport>ICN
+            <ref_airport>
+              <rap_city xsi:nil="true"/>
+              <rap_city3lc xsi:nil="true"/>
+              <rap_createtime>2017-04-10T14:44:47Z</rap_createtime>
+              <rap_distance xsi:nil="true"/>
+              <rap_federalstate xsi:nil="true"/>
+              <rap_iataregion xsi:nil="true"/>
+              <rap_modtime>2017-04-10T14:44:47Z</rap_modtime>
+              <rap_moduser>loaded</rap_moduser>
+              <rap_name2>Incheon</rap_name2>
+              <rap_name3>Incheon</rap_name3>
+              <rap_name4 xsi:nil="true"/>
+              <rap_name5 xsi:nil="true"/>
+              <rap_opscreatedind>N</rap_opscreatedind>
+              <rap_rctt_countrytype>I</rap_rctt_countrytype>
+              <rap_slg_additionallanguage xsi:nil="true"/>
+              <rap_syst_station xsi:nil="true"/>
+              <rap_timezone xsi:nil="true"/>
+              <ref_airportversion_list/>
+            </ref_airport>
+          </pa_rap_refpreviousairport>
+          <pa_rco_concourse xsi:nil="true"/>
+          <pa_rco_refconcourse xsi:nil="true"/>
+          <pa_rctt_countrytype>I
+            <ref_countrytype>
+              <rctt_availableforcountryind>Y</rctt_availableforcountryind>
+              <rctt_code>I</rctt_code>
+              <rctt_createtime>2017-04-10T14:44:44Z</rctt_createtime>
+              <rctt_description>International</rctt_description>
+              <rctt_internalcode>I</rctt_internalcode>
+              <rctt_modtime>2017-04-10T14:44:44Z</rctt_modtime>
+              <rctt_moduser>loaded</rctt_moduser>
+            </ref_countrytype>
+          </pa_rctt_countrytype>
+          <pa_registration xsi:nil="true"/>
+          <pa_rfst_flightstatus>S</pa_rfst_flightstatus>
+          <pa_rfst_refflightstatus>AS
+            <ref_flightstatus>
+              <rfst_arrdepind>A</rfst_arrdepind>
+              <rfst_code>S</rfst_code>
+              <rfst_code3l>PLN</rfst_code3l>
+              <rfst_createtime>2017-04-10T14:44:48Z</rfst_createtime>
+              <rfst_description>Scheduled, initial status after flight was created test</rfst_description>
+              <rfst_idcode>AS</rfst_idcode>
+              <rfst_legacystatus>S</rfst_legacystatus>
+              <rfst_minimumturnorder xsi:nil="true"/>
+              <rfst_modtime>2017-06-20T08:42:11Z</rfst_modtime>
+              <rfst_moduser>bolo</rfst_moduser>
+              <rfst_order>0</rfst_order>
+              <rfst_rrmk_refremark xsi:nil="true"/>
+              <rfst_rrmk_remark xsi:nil="true"/>
+              <rfst_timestamp>PaSibt</rfst_timestamp>
+            </ref_flightstatus>
+          </pa_rfst_refflightstatus>
+          <pa_rha_agentbag xsi:nil="true"/>
+          <pa_rrmk_remark xsi:nil="true"/>
+          <pa_rrwy_refrunway>
+            <ref_runway/>
+          </pa_rrwy_refrunway>
+          <pa_rrwy_runway xsi:nil="true"/>
+          <pa_rsta_refstand>HOLD@1
+            <ref_stand>
+              <rsta_angle xsi:nil="true"/>
+              <rsta_capacity>-1</rsta_capacity>
+              <rsta_code>HOLD</rsta_code>
+              <rsta_createtime>2017-04-10T14:44:48Z</rsta_createtime>
+              <rsta_description>HOLD</rsta_description>
+              <rsta_dockingind xsi:nil="true"/>
+              <rsta_eqconstraint>A</rsta_eqconstraint>
+              <rsta_externalid xsi:nil="true"/>
+              <rsta_fuelpitind xsi:nil="true"/>
+              <rsta_gpuind>N</rsta_gpuind>
+              <rsta_gpuname xsi:nil="true"/>
+              <rsta_idcode>HOLD@1</rsta_idcode>
+              <rsta_latitude xsi:nil="true"/>
+              <rsta_length xsi:nil="true"/>
+              <rsta_longitude xsi:nil="true"/>
+              <rsta_marsind xsi:nil="true"/>
+              <rsta_modtime>2017-04-10T14:44:48Z</rsta_modtime>
+              <rsta_moduser>loaded</rsta_moduser>
+              <rsta_ral_airline xsi:nil="true"/>
+              <rsta_rco_concourse xsi:nil="true"/>
+              <rsta_rco_refconcourse xsi:nil="true"/>
+              <rsta_rctt_countrytype>A</rsta_rctt_countrytype>
+              <rsta_rgt_gate xsi:nil="true"/>
+              <rsta_rgt_refgate xsi:nil="true"/>
+              <rsta_rmsc_scenario>1</rsta_rmsc_scenario>
+              <rsta_validfrom xsi:nil="true"/>
+              <rsta_validto xsi:nil="true"/>
+              <rsta_width xsi:nil="true"/>
+            </ref_stand>
+          </pa_rsta_refstand>
+          <pa_rsta_stand>HOLD</pa_rsta_stand>
+          <pa_rsta_standardstand xsi:nil="true"/>
+          <pa_rstc_servicetypecode>J</pa_rstc_servicetypecode>
+          <pa_rtrm_refterminal>1@1
+            <ref_terminal>
+              <rtrm_closedind>N</rtrm_closedind>
+              <rtrm_closurereason xsi:nil="true"/>
+              <rtrm_code>1</rtrm_code>
+              <rtrm_comment>Passenger Terminal 1</rtrm_comment>
+              <rtrm_createtime>2017-04-10T14:44:47Z</rtrm_createtime>
+              <rtrm_description>Terminal 3</rtrm_description>
+              <rtrm_idcode>1@1</rtrm_idcode>
+              <rtrm_modtime>2017-06-20T08:08:24Z</rtrm_modtime>
+              <rtrm_moduser>bolo</rtrm_moduser>
+              <rtrm_rmsc_scenario>1</rtrm_rmsc_scenario>
+            </ref_terminal>
+          </pa_rtrm_refterminal>
+          <pa_rtrm_terminal>1</pa_rtrm_terminal>
+          <pa_safeind>Y</pa_safeind>
+          <pa_seats>440</pa_seats>
+          <pa_sflt xsi:nil="true"/>
+          <pa_sibt>2017-07-06T22:15:00Z</pa_sibt>
+          <pa_star xsi:nil="true"/>
+          <pa_stotoutstation xsi:nil="true"/>
+          <pa_tldt xsi:nil="true"/>
+          <pa_totalpax>0</pa_totalpax>
+          <pa_transferpax xsi:nil="true"/>
+          <pa_transitpax xsi:nil="true"/>
+          <pa_vipcomment xsi:nil="true"/>
+          <pa_vipind>N</pa_vipind>
+          <pa_zerofreightind>N</pa_zerofreightind>
+          <pa_zeromailind>N</pa_zeromailind>
+          <pa_zeropaxind>N</pa_zeropaxind>
+          <pa_zerototalweightind>N</pa_zerototalweightind>
+          <pl_arrival_list/>
+          <pl_arrivalgate_list/>
+          <pl_arrivalloadstatistics_list>
+            <pl_arrivalloadstatistics>
+              <pals_adult xsi:nil="true"/>
+              <pals_adultc xsi:nil="true"/>
+              <pals_adultf xsi:nil="true"/>
+              <pals_adulty xsi:nil="true"/>
+              <pals_baggageweight xsi:nil="true"/>
+              <pals_cargoweight xsi:nil="true"/>
+              <pals_child xsi:nil="true"/>
+              <pals_childc xsi:nil="true"/>
+              <pals_childf xsi:nil="true"/>
+              <pals_childy xsi:nil="true"/>
+              <pals_exempt xsi:nil="true"/>
+              <pals_exemptc xsi:nil="true"/>
+              <pals_exemptf xsi:nil="true"/>
+              <pals_exempty xsi:nil="true"/>
+              <pals_infant xsi:nil="true"/>
+              <pals_infantc xsi:nil="true"/>
+              <pals_infantf xsi:nil="true"/>
+              <pals_infanty xsi:nil="true"/>
+              <pals_mailweight xsi:nil="true"/>
+              <pals_pad xsi:nil="true"/>
+              <pals_padc xsi:nil="true"/>
+              <pals_padf xsi:nil="true"/>
+              <pals_pady xsi:nil="true"/>
+              <pals_pax>0</pals_pax>
+              <pals_paxc xsi:nil="true"/>
+              <pals_paxf xsi:nil="true"/>
+              <pals_paxy xsi:nil="true"/>
+              <pals_rap_airportfrom>ICN</pals_rap_airportfrom>
+              <pals_rap_airportto>CGK</pals_rap_airportto>
+              <pals_rap_refairportfrom>ICN</pals_rap_refairportfrom>
+              <pals_rap_refairportto>CGK</pals_rap_refairportto>
+              <pals_totalweight>0</pals_totalweight>
+              <pals_type xsi:nil="true"/>
+            </pl_arrivalloadstatistics>
+            <pl_arrivalloadstatistics>
+              <pals_adult>0</pals_adult>
+              <pals_adultc>0</pals_adultc>
+              <pals_adultf>0</pals_adultf>
+              <pals_adulty>0</pals_adulty>
+              <pals_baggageweight>0</pals_baggageweight>
+              <pals_cargoweight>0</pals_cargoweight>
+              <pals_child>0</pals_child>
+              <pals_childc>0</pals_childc>
+              <pals_childf>0</pals_childf>
+              <pals_childy>0</pals_childy>
+              <pals_exempt>0</pals_exempt>
+              <pals_exemptc>0</pals_exemptc>
+              <pals_exemptf>0</pals_exemptf>
+              <pals_exempty>0</pals_exempty>
+              <pals_infant>0</pals_infant>
+              <pals_infantc>0</pals_infantc>
+              <pals_infantf>0</pals_infantf>
+              <pals_infanty>0</pals_infanty>
+              <pals_mailweight>0</pals_mailweight>
+              <pals_pad>0</pals_pad>
+              <pals_padc>0</pals_padc>
+              <pals_padf>0</pals_padf>
+              <pals_pady>0</pals_pady>
+              <pals_pax>0</pals_pax>
+              <pals_paxc>0</pals_paxc>
+              <pals_paxf>0</pals_paxf>
+              <pals_paxy>0</pals_paxy>
+              <pals_rap_airportfrom xsi:nil="true"/>
+              <pals_rap_airportto xsi:nil="true"/>
+              <pals_rap_refairportfrom xsi:nil="true"/>
+              <pals_rap_refairportto xsi:nil="true"/>
+              <pals_totalweight>0</pals_totalweight>
+              <pals_type xsi:nil="true"/>
+            </pl_arrivalloadstatistics>
+          </pl_arrivalloadstatistics_list>
+          <pl_atcarrival_list/>
+          <pl_baggagebelt_list>
+            <pl_baggagebelt>
+              <pbb_idseq>1000680553</pbb_idseq>
+              <pbb_beginactual xsi:nil="true"/>
+              <pbb_beginplan>2017-07-06T22:25:00Z</pbb_beginplan>
+              <pbb_checkinclassid xsi:nil="true"/>
+              <pbb_createtime>2017-07-05T15:40:44Z</pbb_createtime>
+              <pbb_endactual xsi:nil="true"/>
+              <pbb_endplan>2017-07-06T23:25:00Z</pbb_endplan>
+              <pbb_firstbag xsi:nil="true"/>
+              <pbb_lastbag xsi:nil="true"/>
+              <pbb_loadstatus>S</pbb_loadstatus>
+              <pbb_lockind>N</pbb_lockind>
+              <pbb_modtime>2017-07-05T15:40:44Z</pbb_modtime>
+              <pbb_moduser>day</pbb_moduser>
+              <pbb_note xsi:nil="true"/>
+              <pbb_pa_arrival>1001525753</pbb_pa_arrival>
+              <pbb_pa_flightnumber>OZ761</pbb_pa_flightnumber>
+              <pbb_rbb_baggagebelt>HOLD</pbb_rbb_baggagebelt>
+              <pbb_rbb_lastbaggagebelt xsi:nil="true"/>
+              <pbb_rbb_refbaggagebelt>HOLD@1</pbb_rbb_refbaggagebelt>
+              <pbb_rbb_standardbelt xsi:nil="true"/>
+              <pbb_rdt_displaytext xsi:nil="true"/>
+              <pbb_rmsc_scenario>1</pbb_rmsc_scenario>
+              <pbb_seqno>1</pbb_seqno>
+              <pbb_status>S</pbb_status>
+            </pl_baggagebelt>
+          </pl_baggagebelt_list>
+          <pl_delayreason_list/>
+          <pl_genericarrivalres_list/>
+          <pl_handlingagent_list/>
+          <pl_routing_list>
+            <pl_routing>
+              <prt_idseq>1001318739</prt_idseq>
+              <prt_createtime>2017-07-05T15:40:44Z</prt_createtime>
+              <prt_displaycode>P</prt_displaycode>
+              <prt_modtime>2017-07-05T15:40:44Z</prt_modtime>
+              <prt_moduser>day</prt_moduser>
+              <prt_numberinleg>1</prt_numberinleg>
+              <prt_pa_arrival>1001525753</prt_pa_arrival>
+              <prt_pd_departure xsi:nil="true"/>
+              <prt_rap_airport>ICN</prt_rap_airport>
+              <prt_rap_refairport>ICN
+                <ref_airport>
+                  <rap_city xsi:nil="true"/>
+                  <rap_city3lc xsi:nil="true"/>
+                  <rap_createtime>2017-04-10T14:44:47Z</rap_createtime>
+                  <rap_distance xsi:nil="true"/>
+                  <rap_federalstate xsi:nil="true"/>
+                  <rap_iataregion xsi:nil="true"/>
+                  <rap_modtime>2017-04-10T14:44:47Z</rap_modtime>
+                  <rap_moduser>loaded</rap_moduser>
+                  <rap_name2>Incheon</rap_name2>
+                  <rap_name3>Incheon</rap_name3>
+                  <rap_name4 xsi:nil="true"/>
+                  <rap_name5 xsi:nil="true"/>
+                  <rap_opscreatedind>N</rap_opscreatedind>
+                  <rap_rctt_countrytype>I</rap_rctt_countrytype>
+                  <rap_slg_additionallanguage xsi:nil="true"/>
+                  <rap_syst_station xsi:nil="true"/>
+                  <rap_timezone xsi:nil="true"/>
+                </ref_airport>
+              </prt_rap_refairport>
+              <prt_rtr_trafficrestriction xsi:nil="true"/>
+              <prt_stastation xsi:nil="true"/>
+              <prt_stdstation xsi:nil="true"/>
+            </pl_routing>
+          </pl_routing_list>
+          <pl_transferpax_list/>
+        </pl_arrival>
+      </pt_pa_arrival>
+      <pt_pd_departure>1001525754
+        <pl_departure action="update">
+          <pd_idseq>1001525754</pd_idseq>
+          <pd_acgt xsi:nil="true"/>
+          <pd_aczt xsi:nil="true"/>
+          <pd_aebt xsi:nil="true"/>
+          <pd_aegt xsi:nil="true"/>
+          <pd_aezt xsi:nil="true"/>
+          <pd_aght xsi:nil="true"/>
+          <pd_airbridges xsi:nil="true"/>
+          <pd_aldtnext xsi:nil="true"/>
+          <pd_aobt xsi:nil="true"/>
+          <pd_ardt xsi:nil="true"/>
+          <pd_arzt xsi:nil="true"/>
+          <pd_asat xsi:nil="true"/>
+          <pd_asbt xsi:nil="true"/>
+          <pd_asrt xsi:nil="true"/>
+          <pd_assistingpax xsi:nil="true"/>
+          <pd_atcfplstatus>N</pd_atcfplstatus>
+          <pd_atot xsi:nil="true"/>
+          <pd_billingcomments xsi:nil="true"/>
+          <pd_billingstatus>I</pd_billingstatus>
+          <pd_bobt>2017-07-06T23:50:00Z</pd_bobt>
+          <pd_busind>N</pd_busind>
+          <pd_callsign>AAR762</pd_callsign>
+          <pd_cancellationtime xsi:nil="true"/>
+          <pd_cashamount xsi:nil="true"/>
+          <pd_cashind>N</pd_cashind>
+          <pd_cashlodgements xsi:nil="true"/>
+          <pd_cbpind>N</pd_cbpind>
+          <pd_chareablepermit xsi:nil="true"/>
+          <pd_chargeableexempt>YYYYY</pd_chargeableexempt>
+          <pd_chargeformno xsi:nil="true"/>
+          <pd_codeshareflightnumbers xsi:nil="true"/>
+          <pd_counterareas xsi:nil="true"/>
+          <pd_counters>HOLD</pd_counters>
+          <pd_createreason>create day process</pd_createreason>
+          <pd_createtime>2017-07-05T15:40:44Z</pd_createtime>
+          <pd_ctot xsi:nil="true"/>
+          <pd_delayreasons xsi:nil="true"/>
+          <pd_departuregates>HOLD</pd_departuregates>
+          <pd_dir xsi:nil="true"/>
+          <pd_displaycode>P</pd_displaycode>
+          <pd_doorclosetime xsi:nil="true"/>
+          <pd_doublegatewayind>N</pd_doublegatewayind>
+          <pd_dpistatus xsi:nil="true"/>
+          <pd_dpitime xsi:nil="true"/>
+          <pd_eczt xsi:nil="true"/>
+          <pd_eezt xsi:nil="true"/>
+          <pd_eobt>2017-07-06T23:50:00Z</pd_eobt>
+          <pd_eobtatc xsi:nil="true"/>
+          <pd_eobtlocal xsi:nil="true"/>
+          <pd_erzt xsi:nil="true"/>
+          <pd_etot xsi:nil="true"/>
+          <pd_exot xsi:nil="true"/>
+          <pd_exotpad xsi:nil="true"/>
+          <pd_externalflightnumber>OZ762</pd_externalflightnumber>
+          <pd_externalsystemid xsi:nil="true"/>
+          <pd_failediatamessages>0</pd_failediatamessages>
+          <pd_flightnumber>OZ762</pd_flightnumber>
+          <pd_flightrule xsi:nil="true"/>
+          <pd_fplactivationtime xsi:nil="true"/>
+          <pd_freezeind xsi:nil="true"/>
+          <pd_fuelrequired xsi:nil="true"/>
+          <pd_gotogate xsi:nil="true"/>
+          <pd_gpu xsi:nil="true"/>
+          <pd_gpuind>Y</pd_gpuind>
+          <pd_iatapriority xsi:nil="true"/>
+          <pd_ifplid xsi:nil="true"/>
+          <pd_indicatorfield>------------</pd_indicatorfield>
+          <pd_milestoneindstring>____________</pd_milestoneindstring>
+          <pd_modtime>2017-07-07T02:00:15Z</pd_modtime>
+          <pd_moduser>bolo</pd_moduser>
+          <pd_nextinfotime xsi:nil="true"/>
+          <pd_offbridge xsi:nil="true"/>
+          <pd_operator>AAR</pd_operator>
+          <pd_operatorflightnumber>OZ762</pd_operatorflightnumber>
+          <pd_opscomment xsi:nil="true"/>
+          <pd_paymentmode>I</pd_paymentmode>
+          <pd_paymentreference xsi:nil="true"/>
+          <pd_pd_mainflight xsi:nil="true"/>
+          <pd_pobt>2017-07-06T23:50:00Z</pd_pobt>
+          <pd_priorityfield xsi:nil="true"/>
+          <pd_prmlevypax xsi:nil="true"/>
+          <pd_prmpax xsi:nil="true"/>
+          <pd_publiccomment xsi:nil="true"/>
+          <pd_rac_aircraft>
+            <ref_aircraft/>
+          </pd_rac_aircraft>
+          <pd_ract_aircrafttype>340
+            <ref_aircrafttype>
+              <ract_accessheight xsi:nil="true"/>
+              <ract_averageseatcapacity>0</ract_averageseatcapacity>
+              <ract_bonus>N</ract_bonus>
+              <ract_bridgerequiredind>Y</ract_bridgerequiredind>
+              <ract_createtime>2017-04-10T14:44:44Z</ract_createtime>
+              <ract_description>Airbus A340 - Generic</ract_description>
+              <ract_enginecount xsi:nil="true"/>
+              <ract_firstbag xsi:nil="true"/>
+              <ract_height>1730</ract_height>
+              <ract_iatasubtype>340</ract_iatasubtype>
+              <ract_iatatype>340</ract_iatatype>
+              <ract_icaotype>A340</ract_icaotype>
+              <ract_internalcode>340</ract_internalcode>
+              <ract_landingweight xsi:nil="true"/>
+              <ract_length>7530</ract_length>
+              <ract_manufacturer>Airbus</ract_manufacturer>
+              <ract_model>A340 - Generic</ract_model>
+              <ract_modtime>2017-04-10T14:44:44Z</ract_modtime>
+              <ract_moduser>loaded</ract_moduser>
+              <ract_mtow>275000</ract_mtow>
+              <ract_mttt>60</ract_mttt>
+              <ract_opscreatedind>N</ract_opscreatedind>
+              <ract_payload xsi:nil="true"/>
+              <ract_piercompatibleind xsi:nil="true"/>
+              <ract_propulsion>J</ract_propulsion>
+              <ract_ret_enginetype>
+                <ref_enginetype/>
+              </ract_ret_enginetype>
+              <ract_rnca_noisecategory xsi:nil="true"/>
+              <ract_shadow xsi:nil="true"/>
+              <ract_sizecategory>E</ract_sizecategory>
+              <ract_statisweightcategory>L</ract_statisweightcategory>
+              <ract_symbolname xsi:nil="true"/>
+              <ract_taxifuelperminute xsi:nil="true"/>
+              <ract_widebodyind>Y</ract_widebodyind>
+              <ract_width>6345</ract_width>
+            </ref_aircrafttype>
+          </pd_ract_aircrafttype>
+          <pd_ract_plannedact>333</pd_ract_plannedact>
+          <pd_ral_airline>OZ
+            <ref_airline>
+              <ral_2lc>OZ</ral_2lc>
+              <ral_3lc>AAR</ral_3lc>
+              <ral_alliance xsi:nil="true"/>
+              <ral_callsign xsi:nil="true"/>
+              <ral_category xsi:nil="true"/>
+              <ral_createtime>2017-04-10T14:44:44Z</ral_createtime>
+              <ral_description>ASIANA AIRLINES</ral_description>
+              <ral_formatflightnumberind>Y</ral_formatflightnumberind>
+              <ral_ignorecreatedayind>N</ral_ignorecreatedayind>
+              <ral_ignorestatisticsind>N</ral_ignorestatisticsind>
+              <ral_internal>OZ</ral_internal>
+              <ral_modtime>2017-04-10T14:44:44Z</ral_modtime>
+              <ral_moduser>loaded</ral_moduser>
+              <ral_name>ASIANA AIRLINES INC</ral_name>
+              <ral_opscreatedind>N</ral_opscreatedind>
+              <ral_paymentmode>I</ral_paymentmode>
+              <ral_rctr_country xsi:nil="true"/>
+              <ral_registrationcopyind>Y</ral_registrationcopyind>
+              <ral_rha_agentbag xsi:nil="true"/>
+              <ral_rha_agentci xsi:nil="true"/>
+              <ral_rtrm_terminal>3</ral_rtrm_terminal>
+            </ref_airline>
+          </pd_ral_airline>
+          <pd_ramp_handlingagent xsi:nil="true"/>
+          <pd_rap_destinationairport>ICN</pd_rap_destinationairport>
+          <pd_rap_nextairport>ICN</pd_rap_nextairport>
+          <pd_rap_refdestinationairport>ICN
+            <ref_airport>
+              <rap_city xsi:nil="true"/>
+              <rap_city3lc xsi:nil="true"/>
+              <rap_createtime>2017-04-10T14:44:47Z</rap_createtime>
+              <rap_distance xsi:nil="true"/>
+              <rap_federalstate xsi:nil="true"/>
+              <rap_iataregion xsi:nil="true"/>
+              <rap_modtime>2017-04-10T14:44:47Z</rap_modtime>
+              <rap_moduser>loaded</rap_moduser>
+              <rap_name2>Incheon</rap_name2>
+              <rap_name3>Incheon</rap_name3>
+              <rap_name4 xsi:nil="true"/>
+              <rap_name5 xsi:nil="true"/>
+              <rap_opscreatedind>N</rap_opscreatedind>
+              <rap_rctt_countrytype>I</rap_rctt_countrytype>
+              <rap_slg_additionallanguage xsi:nil="true"/>
+              <rap_syst_station xsi:nil="true"/>
+              <rap_timezone xsi:nil="true"/>
+              <ref_airportversion_list/>
+            </ref_airport>
+          </pd_rap_refdestinationairport>
+          <pd_rap_refnextairport>ICN
+            <ref_airport>
+              <rap_city xsi:nil="true"/>
+              <rap_city3lc xsi:nil="true"/>
+              <rap_createtime>2017-04-10T14:44:47Z</rap_createtime>
+              <rap_distance xsi:nil="true"/>
+              <rap_federalstate xsi:nil="true"/>
+              <rap_iataregion xsi:nil="true"/>
+              <rap_modtime>2017-04-10T14:44:47Z</rap_modtime>
+              <rap_moduser>loaded</rap_moduser>
+              <rap_name2>Incheon</rap_name2>
+              <rap_name3>Incheon</rap_name3>
+              <rap_name4 xsi:nil="true"/>
+              <rap_name5 xsi:nil="true"/>
+              <rap_opscreatedind>N</rap_opscreatedind>
+              <rap_rctt_countrytype>I</rap_rctt_countrytype>
+              <rap_slg_additionallanguage xsi:nil="true"/>
+              <rap_syst_station xsi:nil="true"/>
+              <rap_timezone xsi:nil="true"/>
+              <ref_airportversion_list/>
+            </ref_airport>
+          </pd_rap_refnextairport>
+          <pd_rcdms_status>
+            <ref_cdmstatus/>
+          </pd_rcdms_status>
+          <pd_rco_concourse xsi:nil="true"/>
+          <pd_rco_refconcourse xsi:nil="true"/>
+          <pd_rctt_countrytype>I
+            <ref_countrytype>
+              <rctt_availableforcountryind>Y</rctt_availableforcountryind>
+              <rctt_code>I</rctt_code>
+              <rctt_createtime>2017-04-10T14:44:44Z</rctt_createtime>
+              <rctt_description>International</rctt_description>
+              <rctt_internalcode>I</rctt_internalcode>
+              <rctt_modtime>2017-04-10T14:44:44Z</rctt_modtime>
+              <rctt_moduser>loaded</rctt_moduser>
+            </ref_countrytype>
+          </pd_rctt_countrytype>
+          <pd_registration xsi:nil="true"/>
+          <pd_rfst_flightstatus>S</pd_rfst_flightstatus>
+          <pd_rfst_refflightstatus>DS
+            <ref_flightstatus>
+              <rfst_arrdepind>D</rfst_arrdepind>
+              <rfst_code>S</rfst_code>
+              <rfst_code3l>PLN</rfst_code3l>
+              <rfst_createtime>2017-04-10T14:44:48Z</rfst_createtime>
+              <rfst_description>Scheduled, initial status after flight was created</rfst_description>
+              <rfst_idcode>DS</rfst_idcode>
+              <rfst_legacystatus>S</rfst_legacystatus>
+              <rfst_minimumturnorder xsi:nil="true"/>
+              <rfst_modtime>2017-04-10T14:44:48Z</rfst_modtime>
+              <rfst_moduser>loaded</rfst_moduser>
+              <rfst_order>0</rfst_order>
+              <rfst_rrmk_refremark xsi:nil="true"/>
+              <rfst_rrmk_remark xsi:nil="true"/>
+              <rfst_timestamp>PdSobt</rfst_timestamp>
+            </ref_flightstatus>
+          </pd_rfst_refflightstatus>
+          <pd_rha_agentbag xsi:nil="true"/>
+          <pd_rha_agentci xsi:nil="true"/>
+          <pd_rha_refagentbag xsi:nil="true"/>
+          <pd_rha_refagentci xsi:nil="true"/>
+          <pd_rrmk_remark xsi:nil="true"/>
+          <pd_rrwy_refrunway>
+            <ref_runway/>
+          </pd_rrwy_refrunway>
+          <pd_rrwy_runway xsi:nil="true"/>
+          <pd_rsta_refstand>HOLD@1
+            <ref_stand>
+              <rsta_angle xsi:nil="true"/>
+              <rsta_capacity>-1</rsta_capacity>
+              <rsta_code>HOLD</rsta_code>
+              <rsta_createtime>2017-04-10T14:44:48Z</rsta_createtime>
+              <rsta_description>HOLD</rsta_description>
+              <rsta_dockingind xsi:nil="true"/>
+              <rsta_eqconstraint>A</rsta_eqconstraint>
+              <rsta_externalid xsi:nil="true"/>
+              <rsta_fuelpitind xsi:nil="true"/>
+              <rsta_gpuind>N</rsta_gpuind>
+              <rsta_gpuname xsi:nil="true"/>
+              <rsta_idcode>HOLD@1</rsta_idcode>
+              <rsta_latitude xsi:nil="true"/>
+              <rsta_length xsi:nil="true"/>
+              <rsta_longitude xsi:nil="true"/>
+              <rsta_marsind xsi:nil="true"/>
+              <rsta_modtime>2017-04-10T14:44:48Z</rsta_modtime>
+              <rsta_moduser>loaded</rsta_moduser>
+              <rsta_ral_airline xsi:nil="true"/>
+              <rsta_rco_concourse xsi:nil="true"/>
+              <rsta_rco_refconcourse xsi:nil="true"/>
+              <rsta_rctt_countrytype>A</rsta_rctt_countrytype>
+              <rsta_rgt_gate xsi:nil="true"/>
+              <rsta_rgt_refgate xsi:nil="true"/>
+              <rsta_rmsc_scenario>1</rsta_rmsc_scenario>
+              <rsta_validfrom xsi:nil="true"/>
+              <rsta_validto xsi:nil="true"/>
+              <rsta_width xsi:nil="true"/>
+            </ref_stand>
+          </pd_rsta_refstand>
+          <pd_rsta_stand>HOLD</pd_rsta_stand>
+          <pd_rsta_standardstand xsi:nil="true"/>
+          <pd_rstc_servicetypecode>J</pd_rstc_servicetypecode>
+          <pd_rtot xsi:nil="true"/>
+          <pd_rtrm_refterminal>1@1
+            <ref_terminal>
+              <rtrm_closedind>N</rtrm_closedind>
+              <rtrm_closurereason xsi:nil="true"/>
+              <rtrm_code>1</rtrm_code>
+              <rtrm_comment>Passenger Terminal 1</rtrm_comment>
+              <rtrm_createtime>2017-04-10T14:44:47Z</rtrm_createtime>
+              <rtrm_description>Terminal 3</rtrm_description>
+              <rtrm_idcode>1@1</rtrm_idcode>
+              <rtrm_modtime>2017-06-20T08:08:24Z</rtrm_modtime>
+              <rtrm_moduser>bolo</rtrm_moduser>
+              <rtrm_rmsc_scenario>1</rtrm_rmsc_scenario>
+            </ref_terminal>
+          </pd_rtrm_refterminal>
+          <pd_rtrm_terminal>1</pd_rtrm_terminal>
+          <pd_safeind>Y</pd_safeind>
+          <pd_salt_cdmalarm xsi:nil="true"/>
+          <pd_salt_refcdmalarm xsi:nil="true"/>
+          <pd_seats>0</pd_seats>
+          <pd_secondcall xsi:nil="true"/>
+          <pd_sequencerprio xsi:nil="true"/>
+          <pd_sobt>2017-07-06T23:50:00Z</pd_sobt>
+          <pd_stot xsi:nil="true"/>
+          <pd_taxitime xsi:nil="true"/>
+          <pd_tobt xsi:nil="true"/>
+          <pd_tobtchanges>3</pd_tobtchanges>
+          <pd_tobtconfirmationtime xsi:nil="true"/>
+          <pd_tobtstatus xsi:nil="true"/>
+          <pd_totalpax>0</pd_totalpax>
+          <pd_transferpax xsi:nil="true"/>
+          <pd_transitpax xsi:nil="true"/>
+          <pd_tsat xsi:nil="true"/>
+          <pd_tsatreason xsi:nil="true"/>
+          <pd_ttot xsi:nil="true"/>
+          <pd_ttotsent xsi:nil="true"/>
+          <pd_vipcomment xsi:nil="true"/>
+          <pd_vipind>N</pd_vipind>
+          <pd_zerofreightind>N</pd_zerofreightind>
+          <pd_zeromailind>N</pd_zeromailind>
+          <pd_zeropaxind>N</pd_zeropaxind>
+          <pd_zerototalweightind>N</pd_zerototalweightind>
+          <pl_atcdeparture_list/>
+          <pl_delayreason_list/>
+          <pl_departure_list/>
+          <pl_departureaddinfo_list>
+            <pl_departureaddinfo action="update">
+              <pdai_idseq>1000011413</pdai_idseq>
+              <pdai_actualboarding>9</pdai_actualboarding>
+              <pdai_actualcheckedin>6</pdai_actualcheckedin>
+              <pdai_actualsecurity action="update" old="8">9</pdai_actualsecurity>
+              <pdai_createtime>2017-07-07T01:57:20Z</pdai_createtime>
+              <pdai_latecheckedin xsi:nil="true"/>
+              <pdai_modtime action="update" old="2017-07-07T01:58:55Z">2017-07-07T02:04:58Z</pdai_modtime>
+              <pdai_moduser>ATC</pdai_moduser>
+              <pdai_pd_departure>1001525754</pdai_pd_departure>
+            </pl_departureaddinfo>
+          </pl_departureaddinfo_list>
+          <pl_departurebelt_list/>
+          <pl_departuregate_list>
+            <pl_departuregate>
+              <pdg_idseq>1000717076</pdg_idseq>
+              <pdg_airbridgeind>Y</pdg_airbridgeind>
+              <pdg_beginactual xsi:nil="true"/>
+              <pdg_begingateactual xsi:nil="true"/>
+              <pdg_begingateplan>2017-07-06T23:05:00Z</pdg_begingateplan>
+              <pdg_beginplan>2017-07-06T23:05:00Z</pdg_beginplan>
+              <pdg_createtime>2017-07-05T15:40:44Z</pdg_createtime>
+              <pdg_endactual xsi:nil="true"/>
+              <pdg_endplan>2017-07-06T23:50:00Z</pdg_endplan>
+              <pdg_lockind>N</pdg_lockind>
+              <pdg_modtime>2017-07-05T15:40:44Z</pdg_modtime>
+              <pdg_moduser>day</pdg_moduser>
+              <pdg_note xsi:nil="true"/>
+              <pdg_pd_departure>1001525754</pdg_pd_departure>
+              <pdg_pd_flightnumber>OZ762</pdg_pd_flightnumber>
+              <pdg_rdo_displayobject xsi:nil="true"/>
+              <pdg_rdt_displaytext xsi:nil="true"/>
+              <pdg_rgt_gate>HOLD</pdg_rgt_gate>
+              <pdg_rgt_lastgate xsi:nil="true"/>
+              <pdg_rgt_refgate>HOLD@1
+                <ref_gate>
+                  <rgt_arrdepind>B</rgt_arrdepind>
+                  <rgt_capacity>-1</rgt_capacity>
+                  <rgt_code>HOLD</rgt_code>
+                  <rgt_createtime>2017-04-10T14:44:48Z</rgt_createtime>
+                  <rgt_description>HOLD</rgt_description>
+                  <rgt_gatetype>T</rgt_gatetype>
+                  <rgt_idcode>HOLD@1</rgt_idcode>
+                  <rgt_modtime>2017-04-10T14:44:48Z</rgt_modtime>
+                  <rgt_moduser>loaded</rgt_moduser>
+                  <rgt_paxloadingbridgeind>N</rgt_paxloadingbridgeind>
+                  <rgt_ral_airline xsi:nil="true"/>
+                  <rgt_rco_concourse xsi:nil="true"/>
+                  <rgt_rco_refconcourse xsi:nil="true"/>
+                  <rgt_rcpa_areabordercontrol xsi:nil="true"/>
+                  <rgt_rcpa_areasecurity xsi:nil="true"/>
+                  <rgt_rctt_countrytype>A</rgt_rctt_countrytype>
+                  <rgt_rdlg_refdeparturelounge xsi:nil="true"/>
+                  <rgt_rmsc_scenario>1</rgt_rmsc_scenario>
+                  <rgt_validfrom xsi:nil="true"/>
+                  <rgt_validto xsi:nil="true"/>
+                </ref_gate>
+              </pdg_rgt_refgate>
+              <pdg_rgt_standardgate xsi:nil="true"/>
+              <pdg_rmsc_scenario>1</pdg_rmsc_scenario>
+              <pdg_seqno>1</pdg_seqno>
+              <pdg_status>S</pdg_status>
+            </pl_departuregate>
+          </pl_departuregate_list>
+          <pl_departureloadstatistics_list>
+            <pl_departureloadstatistics>
+              <pdls_adult>0</pdls_adult>
+              <pdls_adultc>0</pdls_adultc>
+              <pdls_adultf>0</pdls_adultf>
+              <pdls_adulty>0</pdls_adulty>
+              <pdls_baggageweight>0</pdls_baggageweight>
+              <pdls_cargoweight>0</pdls_cargoweight>
+              <pdls_child>0</pdls_child>
+              <pdls_childc>0</pdls_childc>
+              <pdls_childf>0</pdls_childf>
+              <pdls_childy>0</pdls_childy>
+              <pdls_exempt>0</pdls_exempt>
+              <pdls_exemptc>0</pdls_exemptc>
+              <pdls_exemptf>0</pdls_exemptf>
+              <pdls_exempty>0</pdls_exempty>
+              <pdls_infant>0</pdls_infant>
+              <pdls_infantc>0</pdls_infantc>
+              <pdls_infantf>0</pdls_infantf>
+              <pdls_infanty>0</pdls_infanty>
+              <pdls_mailweight>0</pdls_mailweight>
+              <pdls_pad>0</pdls_pad>
+              <pdls_padc>0</pdls_padc>
+              <pdls_padf>0</pdls_padf>
+              <pdls_pady>0</pdls_pady>
+              <pdls_pax>0</pdls_pax>
+              <pdls_paxc>0</pdls_paxc>
+              <pdls_paxf>0</pdls_paxf>
+              <pdls_paxy>0</pdls_paxy>
+              <pdls_rap_airportfrom xsi:nil="true"/>
+              <pdls_rap_airportto xsi:nil="true"/>
+              <pdls_rap_refairportfrom xsi:nil="true"/>
+              <pdls_rap_refairportto xsi:nil="true"/>
+              <pdls_totalweight>0</pdls_totalweight>
+              <pdls_type xsi:nil="true"/>
+            </pl_departureloadstatistics>
+            <pl_departureloadstatistics>
+              <pdls_adult xsi:nil="true"/>
+              <pdls_adultc xsi:nil="true"/>
+              <pdls_adultf xsi:nil="true"/>
+              <pdls_adulty xsi:nil="true"/>
+              <pdls_baggageweight xsi:nil="true"/>
+              <pdls_cargoweight xsi:nil="true"/>
+              <pdls_child xsi:nil="true"/>
+              <pdls_childc xsi:nil="true"/>
+              <pdls_childf xsi:nil="true"/>
+              <pdls_childy xsi:nil="true"/>
+              <pdls_exempt xsi:nil="true"/>
+              <pdls_exemptc xsi:nil="true"/>
+              <pdls_exemptf xsi:nil="true"/>
+              <pdls_exempty xsi:nil="true"/>
+              <pdls_infant xsi:nil="true"/>
+              <pdls_infantc xsi:nil="true"/>
+              <pdls_infantf xsi:nil="true"/>
+              <pdls_infanty xsi:nil="true"/>
+              <pdls_mailweight xsi:nil="true"/>
+              <pdls_pad xsi:nil="true"/>
+              <pdls_padc xsi:nil="true"/>
+              <pdls_padf xsi:nil="true"/>
+              <pdls_pady xsi:nil="true"/>
+              <pdls_pax>0</pdls_pax>
+              <pdls_paxc xsi:nil="true"/>
+              <pdls_paxf xsi:nil="true"/>
+              <pdls_paxy xsi:nil="true"/>
+              <pdls_rap_airportfrom>CGK</pdls_rap_airportfrom>
+              <pdls_rap_airportto>ICN</pdls_rap_airportto>
+              <pdls_rap_refairportfrom>CGK</pdls_rap_refairportfrom>
+              <pdls_rap_refairportto>ICN</pdls_rap_refairportto>
+              <pdls_totalweight>0</pdls_totalweight>
+              <pdls_type xsi:nil="true"/>
+            </pl_departureloadstatistics>
+          </pl_departureloadstatistics_list>
+          <pl_desk_list>
+            <pl_desk>
+              <pdk_idseq>1001233175</pdk_idseq>
+              <pdk_beginactual xsi:nil="true"/>
+              <pdk_beginplan>2017-07-06T20:20:00Z</pdk_beginplan>
+              <pdk_cciind>N</pdk_cciind>
+              <pdk_checkinclassid>Y</pdk_checkinclassid>
+              <pdk_checkintype>R</pdk_checkintype>
+              <pdk_createtime>2017-07-05T15:40:44Z</pdk_createtime>
+              <pdk_endactual xsi:nil="true"/>
+              <pdk_endplan>2017-07-06T23:20:00Z</pdk_endplan>
+              <pdk_lockind>N</pdk_lockind>
+              <pdk_modtime>2017-07-05T15:40:44Z</pdk_modtime>
+              <pdk_moduser>day</pdk_moduser>
+              <pdk_note xsi:nil="true"/>
+              <pdk_pd_departure>1001525754</pdk_pd_departure>
+              <pdk_pd_flightnumber>OZ762</pdk_pd_flightnumber>
+              <pdk_pday_day xsi:nil="true"/>
+              <pdk_rcnt_counter>HOLD</pdk_rcnt_counter>
+              <pdk_rcnt_lastcounter xsi:nil="true"/>
+              <pdk_rcnt_mastercci xsi:nil="true"/>
+              <pdk_rcnt_refcounter>HOLD@1
+                <ref_counter>
+                  <rcnt_baggagebeltind>N</rcnt_baggagebeltind>
+                  <rcnt_baggagebeltlocation xsi:nil="true"/>
+                  <rcnt_baggagetagprinterind>N</rcnt_baggagetagprinterind>
+                  <rcnt_capacity>-1</rcnt_capacity>
+                  <rcnt_ccialternatetext xsi:nil="true"/>
+                  <rcnt_code>HOLD</rcnt_code>
+                  <rcnt_countergroup xsi:nil="true"/>
+                  <rcnt_createtime>2017-04-10T14:44:48Z</rcnt_createtime>
+                  <rcnt_cuteequipmentind>N</rcnt_cuteequipmentind>
+                  <rcnt_description>HOLD</rcnt_description>
+                  <rcnt_externalcode xsi:nil="true"/>
+                  <rcnt_idcode>HOLD@1</rcnt_idcode>
+                  <rcnt_leasedind>N</rcnt_leasedind>
+                  <rcnt_modtime>2017-04-10T14:44:48Z</rcnt_modtime>
+                  <rcnt_moduser>loaded</rcnt_moduser>
+                  <rcnt_ownerofcheckinset xsi:nil="true"/>
+                  <rcnt_phone xsi:nil="true"/>
+                  <rcnt_publiccomment xsi:nil="true"/>
+                  <rcnt_ral_airline xsi:nil="true"/>
+                  <rcnt_rbhs_area xsi:nil="true"/>
+                  <rcnt_rcna_area xsi:nil="true"/>
+                  <rcnt_rco_concourse xsi:nil="true"/>
+                  <rcnt_rco_refconcourse xsi:nil="true"/>
+                  <rcnt_rcpa_areasecurity xsi:nil="true"/>
+                  <rcnt_rctt_countrytype>A</rcnt_rctt_countrytype>
+                  <rcnt_renter xsi:nil="true"/>
+                  <rcnt_rmsc_scenario>1</rcnt_rmsc_scenario>
+                  <rcnt_schedulecharterind xsi:nil="true"/>
+                  <rcnt_ticketprinterind>N</rcnt_ticketprinterind>
+                  <rcnt_type>R</rcnt_type>
+                  <rcnt_validfrom xsi:nil="true"/>
+                  <rcnt_validto xsi:nil="true"/>
+                </ref_counter>
+              </pdk_rcnt_refcounter>
+              <pdk_rcnt_refmastercci xsi:nil="true"/>
+              <pdk_rdo_displayobject xsi:nil="true"/>
+              <pdk_rdt_displaytext xsi:nil="true"/>
+              <pdk_rmsc_scenario>1</pdk_rmsc_scenario>
+              <pdk_seqno>3</pdk_seqno>
+              <pdk_status>S</pdk_status>
+            </pl_desk>
+            <pl_desk>
+              <pdk_idseq>1001233173</pdk_idseq>
+              <pdk_beginactual xsi:nil="true"/>
+              <pdk_beginplan>2017-07-06T20:30:00Z</pdk_beginplan>
+              <pdk_cciind>N</pdk_cciind>
+              <pdk_checkinclassid>Y</pdk_checkinclassid>
+              <pdk_checkintype>R</pdk_checkintype>
+              <pdk_createtime>2017-07-05T15:40:44Z</pdk_createtime>
+              <pdk_endactual xsi:nil="true"/>
+              <pdk_endplan>2017-07-06T23:30:00Z</pdk_endplan>
+              <pdk_lockind>N</pdk_lockind>
+              <pdk_modtime>2017-07-05T15:40:44Z</pdk_modtime>
+              <pdk_moduser>day</pdk_moduser>
+              <pdk_note xsi:nil="true"/>
+              <pdk_pd_departure>1001525754</pdk_pd_departure>
+              <pdk_pd_flightnumber>OZ762</pdk_pd_flightnumber>
+              <pdk_pday_day xsi:nil="true"/>
+              <pdk_rcnt_counter>HOLD</pdk_rcnt_counter>
+              <pdk_rcnt_lastcounter xsi:nil="true"/>
+              <pdk_rcnt_mastercci xsi:nil="true"/>
+              <pdk_rcnt_refcounter>HOLD@1
+                <ref_counter>
+                  <rcnt_baggagebeltind>N</rcnt_baggagebeltind>
+                  <rcnt_baggagebeltlocation xsi:nil="true"/>
+                  <rcnt_baggagetagprinterind>N</rcnt_baggagetagprinterind>
+                  <rcnt_capacity>-1</rcnt_capacity>
+                  <rcnt_ccialternatetext xsi:nil="true"/>
+                  <rcnt_code>HOLD</rcnt_code>
+                  <rcnt_countergroup xsi:nil="true"/>
+                  <rcnt_createtime>2017-04-10T14:44:48Z</rcnt_createtime>
+                  <rcnt_cuteequipmentind>N</rcnt_cuteequipmentind>
+                  <rcnt_description>HOLD</rcnt_description>
+                  <rcnt_externalcode xsi:nil="true"/>
+                  <rcnt_idcode>HOLD@1</rcnt_idcode>
+                  <rcnt_leasedind>N</rcnt_leasedind>
+                  <rcnt_modtime>2017-04-10T14:44:48Z</rcnt_modtime>
+                  <rcnt_moduser>loaded</rcnt_moduser>
+                  <rcnt_ownerofcheckinset xsi:nil="true"/>
+                  <rcnt_phone xsi:nil="true"/>
+                  <rcnt_publiccomment xsi:nil="true"/>
+                  <rcnt_ral_airline xsi:nil="true"/>
+                  <rcnt_rbhs_area xsi:nil="true"/>
+                  <rcnt_rcna_area xsi:nil="true"/>
+                  <rcnt_rco_concourse xsi:nil="true"/>
+                  <rcnt_rco_refconcourse xsi:nil="true"/>
+                  <rcnt_rcpa_areasecurity xsi:nil="true"/>
+                  <rcnt_rctt_countrytype>A</rcnt_rctt_countrytype>
+                  <rcnt_renter xsi:nil="true"/>
+                  <rcnt_rmsc_scenario>1</rcnt_rmsc_scenario>
+                  <rcnt_schedulecharterind xsi:nil="true"/>
+                  <rcnt_ticketprinterind>N</rcnt_ticketprinterind>
+                  <rcnt_type>R</rcnt_type>
+                  <rcnt_validfrom xsi:nil="true"/>
+                  <rcnt_validto xsi:nil="true"/>
+                </ref_counter>
+              </pdk_rcnt_refcounter>
+              <pdk_rcnt_refmastercci xsi:nil="true"/>
+              <pdk_rdo_displayobject xsi:nil="true"/>
+              <pdk_rdt_displaytext xsi:nil="true"/>
+              <pdk_rmsc_scenario>1</pdk_rmsc_scenario>
+              <pdk_seqno>1</pdk_seqno>
+              <pdk_status>S</pdk_status>
+            </pl_desk>
+            <pl_desk>
+              <pdk_idseq>1001233174</pdk_idseq>
+              <pdk_beginactual xsi:nil="true"/>
+              <pdk_beginplan>2017-07-06T20:20:00Z</pdk_beginplan>
+              <pdk_cciind>N</pdk_cciind>
+              <pdk_checkinclassid>J</pdk_checkinclassid>
+              <pdk_checkintype>R</pdk_checkintype>
+              <pdk_createtime>2017-07-05T15:40:44Z</pdk_createtime>
+              <pdk_endactual xsi:nil="true"/>
+              <pdk_endplan>2017-07-06T23:20:00Z</pdk_endplan>
+              <pdk_lockind>N</pdk_lockind>
+              <pdk_modtime>2017-07-05T15:40:44Z</pdk_modtime>
+              <pdk_moduser>day</pdk_moduser>
+              <pdk_note xsi:nil="true"/>
+              <pdk_pd_departure>1001525754</pdk_pd_departure>
+              <pdk_pd_flightnumber>OZ762</pdk_pd_flightnumber>
+              <pdk_pday_day xsi:nil="true"/>
+              <pdk_rcnt_counter>HOLD</pdk_rcnt_counter>
+              <pdk_rcnt_lastcounter xsi:nil="true"/>
+              <pdk_rcnt_mastercci xsi:nil="true"/>
+              <pdk_rcnt_refcounter>HOLD@1
+                <ref_counter>
+                  <rcnt_baggagebeltind>N</rcnt_baggagebeltind>
+                  <rcnt_baggagebeltlocation xsi:nil="true"/>
+                  <rcnt_baggagetagprinterind>N</rcnt_baggagetagprinterind>
+                  <rcnt_capacity>-1</rcnt_capacity>
+                  <rcnt_ccialternatetext xsi:nil="true"/>
+                  <rcnt_code>HOLD</rcnt_code>
+                  <rcnt_countergroup xsi:nil="true"/>
+                  <rcnt_createtime>2017-04-10T14:44:48Z</rcnt_createtime>
+                  <rcnt_cuteequipmentind>N</rcnt_cuteequipmentind>
+                  <rcnt_description>HOLD</rcnt_description>
+                  <rcnt_externalcode xsi:nil="true"/>
+                  <rcnt_idcode>HOLD@1</rcnt_idcode>
+                  <rcnt_leasedind>N</rcnt_leasedind>
+                  <rcnt_modtime>2017-04-10T14:44:48Z</rcnt_modtime>
+                  <rcnt_moduser>loaded</rcnt_moduser>
+                  <rcnt_ownerofcheckinset xsi:nil="true"/>
+                  <rcnt_phone xsi:nil="true"/>
+                  <rcnt_publiccomment xsi:nil="true"/>
+                  <rcnt_ral_airline xsi:nil="true"/>
+                  <rcnt_rbhs_area xsi:nil="true"/>
+                  <rcnt_rcna_area xsi:nil="true"/>
+                  <rcnt_rco_concourse xsi:nil="true"/>
+                  <rcnt_rco_refconcourse xsi:nil="true"/>
+                  <rcnt_rcpa_areasecurity xsi:nil="true"/>
+                  <rcnt_rctt_countrytype>A</rcnt_rctt_countrytype>
+                  <rcnt_renter xsi:nil="true"/>
+                  <rcnt_rmsc_scenario>1</rcnt_rmsc_scenario>
+                  <rcnt_schedulecharterind xsi:nil="true"/>
+                  <rcnt_ticketprinterind>N</rcnt_ticketprinterind>
+                  <rcnt_type>R</rcnt_type>
+                  <rcnt_validfrom xsi:nil="true"/>
+                  <rcnt_validto xsi:nil="true"/>
+                </ref_counter>
+              </pdk_rcnt_refcounter>
+              <pdk_rcnt_refmastercci xsi:nil="true"/>
+              <pdk_rdo_displayobject xsi:nil="true"/>
+              <pdk_rdt_displaytext xsi:nil="true"/>
+              <pdk_rmsc_scenario>1</pdk_rmsc_scenario>
+              <pdk_seqno>2</pdk_seqno>
+              <pdk_status>S</pdk_status>
+            </pl_desk>
+          </pl_desk_list>
+          <pl_genericdepartureres_list/>
+          <pl_handlingagent_list/>
+          <pl_routing_list>
+            <pl_routing>
+              <prt_idseq>1001318740</prt_idseq>
+              <prt_createtime>2017-07-05T15:40:44Z</prt_createtime>
+              <prt_displaycode>P</prt_displaycode>
+              <prt_modtime>2017-07-05T15:40:44Z</prt_modtime>
+              <prt_moduser>day</prt_moduser>
+              <prt_numberinleg>99</prt_numberinleg>
+              <prt_pa_arrival xsi:nil="true"/>
+              <prt_pd_departure>1001525754</prt_pd_departure>
+              <prt_rap_airport>ICN</prt_rap_airport>
+              <prt_rap_refairport>ICN
+                <ref_airport>
+                  <rap_city xsi:nil="true"/>
+                  <rap_city3lc xsi:nil="true"/>
+                  <rap_createtime>2017-04-10T14:44:47Z</rap_createtime>
+                  <rap_distance xsi:nil="true"/>
+                  <rap_federalstate xsi:nil="true"/>
+                  <rap_iataregion xsi:nil="true"/>
+                  <rap_modtime>2017-04-10T14:44:47Z</rap_modtime>
+                  <rap_moduser>loaded</rap_moduser>
+                  <rap_name2>Incheon</rap_name2>
+                  <rap_name3>Incheon</rap_name3>
+                  <rap_name4 xsi:nil="true"/>
+                  <rap_name5 xsi:nil="true"/>
+                  <rap_opscreatedind>N</rap_opscreatedind>
+                  <rap_rctt_countrytype>I</rap_rctt_countrytype>
+                  <rap_slg_additionallanguage xsi:nil="true"/>
+                  <rap_syst_station xsi:nil="true"/>
+                  <rap_timezone xsi:nil="true"/>
+                </ref_airport>
+              </prt_rap_refairport>
+              <prt_rtr_trafficrestriction xsi:nil="true"/>
+              <prt_stastation>2017-04-10T14:44:47Z</prt_stastation>
+              <prt_stdstation xsi:nil="true"/>
+            </pl_routing>
+          </pl_routing_list>
+          <pl_transferpax_list/>
+        </pl_departure>
+      </pt_pd_departure>
+      <pt_rmsc_scenario>1</pt_rmsc_scenario>
+      <pt_routing>ICN-KNO-ICN</pt_routing>
+      <pt_routingiata3lc>ICN-CGK-ICN</pt_routingiata3lc>
+      <pt_rsta_currentstand xsi:nil="true"/>
+      <pt_rsta_refcurrentstand>
+        <ref_stand/>
+      </pt_rsta_refcurrentstand>
+    </pl_turn>
+  </soap-env:Body>
+</soap-env:Envelope>
