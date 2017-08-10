@@ -1,0 +1,22 @@
+<IMFRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<SysInfo>
+		<MessageSequenceID>4</MessageSequenceID>
+		<MessageType>Operation</MessageType>
+		<ServiceType>FSS1</ServiceType>
+		<OperationMode>SYS</OperationMode>
+		<SendDateTime>2017-08-03T13:44:00.122</SendDateTime>
+		<CreateDateTime>2017-08-03T13:44:00.297</CreateDateTime>
+		<OriginalDateTime>2017-08-03T13:44:00.297</OriginalDateTime>
+		<Receiver>FIDS</Receiver>
+		<Sender>IMF</Sender>
+		<Owner>IMF</Owner>
+	</SysInfo>
+	<Operation>
+		<Subscription>
+			<SubscribeResponse>
+				<SubscriptionStatus>Accept</SubscriptionStatus>
+				<SubscriptionRequestID>4</SubscriptionRequestID>
+			</SubscribeResponse>
+		</Subscription>
+	</Operation>
+</IMFRoot>

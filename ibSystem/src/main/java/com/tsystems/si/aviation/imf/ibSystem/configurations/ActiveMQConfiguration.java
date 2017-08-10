@@ -34,7 +34,8 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jms.connection.CachingConnectionFactory;
 
-import com.tsystems.si.aviation.imf.ibSystem.camels.MqifMessageProcessor;
+import com.tsystems.si.aviation.imf.ibSystem.camels.ImfMessageAdapterProcessor;
+import com.tsystems.si.aviation.imf.ibSystem.camels.MqifMessageAdapterProcessor;
 import com.tsystems.si.aviation.imf.ibSystem.message.AdapterXmlTransformer;
 import com.tsystems.si.aviation.imf.ibSystem.message.XmlTransformer;
 
@@ -93,12 +94,12 @@ public class ActiveMQConfiguration {
 	}
 	
 	@Bean
-	@Qualifier("mqifMessageProcessor")
-	public MqifMessageProcessor  mqifMessageProcessor(){
-		MqifMessageProcessor mqifMessageProcessor = new MqifMessageProcessor();
-		mqifMessageProcessor.setXmlTransformer(mqifXmlTransformer());
-    	mqifMessageProcessor.setXmlDepatureTransformer(mqifXmlDepatureTransformer());
-		return mqifMessageProcessor;
+	@Qualifier("mqifMessageAdapterProcessor")
+	public MqifMessageAdapterProcessor  mqifMessageAdapterProcessor(){
+		MqifMessageAdapterProcessor mqifMessageAdapterProcessor = new MqifMessageAdapterProcessor();
+		mqifMessageAdapterProcessor.setXmlTransformer(mqifXmlTransformer());
+    	mqifMessageAdapterProcessor.setXmlDepatureTransformer(mqifXmlDepatureTransformer());
+		return mqifMessageAdapterProcessor;
 	}
 	
 	@Bean
@@ -108,5 +109,13 @@ public class ActiveMQConfiguration {
 		imfXmlTransformer.setXslPath("CGK_imf_2_aodb.xsl");
 		imfXmlTransformer.initialize();
 		return imfXmlTransformer;
+	}
+	
+	@Bean
+	@Qualifier("imfMessageAdapterProcessor")
+	public ImfMessageAdapterProcessor  imfMessageAdapterProcessor(){
+		ImfMessageAdapterProcessor imfMessageAdapterProcessor = new ImfMessageAdapterProcessor();
+		imfMessageAdapterProcessor.setXmlTransformer(imfXmlTransformer());
+		return imfMessageAdapterProcessor;
 	}
 }

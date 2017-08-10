@@ -1,5 +1,7 @@
 package com.tsystems.si.aviation.imf.ibSystem.message;
 
+import java.util.List;
+
 /*
  * Copyright 2014 T-systems.com All right reserved. This software is the
  * confidential and proprietary information of T-systems.com ("Confidential
@@ -12,6 +14,7 @@ package com.tsystems.si.aviation.imf.ibSystem.message;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.dom4j.Node;
 
 /**
@@ -39,4 +42,5 @@ public class XMLHelper {
 		node.setText(newValue);
 		return doc.asXML();
 	}
+	
 }

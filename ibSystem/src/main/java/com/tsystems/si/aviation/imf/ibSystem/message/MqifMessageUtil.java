@@ -22,7 +22,9 @@
 package com.tsystems.si.aviation.imf.ibSystem.message;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -98,36 +100,34 @@ public class MqifMessageUtil {
 		List<String> aodbMessages = new ArrayList<String>();
 		if (servicetype.equalsIgnoreCase("BSS2")) {
 			//没有的话取全集
-			List<String> datatypes = new ArrayList<String>();
+			List<String> datatypes = Imf2AodbSs2CategoryMapping.getSs2Category(imfMessage, servicetype);
 
 			for (String datatype : datatypes) {
-				String msg = StringUtils.replaceOnce(aodbMessage,
+				 String msg = StringUtils.replaceOnce(aodbMessage,
 						"<aodb:datatype>BSSDATATYPE</aodb:datatype>",
 						"<aodb:datatype>" + datatype + "</aodb:datatype>");
+				 logger.info("Add request:{}",msg);
 				aodbMessages.add(msg);
 			}
-		}
-
-		else if (servicetype.equalsIgnoreCase("RSS2")) {
-			List<String> datatypes = new ArrayList<String>();
+		}else if (servicetype.equalsIgnoreCase("RSS2")) {
+			List<String> datatypes = Imf2AodbSs2CategoryMapping.getSs2Category(imfMessage, servicetype);
 			for (String datatype : datatypes) {
-				String msg = StringUtils.replaceOnce(aodbMessage,
+				 String msg = StringUtils.replaceOnce(aodbMessage,
 						"<aodb:datatype>RSSDATATYPE</aodb:datatype>",
 						"<aodb:datatype>" + datatype + "</aodb:datatype>");
+				 logger.info("Add request:{}",msg);
 				aodbMessages.add(msg);
 			}
-		}
-
-		else if (servicetype.equalsIgnoreCase("GSS2")) {
+		}else if (servicetype.equalsIgnoreCase("GSS2")) {
 			for (String datatype : new String[]{}) {
-				String msg = StringUtils.replaceOnce(aodbMessage,
+				 String msg = StringUtils.replaceOnce(aodbMessage,
 						"<aodb:datatype>GSSDATATYPE</aodb:datatype>",
 						"<aodb:datatype>" + datatype + "</aodb:datatype>");
+				 logger.info("Add request:{}",msg);
 				aodbMessages.add(msg);
 			}
-		}
-
-		else {
+		}else {
+			 logger.info("Add request:{}",aodbMessage);
 			aodbMessages.add(aodbMessage);
 		}
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IMFRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<SysInfo>
+		<MessageSequenceID>@seqId@</MessageSequenceID>
+		<MessageType>Operation</MessageType>
+		<ServiceType>@serviceType@</ServiceType>
+		<OperationMode>SYS</OperationMode>
+		<SendDateTime>@sendTime@</SendDateTime>
+		<CreateDateTime>@createTime@</CreateDateTime>
+		<OriginalDateTime>@originalTime@</OriginalDateTime>
+		<Receiver>@receiver@</Receiver>
+		<Sender>@sender@</Sender>
+		<Owner>@owner@</Owner>
+		<Priority>4</Priority>
+	</SysInfo>
+	<Operation>
+	<Subscription>
+	   <SubscribeResponse>
+	          <SubscriptionStatus>@SubscriptionStatus@</SubscriptionStatus>
+	          <SubscriptionRequestID>@SubscriptionRequestID@</SubscriptionRequestID>
+	   </SubscribeResponse>
+	</Subscription>
+	</Operation>
+</IMFRoot>

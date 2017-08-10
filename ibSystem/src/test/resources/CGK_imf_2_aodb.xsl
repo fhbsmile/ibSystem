@@ -16,7 +16,7 @@
 	add node "ActualGroundHandleStartDateTime", "ActualGroundHandleEndDateTime", "IsVIPFlight", "VIPComment" and remove node "IsCashFlight";
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"
-	xmlns:javacode="com.tsystems.aviation.mqif.adapter.util.MqifXsltUtil" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aodb="urn:com.tsystems.ac.aodb"
+	xmlns:javacode="com.tsystems.si.aviation.imf.ibSystem.message.XsltUtil" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aodb="urn:com.tsystems.ac.aodb"
 	exclude-result-prefixes="javacode" version="1.0">
 	<xsl:output method="xml" indent="yes" />
 	<xsl:template match="/">
@@ -28,16 +28,18 @@
 				<xsl:variable name="synendtime"
 				select="IMFRoot/Operation/Subscription/SyncPeriodRequest/SyncUpdateEndDateTime" />
 			-->
+      <xsl:variable name="messageid" select="IMFRoot/SysInfo/MessageSequenceID" />
 			<xsl:variable name="schstarttime" select="IMFRoot/Operation/Subscription/FlightPeriodRequest/FlightScheduleFromDateTime" />
 			<xsl:variable name="schendtime" select="IMFRoot/Operation/Subscription/FlightPeriodRequest/FlightScheduleEndDateTime" />
 			<xsl:variable name="sender" select="IMFRoot/SysInfo/Sender" />
 			<xsl:variable name="st" select="IMFRoot/SysInfo/ServiceType" />
 			<xsl:variable name="operaMode" select="IMFRoot/SysInfo/OperationMode" />
+      <xsl:variable name="stotstation" select="IMFRoot/Data/FlightData/OperationalDateTime/PreviousAirportDepartureDateTime/ScheduledPreviousAirportDepartureDateTime" />
 			<soap-env:Header>
 				<aodb:control>
 					<xsl:for-each select="IMFRoot/SysInfo">
 						<aodb:message-id>
-							<xsl:value-of select="javacode:generateUUID()" />
+							<xsl:value-of select="$messageid" />
 						</aodb:message-id>
 						<aodb:message-version>1.4</aodb:message-version>
 						<xsl:if test="(ServiceType='FSS1' or ServiceType='BSS1' or ServiceType='RSS1' or ServiceType='GSS1') and ../Operation/Subscription ">
@@ -76,14 +78,6 @@
 										<xsl:value-of select="$synstarttime" />
 									</aodb:modification-start-time>
 								</xsl:if>
-								<!--
-									<xsl:if
-									test="../Operation/Subscription/SyncPeriodRequest/SyncUpdateEndDateTime">
-									<aodb:modification-end-time>
-									<xsl:value-of select="$synendtime" />
-									</aodb:modification-end-time>
-									</xsl:if>
-								-->
 								<xsl:if test="../Operation/Subscription/FlightPeriodRequest/FlightScheduleFromDateTime">
 									<aodb:start-time>
 										<xsl:value-of select="$schstarttime" />
@@ -126,21 +120,15 @@
 											and
 										</xsl:if>
 										<xsl:if test="../Data/FlightData/General/FlightServiceType">
-											<xsl:variable name="st" select="../Data/FlightData/General/FlightServiceType"></xsl:variable>
+											<xsl:variable name="fst" select="../Data/FlightData/General/FlightServiceType/FlightIATAServiceType"></xsl:variable>
 											<xsl:variable name="stPrefix">
 												pl_arrival.pa_rstc_servicetypecode,pl_departure.pd_rstc_servicetypecode
 											</xsl:variable>
-											<xsl:variable name="stCondition" select="javacode:buildRequestFilter($st, $stPrefix)" />
+											<xsl:variable name="stCondition" select="javacode:buildRequestFilter($fst, $stPrefix)" />
 											<xsl:value-of select="$stCondition" />
 											and
 										</xsl:if>
 										(1 = 1)
-										<!-- <xsl:if test="../Data/FlightData/General/IsMasterFlight">
-											<xsl:variable name="isMasterFlight" select="../Data/FlightData/General/IsMasterFlight"></xsl:variable>
-											<xsl:variable name="mfPrefix">pl_arrivalcodeshare.pa_idseq,pl_departurecodeshare.pd_idseq</xsl:variable>
-											<xsl:variable name="mfCondition" select="javacode:buildRequestFilter($isMasterFlight, $mfPrefix)" />
-											<xsl:value-of select="$mfCondition" /> and
-											</xsl:if> -->
 									</aodb:datasetquery>
 								</xsl:if>
 							</aodb:request>
@@ -167,23 +155,21 @@
 									<pt_pa_arrival>
 										<!--update by zzhao 2013-08-27 -->
 										<pl_arrival>
-											<!--<pa_modtime>
-												<xsl:value-of select="../SysInfo/OriginalDateTime" />
-												</pa_modtime> edited by Steven -->
 											<xsl:for-each select="PrimaryKey/FlightKey">
 												<!-- mod by zzhao 2013-10-11 -->
 												<xsl:if test="FlightScheduledDate">
-													<pa_srta>
+													<pa_sibt>
 														<xsl:variable name="seceduledate" select="FlightScheduledDate" />
 														<xsl:if test="FlightScheduledDate/@old">
-															<xsl:attribute name="OldValue"><xsl:value-of select="FlightScheduledDate/@old" />
-															</xsl:attribute>
+															<xsl:attribute name="OldValue">
+                                <xsl:value-of select="FlightScheduledDate/@old" />
+                              </xsl:attribute>
 														</xsl:if>
 														<xsl:call-template name="flightScheduleDateTimeTemplate">
 															<xsl:with-param name="scheduleDatetime" select="../../FlightData/General/FlightScheduledDateTime" />
 															<xsl:with-param name="seceduledate" select="$seceduledate" />
 														</xsl:call-template>
-													</pa_srta>
+													</pa_sibt>
 												</xsl:if>
 												<xsl:if test="FlightIdentity">
 													<pa_flightnumber>
@@ -193,42 +179,12 @@
 														</xsl:call-template>
 													</pa_flightnumber>
 												</xsl:if>
-												<!--<xsl:for-each select="DetailedIdentity">
-													<pa_ral_airline>
-													<xsl:value-of select="AirlineIATACode" />
-													<ref_airline>
-													<xsl:if test="AirlineIATACode">
-													<ral_2lc>
-													<xsl:call-template name="xsltTemplate">
-													<xsl:with-param name="inElement"
-													select="AirlineIATACode" />
-													<xsl:with-param name="needAddNil"
-													select="false()" />
-													</xsl:call-template>
-													</ral_2lc>
-													</xsl:if>
-													<xsl:if test="AirlineICAOCode">
-													<ral_3lc>
-													<xsl:call-template name="xsltTemplate">
-													<xsl:with-param name="inElement"
-													select="AirlineICAOCode" />
-													<xsl:with-param name="needAddNil"
-													select="false()" />
-													</xsl:call-template>
-													</ral_3lc>
-													</xsl:if>
-													</ref_airline>
-													</pa_ral_airline>
-													</xsl:for-each> edited by Steven -->
 											</xsl:for-each>
 											<xsl:for-each select="FlightData/General">
-												<!-- mod by zzhao 2013-09-24 -->
 												<xsl:if test="Registration">
 													<pa_registration>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pa_arrival.pl_arrival.pa_registration
-															</xsl:with-param>
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_registration</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
 														<xsl:call-template name="xsltTemplate">
@@ -248,144 +204,54 @@
 												<xsl:for-each select="AircraftType">
 													<pa_ract_aircrafttype>
 														<xsl:value-of select="AircraftIATACode" />
-														<!--<ref_aircrafttype>
-															<xsl:if test="AircraftIATACode">
-															<ract_iatatype>
-															<xsl:call-template name="xsltTemplate">
-															<xsl:with-param name="inElement"
-															select="AircraftIATACode" />
-															<xsl:with-param name="needAddNil"
-															select="true()" />
-															</xsl:call-template>
-															</ract_iatatype>
-															</xsl:if>
-															<xsl:if test="AircraftICAOCode">
-															<ract_icaotype>
-															<xsl:call-template name="xsltTemplate">
-															<xsl:with-param name="inElement"
-															select="AircraftICAOCode" />
-															<xsl:with-param name="needAddNil"
-															select="true()" />
-															</xsl:call-template>
-															</ract_icaotype>
-															</xsl:if>
-															</ref_aircrafttype> edited by Steven -->
 													</pa_ract_aircrafttype>
 												</xsl:for-each>
 												<xsl:if test="FlightServiceType">
 													<pa_rstc_servicetypecode>
 														<xsl:call-template name="xsltTemplate">
-															<xsl:with-param name="inElement" select="FlightServiceType" />
+															<xsl:with-param name="inElement" select="FlightServiceType/FlightIATAServiceType" />
 															<xsl:with-param name="needAddNil" select="true()" />
 														</xsl:call-template>
 													</pa_rstc_servicetypecode>
 												</xsl:if>
 												<xsl:for-each select="FlightRoute">
-													<xsl:if test="IATARoute/IATAOriginAirport or ICAORoute/ICAOOriginAirport">
+													<xsl:if test="IATARoute/IATAOriginAirport">
 														<pa_rap_originairport>
 															<xsl:value-of select="IATARoute/IATAOriginAirport" />
-															<!--<ref_airport>
-																<xsl:if test="IATARoute/IATAOriginAirport">
-																<rap_iata3lc>
-																<xsl:call-template name="xsltTemplate">
-																<xsl:with-param name="inElement"
-																select="IATARoute/IATAOriginAirport" />
-																<xsl:with-param name="needAddNil"
-																select="true()" />
-																</xsl:call-template>
-																</rap_iata3lc>
-																</xsl:if>
-																<xsl:if test="ICAORoute/ICAOOriginAirport">
-																<rap_icao4lc>
-																<xsl:call-template name="xsltTemplate">
-																<xsl:with-param name="inElement"
-																select="ICAORoute/ICAOOriginAirport" />
-																<xsl:with-param name="needAddNil"
-																select="true()" />
-																</xsl:call-template>
-																</rap_icao4lc>
-																</xsl:if>
-																</ref_airport> edited by Steven -->
 														</pa_rap_originairport>
 													</xsl:if>
-													<xsl:if test="IATARoute/IATAPreviousAirport or ICAORoute/ICAOPreviousAirport">
+													<xsl:if test="IATARoute/IATAPreviousAirport" >
 														<pa_rap_previousairport>
 															<xsl:value-of select="IATARoute/IATAPreviousAirport" />
-															<!-- <ref_airport>
-																<xsl:if test="IATARoute/IATAPreviousAirport">
-																<rap_iata3lc>
-																<xsl:call-template name="xsltTemplate">
-																<xsl:with-param name="inElement"
-																select="IATARoute/IATAPreviousAirport" />
-																<xsl:with-param name="needAddNil"
-																select="true()" />
-																</xsl:call-template>
-																</rap_iata3lc>
-																</xsl:if>
-																<xsl:if test="ICAORoute/ICAOPreviousAirport">
-																<rap_icao4lc>
-																<xsl:call-template name="xsltTemplate">
-																<xsl:with-param name="inElement"
-																select="ICAORoute/ICAOPreviousAirport" />
-																<xsl:with-param name="needAddNil"
-																select="true()" />
-																</xsl:call-template>
-																</rap_icao4lc>
-																</xsl:if>
-																<xsl:if test="../FlightCountryType">
-																<rap_rctt_countrytype>
-																<xsl:value-of select="../FlightCountryType" />
-																<xsl:call-template name="xsltTemplate">
-																<xsl:with-param name="inElement"
-																select="../FlightCountryType" />
-																<xsl:with-param name="needAddNil"
-																select="true()" />
-																</xsl:call-template>
-																</rap_rctt_countrytype>
-																</xsl:if>
-																</ref_airport> edited by Steven -->
 														</pa_rap_previousairport>
 													</xsl:if>
-													<xsl:if test="IATARoute/IATAViaAirport or ICAORoute/ICAOViaAirport">
-														<!-- update by zzhao 2013-09-06 -->
+	                           <xsl:variable name="countRoute" select="count(IATARoute/IATAFullRoute/AirportIATACode)" />
+													<xsl:if test="IATARoute/IATAFullRoute/AirportIATACode">														
 														<pl_routing_list>
-															<!--<xsl:variable name="checkAirport" select="IATARoute/IATAOriginAirport" />edited by Steven -->
-															<!-- added by Steven Start -->
-															<pl_routing>
-																<prt_rap_airport>
-																	<xsl:value-of select="IATARoute/IATAOriginAirport" />
-																</prt_rap_airport>
-																<prt_numberinleg>1</prt_numberinleg>
-															</pl_routing>
-															<!-- added by Steven End -->
-															<xsl:for-each select="IATARoute/IATAViaAirport">
-																<xsl:variable name="iataviaairport" select="." />
-																<!--<xsl:variable name="counter" select="position()" />
-																	<xsl:variable name="icaoviaairport" select="../../ICAORoute/ICAOViaAirport[$counter]" />edited by Steven -->
-																<!--<xsl:if test="$checkAirport!=$iataviaairport">edited by Steven -->
-																<pl_routing>
-																	<prt_rap_airport>
-																		<xsl:value-of select="$iataviaairport" />
-																	</prt_rap_airport>
-																	<prt_numberinleg>
-																		<xsl:value-of select="position()+1" />
-																	</prt_numberinleg>
-																</pl_routing>
-																<!--</xsl:if>edited by Steven -->
-															</xsl:for-each>
+														 <xsl:for-each select="IATARoute/IATAFullRoute/AirportIATACode">
+														   <pl_routing>
+														      <prt_numberinleg><xsl:value-of select="@LegNo"/></prt_numberinleg>
+														       <prt_rap_airport><xsl:value-of select="." /></prt_rap_airport>															   
+															   <!--Steven Edit-->
+															   <xsl:if test="position()=$countRoute">
+																   <prt_stdstation><xsl:value-of select="$stotstation" /></prt_stdstation>
+															  </xsl:if>
+														   </pl_routing>
+														   </xsl:for-each>
 														</pl_routing_list>
+													    														
 													</xsl:if>
 												</xsl:for-each>
-												<xsl:if test="MasterOrSlaveFlight">
-													<pl_arrival_list>
-														<xsl:for-each select="MasterOrSlaveFlight">
-															<pl_arrival>
-																<pa_flightnumber>
-																	<xsl:value-of select="FlightIdentity" />
-																</pa_flightnumber>
-															</pl_arrival>
-														</xsl:for-each>
-													</pl_arrival_list>
+												<xsl:if test="SlaveFlight">
+												  <pl_arrival_list>																						
+														  <xsl:for-each select="SlaveFlight">
+														  <pl_arrival>
+															  <pa_flightnumber>
+																  <xsl:value-of select="FlightIdentity" />
+															  </pa_flightnumber>
+															  </pl_arrival>
+															  </xsl:for-each>																															
+												  </pl_arrival_list> 
 												</xsl:if>
 												<!--add by zzhao 2013-10-11 -->
 												<xsl:if test="FreeTextComment/PublicTextComment">
@@ -409,12 +275,13 @@
 												<!--add by zzhao 2014-05-08 -->
 												<xsl:if test="PreviousAirportDepartureDateTime/ScheduledPreviousAirportDepartureDateTime">
 													<pa_stotoutstation>
+                            <!--
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pa_arrival.pl_arrival.pa_stotoutstation
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_stotoutstation
 															</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
+                            -->
 														<xsl:call-template name="xsltTemplate">
 															<xsl:with-param name="inElement" select="PreviousAirportDepartureDateTime/ScheduledPreviousAirportDepartureDateTime" />
 															<xsl:with-param name="needAddNil" select="true()" />
@@ -424,9 +291,7 @@
 												<xsl:if test="PreviousAirportDepartureDateTime/EstimatedPreviousAirportDepartureDateTime">
 													<pa_etotoutstation>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pa_arrival.pl_arrival.pa_etotoutstation
-															</xsl:with-param>
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_etotoutstation</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
 														<xsl:call-template name="xsltTemplate">
@@ -438,9 +303,7 @@
 												<xsl:if test="PreviousAirportDepartureDateTime/ActualPreviousAirportDepartureDateTime">
 													<pa_atotoutstation>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pa_arrival.pl_arrival.pa_atotoutstation
-															</xsl:with-param>
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_atotoutstation</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
 														<xsl:call-template name="xsltTemplate">
@@ -457,13 +320,19 @@
 														</xsl:call-template>
 													</pa_fnlt>
 												</xsl:if>
+                        <xsl:if test="FinalApproachTime">
+													<pa_firt>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement" select="FinalApproachTime" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pa_firt>
+												</xsl:if>
 												<!--Add by zzhao 2013-06-20 -->
 												<xsl:if test="LandingDateTime/EstimatedLandingDateTime">
 													<pa_eldt>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pa_arrival.pl_arrival.pa_eldt
-															</xsl:with-param>
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_eldt</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
 														<xsl:call-template name="xsltTemplate">
@@ -472,12 +341,22 @@
 														</xsl:call-template>
 													</pa_eldt>
 												</xsl:if>
+                        <xsl:if test="LandingDateTime/TargetLandingDateTime">
+													<pa_tldt>
+														<xsl:call-template name="addPriority">
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_tldt</xsl:with-param>
+															<xsl:with-param name="sender" select="$sender" />
+														</xsl:call-template>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement" select="LandingDateTime/TargetLandingDateTime" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pa_tldt>
+												</xsl:if>
 												<xsl:if test="LandingDateTime/ActualLandingDateTime">
 													<pa_aldt>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pa_arrival.pl_arrival.pa_aldt
-															</xsl:with-param>
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_aldt</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
 														<xsl:call-template name="xsltTemplate">
@@ -490,9 +369,7 @@
 												<xsl:if test="OnBlockDateTime/ScheduledOnBlockDateTime">
 													<pa_sibt>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pa_arrival.pl_arrival.pa_sibt
-															</xsl:with-param>
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_sibt</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
 														<xsl:call-template name="xsltTemplate">
@@ -504,9 +381,7 @@
 												<xsl:if test="OnBlockDateTime/EstimatedOnBlockDateTime">
 													<pa_eibt>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pa_arrival.pl_arrival.pa_eibt
-															</xsl:with-param>
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_eibt</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
 														<xsl:call-template name="xsltTemplate">
@@ -518,9 +393,7 @@
 												<xsl:if test="OnBlockDateTime/ActualOnBlockDateTime">
 													<pa_aibt>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pa_arrival.pl_arrival.pa_aibt
-															</xsl:with-param>
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_aibt</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
 														<xsl:call-template name="xsltTemplate">
@@ -533,9 +406,7 @@
 												<xsl:if test="FlyTime/EstimatedFlyTime">
 													<pa_eflt>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pa_arrival.pl_arrival.pa_eflt
-															</xsl:with-param>
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_eflt</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
 														<xsl:call-template name="xsltTemplate">
@@ -563,12 +434,6 @@
 												</xsl:if>
 											</xsl:for-each>
 											<xsl:for-each select="FlightData/Status">
-												<!-- mod by zzhao 2014-02-26 -->
-												<!--
-													<xsl:if test="IsCashFlight='Y'">
-													<pa_paymentmode>C</pa_paymentmode>
-													</xsl:if>
-												-->
 												<!--mod by zzhao 2013-10-14 -->
 												<xsl:if test="DelayReason">
 													<pl_delayreason_list>
@@ -587,9 +452,7 @@
 												<xsl:if test="OperationStatus">
 													<pa_rrmk_remark>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pa_arrival.pl_arrival.pa_rrmk_remark
-															</xsl:with-param>
+															<xsl:with-param name="key">pl_turn.pt_pa_arrival.pl_arrival.pa_rrmk_remark</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
 														<xsl:call-template name="xsltTemplate">
@@ -863,16 +726,6 @@
 																		</xsl:call-template>
 																	</pag_rgt_gate>
 																</xsl:if>
-																<!--<xsl:if test="GateStatus">
-																	<pag_status>
-																	<xsl:call-template name="xsltTemplate">
-																	<xsl:with-param name="inElement"
-																	select="GateStatus" />
-																	<xsl:with-param name="needAddNil"
-																	select="false()" />
-																	</xsl:call-template>
-																	</pag_status>
-																	</xsl:if> Steven commented 2013/12/10 -->
 																<xsl:if test="ScheduledGateStartDateTime">
 																	<pag_beginplan>
 																		<xsl:call-template name="xsltTemplate">
@@ -973,57 +826,112 @@
 														</xsl:for-each>
 													</pl_baggagebelt_list>
 												</xsl:if>
+                        <!--add mapping for PassengerAmount 2017-7-31 -->
+												<xsl:for-each select="PassengerAmount">
+															<xsl:if test="TotalPassengers">
+																<pa_toatlpax>
+																	<xsl:call-template name="xsltTemplate">
+																		<xsl:with-param name="inElement" select="TotalPassengers" />
+																		<xsl:with-param name="needAddNil" select="true()" />
+																	</xsl:call-template>
+																</pa_toatlpax>
+															</xsl:if>
+															<xsl:if test="TransferPassengers">
+																<pa_transferpax>
+																	<xsl:call-template name="xsltTemplate">
+																		<xsl:with-param name="inElement" select="TransferPassengers" />
+																		<xsl:with-param name="needAddNil" select="true()" />
+																	</xsl:call-template>
+																</pa_transferpax>
+															</xsl:if>
+															<xsl:if test="TransitPassengers">
+																<pa_transitpax>
+																	<xsl:call-template name="xsltTemplate">
+																		<xsl:with-param name="inElement" select="TransitPassengers" />
+																		<xsl:with-param name="needAddNil" select="true()" />
+																	</xsl:call-template>
+																</pa_transitpax>
+															</xsl:if>
+															<xsl:if test="TotalCrews">
+																<pa_totalcrew>
+																	<xsl:call-template name="xsltTemplate">
+																		<xsl:with-param name="inElement" select="TotalCrews" />
+																		<xsl:with-param name="needAddNil" select="true()" />
+																	</xsl:call-template>
+																</pa_totalcrew>
+															</xsl:if>
+                        			<xsl:if test="TotalExtraCrews">
+																<pa_totalextracrew>
+																	<xsl:call-template name="xsltTemplate">
+																		<xsl:with-param name="inElement" select="TotalExtraCrews" />
+																		<xsl:with-param name="needAddNil" select="true()" />
+																	</xsl:call-template>
+																</pa_totalextracrew>
+															</xsl:if>
+												</xsl:for-each>
+                       <xsl:if test="Stand/StandID">
+									       <pa_rsta_stand>
+										       <xsl:value-of select="."/>
+										     </pa_rsta_stand>
+									    </xsl:if>
 											</xsl:for-each>
+                    
+                    	
 										</pl_arrival>
 									</pt_pa_arrival>
 									<xsl:for-each select="FlightData/Airport">
-										<xsl:if test="Stand">
-											<pl_stand_list>
-												<xsl:for-each select="Stand">
-													<pl_stand>
-														<xsl:if test="StandID">
-															<pst_rsta_stand>
-																<xsl:call-template name="xsltTemplate">
-																	<xsl:with-param name="inElement" select="StandID" />
-																	<xsl:with-param name="needAddNil" select="true()" />
-																</xsl:call-template>
-															</pst_rsta_stand>
-														</xsl:if>
-														<xsl:if test="ScheduledStandStartDateTime">
-															<pst_beginplan>
-																<xsl:call-template name="xsltTemplate">
-																	<xsl:with-param name="inElement" select="ScheduledStandStartDateTime" />
-																	<xsl:with-param name="needAddNil" select="true()" />
-																</xsl:call-template>
-															</pst_beginplan>
-														</xsl:if>
-														<xsl:if test="ScheduledStandEndDateTime">
-															<pst_endplan>
-																<xsl:call-template name="xsltTemplate">
-																	<xsl:with-param name="inElement" select="ScheduledStandEndDateTime" />
-																	<xsl:with-param name="needAddNil" select="true()" />
-																</xsl:call-template>
-															</pst_endplan>
-														</xsl:if>
-														<xsl:if test="ActualStandStartDateTime">
-															<pst_beginactual>
-																<xsl:call-template name="xsltTemplate">
-																	<xsl:with-param name="inElement" select="ActualStandStartDateTime" />
-																	<xsl:with-param name="needAddNil" select="true()" />
-																</xsl:call-template>
-															</pst_beginactual>
-														</xsl:if>
-														<xsl:if test="ActualStandEndDateTime">
-															<pst_endactual>
-																<xsl:call-template name="xsltTemplate">
-																	<xsl:with-param name="inElement" select="ActualStandEndDateTime" />
-																	<xsl:with-param name="needAddNil" select="true()" />
-																</xsl:call-template>
-															</pst_endactual>
-														</xsl:if>
-													</pl_stand>
-												</xsl:for-each>
-											</pl_stand_list>
+					
+									 <xsl:if test="GroundMovement">
+										<pl_stand_list>
+										  <xsl:for-each select="GroundMovement">
+											<pl_stand>
+												<xsl:if test="StandID">
+													<pst_rsta_stand>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement" select="StandID" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pst_rsta_stand>
+												</xsl:if>
+												<xsl:if test="ScheduledStandStartDateTime">
+													<pst_beginplan>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement"
+																select="ScheduledStandStartDateTime" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pst_beginplan>
+												</xsl:if>
+												<xsl:if test="ScheduledStandEndDateTime">
+													<pst_endplan>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement"
+																select="ScheduledStandEndDateTime" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pst_endplan>
+												</xsl:if>
+												<xsl:if test="ActualStandStartDateTime">
+													<pst_beginactual>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement"
+																select="ActualStandStartDateTime" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pst_beginactual>
+												</xsl:if>
+												<xsl:if test="ActualStandEndDateTime">
+													<pst_endactual>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement"
+																select="ActualStandEndDateTime" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pst_endactual>
+												</xsl:if>
+											</pl_stand>
+											</xsl:for-each>
+										</pl_stand_list>
 										</xsl:if>
 									</xsl:for-each>
 								</xsl:if>
@@ -1031,9 +939,6 @@
 									<pt_pd_departure>
 										<!--update by zzhao 2013-08-27 -->
 										<pl_departure>
-											<!--<pd_modtime>
-												<xsl:value-of select="../SysInfo/OriginalDateTime" />
-												</pd_modtime> edited by Steven -->
 											<xsl:for-each select="PrimaryKey/FlightKey">
 												<!-- mod by zzhao 2013-10-11 -->
 												<xsl:if test="FlightScheduledDate">
@@ -1041,8 +946,8 @@
 														<xsl:variable name="seceduledate" select="FlightScheduledDate" />
 														<xsl:if test="FlightScheduledDate/@old">
 															<xsl:attribute name="OldValue">
-															<xsl:value-of select="FlightScheduledDate/@old" />
-															</xsl:attribute>
+                                <xsl:value-of select="FlightScheduledDate/@old" />
+                              </xsl:attribute>
 														</xsl:if>
 														<xsl:call-template name="flightScheduleDateTimeTemplate">
 															<xsl:with-param name="scheduleDatetime" select="../../FlightData/General/FlightScheduledDateTime" />
@@ -1058,40 +963,12 @@
 														</xsl:call-template>
 													</pd_flightnumber>
 												</xsl:if>
-												<!--
-													<xsl:for-each select="DetailedIdentity">
-													<pd_ral_airline>
-													<ref_airline>
-													<xsl:if test="AirlineIATACode">
-													<ral_2lc>
-													<xsl:call-template name="xsltTemplate">
-													<xsl:with-param name="inElement"
-													select="AirlineIATACode" />
-													<xsl:with-param name="needAddNil"
-													select="true()" />
-													</xsl:call-template>
-													</ral_2lc>
-													</xsl:if>
-													<xsl:if test="AirlineICAOCode">
-													<ral_3lc>
-													<xsl:call-template name="xsltTemplate">
-													<xsl:with-param name="inElement"
-													select="AirlineICAOCode" />
-													<xsl:with-param name="needAddNil"
-													select="true()" />
-													</xsl:call-template>
-													</ral_3lc>
-													</xsl:if>
-													</ref_airline>
-													</pd_ral_airline>
-													</xsl:for-each> -->
 											</xsl:for-each>
 											<xsl:for-each select="FlightData/General">
 												<xsl:if test="Registration">
 													<pd_registration>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pd_departure.pl_departure.pd_registration
+															<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_registration
 															</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
@@ -1112,92 +989,59 @@
 												<xsl:for-each select="AircraftType">
 													<pd_ract_aircrafttype>
 														<xsl:value-of select="AircraftIATACode" />
-														<!--<ref_aircrafttype>
-															<xsl:if test="AircraftIATACode">
-															<ract_iatatype>
-															<xsl:call-template name="xsltTemplate">
-															<xsl:with-param name="inElement"
-															select="AircraftIATACode" />
-															<xsl:with-param name="needAddNil"
-															select="true()" />
-															</xsl:call-template>
-															</ract_iatatype>
-															</xsl:if>
-															<xsl:if test="AircraftICAOCode">
-															<ract_icaotype>
-															<xsl:call-template name="xsltTemplate">
-															<xsl:with-param name="inElement"
-															select="AircraftICAOCode" />
-															<xsl:with-param name="needAddNil"
-															select="true()" />
-															</xsl:call-template>
-															</ract_icaotype>
-															</xsl:if>
-															</ref_aircrafttype> edited by Steven -->
 													</pd_ract_aircrafttype>
 												</xsl:for-each>
 												<xsl:if test="FlightServiceType">
 													<pd_rstc_servicetypecode>
 														<xsl:call-template name="xsltTemplate">
-															<xsl:with-param name="inElement" select="FlightServiceType" />
+															<xsl:with-param name="inElement" select="FlightServiceType/FlightIATAServiceType" />
 															<xsl:with-param name="needAddNil" select="true()" />
 														</xsl:call-template>
 													</pd_rstc_servicetypecode>
 												</xsl:if>
 												<xsl:for-each select="FlightRoute">
-													<xsl:if test="IATARoute/IATANextAirport or ICAORoute/IATADestinationAirport or ../FlightCountryType">
-														<pd_rap_nextairport>
-															<xsl:value-of select="IATARoute/IATANextAirport" />
-														</pd_rap_nextairport>
-													</xsl:if>
-													<xsl:if test="IATARoute/IATANextAirport or ICAORoute/ICAODestinationAirport">
-														<pd_rap_destinationairport>
-															<xsl:value-of select="IATARoute/IATADestinationAirport" />
-														</pd_rap_destinationairport>
-													</xsl:if>
-													<xsl:if test="IATARoute/IATAViaAirport or ICAORoute/ICAOViaAirport">
-														<!-- update by zzhao 2013-09-06 -->
+													
+													<xsl:if test="IATARoute/IATAFullRoute/AirportIATACode">														
 														<pl_routing_list>
-															<xsl:variable name="checkAirport" select="IATARoute/IATAOriginAirport" />
-															<xsl:for-each select="IATARoute/IATAViaAirport">
-																<xsl:variable name="iataviaairport" select="." />
-																<!-- <xsl:variable name="counter" select="position()" />
-																	<xsl:variable name="icaoviaairport" select="../../ICAORoute/ICAOViaAirport[$counter]" />
-																	<xsl:choose>
-																	<xsl:when test="$checkAirport!=$iataviaairport"> edited by Steven 2014.1.16 -->
-																<pl_routing>
-																	<prt_rap_airport>
-																		<xsl:value-of select="$iataviaairport" />
-																	</prt_rap_airport>
-																	<prt_numberinleg>
-																		<xsl:value-of select="position()" />
-																	</prt_numberinleg>
-																</pl_routing>
-																<!--</xsl:when>
-																	<xsl:otherwise></xsl:otherwise>
-																	</xsl:choose> edited by Steven 2014.1.16 -->
-															</xsl:for-each>
-															<!-- added by Steven Start -->
-															<pl_routing>
-																<prt_rap_airport>
-																	<xsl:value-of select="IATARoute/IATADestinationAirport" />
-																</prt_rap_airport>
-																<prt_numberinleg>99</prt_numberinleg>
-															</pl_routing>
-															<!-- added by Steven End -->
+														 <xsl:for-each select="IATARoute/IATAFullRoute/AirportIATACode">
+														   <pl_routing>
+														      <xsl:if test="position()=last()">
+															     <prt_numberinleg>99</prt_numberinleg>
+															    </xsl:if>
+														      <xsl:if test="not(position()=last())">
+															     <prt_numberinleg><xsl:value-of select="@LegNo"/></prt_numberinleg>
+															    </xsl:if>
+														       <prt_rap_airport><xsl:value-of select="." /></prt_rap_airport>
+														   </pl_routing>
+														   </xsl:for-each>
 														</pl_routing_list>
+													    														
 													</xsl:if>
+													
+													<xsl:for-each select="/IMFRoot/Data/FlightData/General/FlightRoute/IATARoute/IATANextAirport">
+														<pd_rap_nextairport>
+															<xsl:value-of select="." />														
+														</pd_rap_nextairport>
+													 </xsl:for-each>
+												
+													<xsl:for-each select="/IMFRoot/Data/FlightData/General/FlightRoute/IATARoute/IATADestinationAirport">
+														<pd_rap_destinationairport>
+															<xsl:value-of select="." />															
+														</pd_rap_destinationairport>
+													 </xsl:for-each>
+													
 												</xsl:for-each>
-												<xsl:if test="MasterOrSlaveFlight">
-													<pl_departure_list>
-														<xsl:for-each select="MasterOrSlaveFlight">
-															<pl_departure>
-																<pd_flightnumber>
-																	<xsl:value-of select="FlightIdentity" />
-																</pd_flightnumber>
+												
+												<xsl:if test="SlaveFlight">
+												<pl_departure_list>																						
+														<xsl:for-each select="SlaveFlight">
+														<pl_departure>
+															<pd_flightnumber>
+																<xsl:value-of select="FlightIdentity" />
+															</pd_flightnumber>
 															</pl_departure>
-														</xsl:for-each>
-													</pl_departure_list>
+															</xsl:for-each>																																			
+												</pl_departure_list> 
 												</xsl:if>
 												<!--Add by zzhao 2013-06-20 2013-10-11 -->
 												<xsl:if test="FreeTextComment/PublicTextComment">
@@ -1223,8 +1067,7 @@
 													<xsl:if test="ScheduledOffBlockDateTime">
 														<pd_sobt>
 															<xsl:call-template name="addPriority">
-																<xsl:with-param name="key">
-																	pl_turn.pt_pd_departure.pl_departure.pd_sobt
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_sobt
 																</xsl:with-param>
 																<xsl:with-param name="sender" select="$sender" />
 															</xsl:call-template>
@@ -1235,10 +1078,9 @@
 														</pd_sobt>
 													</xsl:if>
 													<xsl:if test="EstimatedOffBlockDateTime">
-														<pd_eobtlocal>
+														<pd_eobt>
 															<xsl:call-template name="addPriority">
-																<xsl:with-param name="key">
-																	pl_turn.pt_pd_departure.pl_departure.pd_eobtlocal
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_eobt
 																</xsl:with-param>
 																<xsl:with-param name="sender" select="$sender" />
 															</xsl:call-template>
@@ -1246,13 +1088,51 @@
 																<xsl:with-param name="inElement" select="EstimatedOffBlockDateTime" />
 																<xsl:with-param name="needAddNil" select="true()" />
 															</xsl:call-template>
+														</pd_eobt>
+													</xsl:if>
+                          	<xsl:if test="EstimatedOffBlockDateTimeLocal">
+														<pd_eobtlocal>
+															<xsl:call-template name="addPriority">
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_eobtlocal
+																</xsl:with-param>
+																<xsl:with-param name="sender" select="$sender" />
+															</xsl:call-template>
+															<xsl:call-template name="xsltTemplate">
+																<xsl:with-param name="inElement" select="EstimatedOffBlockDateTimeLocal" />
+																<xsl:with-param name="needAddNil" select="true()" />
+															</xsl:call-template>
 														</pd_eobtlocal>
+													</xsl:if>
+                          <xsl:if test="EstimatedOffBlockDateTimeATC">
+														<pd_eobtatc>
+															<xsl:call-template name="addPriority">
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_eobtatc
+																</xsl:with-param>
+																<xsl:with-param name="sender" select="$sender" />
+															</xsl:call-template>
+															<xsl:call-template name="xsltTemplate">
+																<xsl:with-param name="inElement" select="EstimatedOffBlockDateTimeATC" />
+																<xsl:with-param name="needAddNil" select="true()" />
+															</xsl:call-template>
+														</pd_eobtatc>
+													</xsl:if>
+                         <xsl:if test="TargetOffBlockDateTime">
+														<pd_tobt>
+															<xsl:call-template name="addPriority">
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_tobt
+																</xsl:with-param>
+																<xsl:with-param name="sender" select="$sender" />
+															</xsl:call-template>
+															<xsl:call-template name="xsltTemplate">
+																<xsl:with-param name="inElement" select="TargetOffBlockDateTime" />
+																<xsl:with-param name="needAddNil" select="true()" />
+															</xsl:call-template>
+														</pd_tobt>
 													</xsl:if>
 													<xsl:if test="ActualOffBlockDateTime">
 														<pd_aobt>
 															<xsl:call-template name="addPriority">
-																<xsl:with-param name="key">
-																	pl_turn.pt_pd_departure.pl_departure.pd_aobt
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_aobt
 																</xsl:with-param>
 																<xsl:with-param name="sender" select="$sender" />
 															</xsl:call-template>
@@ -1263,21 +1143,52 @@
 														</pd_aobt>
 													</xsl:if>
 												</xsl:for-each>
+                        <xsl:for-each select="StartupDateTime">
+													<xsl:if test="TargetStartupApprovedDateTime">
+														<pd_tsat>
+															<xsl:call-template name="addPriority">
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_tsat
+																</xsl:with-param>
+																<xsl:with-param name="sender" select="$sender" />
+															</xsl:call-template>
+															<xsl:call-template name="xsltTemplate">
+																<xsl:with-param name="inElement" select="TargetStartupApprovedDateTime" />
+																<xsl:with-param name="needAddNil" select="true()" />
+															</xsl:call-template>
+														</pd_tsat>
+													</xsl:if>
+                          <xsl:if test="ActualStartupRequestDateTime">
+														<pd_asrt>
+															<xsl:call-template name="addPriority">
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_asrt
+																</xsl:with-param>
+																<xsl:with-param name="sender" select="$sender" />
+															</xsl:call-template>
+															<xsl:call-template name="xsltTemplate">
+																<xsl:with-param name="inElement" select="ActualStartupRequestDateTime" />
+																<xsl:with-param name="needAddNil" select="true()" />
+															</xsl:call-template>
+														</pd_asrt>
+													</xsl:if>
+                          <xsl:if test="ActualStartupApprovedDateTime">
+														<pd_asat>
+															<xsl:call-template name="addPriority">
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_asat
+																</xsl:with-param>
+																<xsl:with-param name="sender" select="$sender" />
+															</xsl:call-template>
+															<xsl:call-template name="xsltTemplate">
+																<xsl:with-param name="inElement" select="ActualStartupApprovedDateTime" />
+																<xsl:with-param name="needAddNil" select="true()" />
+															</xsl:call-template>
+														</pd_asat>
+													</xsl:if>
+												</xsl:for-each>
 												<xsl:for-each select="TakeOffDateTime">
-													<!-- <xsl:if test="ScheduledTakeOffDateTime">
-														<pd_srtd>
-														<xsl:call-template name="xsltTemplate">
-														<xsl:with-param name="inElement"
-														select="ScheduledTakeOffDateTime" />
-														<xsl:with-param name="needAddNil" select="true()" />
-														</xsl:call-template>
-														</pd_srtd>
-														</xsl:if> -->
 													<xsl:if test="EstimatedTakeOffDateTime">
 														<pd_etot>
 															<xsl:call-template name="addPriority">
-																<xsl:with-param name="key">
-																	pl_turn.pt_pd_departure.pl_departure.pd_etot
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_etot
 																</xsl:with-param>
 																<xsl:with-param name="sender" select="$sender" />
 															</xsl:call-template>
@@ -1287,11 +1198,36 @@
 															</xsl:call-template>
 														</pd_etot>
 													</xsl:if>
+                          <xsl:if test="TargetTakeOffDateTime">
+														<pd_ttot>
+															<xsl:call-template name="addPriority">
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_ttot
+																</xsl:with-param>
+																<xsl:with-param name="sender" select="$sender" />
+															</xsl:call-template>
+															<xsl:call-template name="xsltTemplate">
+																<xsl:with-param name="inElement" select="TargetTakeOffDateTime" />
+																<xsl:with-param name="needAddNil" select="true()" />
+															</xsl:call-template>
+														</pd_ttot>
+													</xsl:if>
+                          <xsl:if test="ConfirmedTakeOffDateTime">
+														<pd_ctot>
+															<xsl:call-template name="addPriority">
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_ctot
+																</xsl:with-param>
+																<xsl:with-param name="sender" select="$sender" />
+															</xsl:call-template>
+															<xsl:call-template name="xsltTemplate">
+																<xsl:with-param name="inElement" select="ConfirmedTakeOffDateTime" />
+																<xsl:with-param name="needAddNil" select="true()" />
+															</xsl:call-template>
+														</pd_ctot>
+													</xsl:if>
 													<xsl:if test="ActualTakeOffDateTime">
 														<pd_atot>
 															<xsl:call-template name="addPriority">
-																<xsl:with-param name="key">
-																	pl_turn.pt_pd_departure.pl_departure.pd_atot
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_atot
 																</xsl:with-param>
 																<xsl:with-param name="sender" select="$sender" />
 															</xsl:call-template>
@@ -1307,8 +1243,7 @@
 													<xsl:if test="ActualNextAirportArrivalDateTime">
 														<pd_aldtnext>
 															<xsl:call-template name="addPriority">
-																<xsl:with-param name="key">
-																	pl_turn.pt_pd_departure.pl_departure.pd_aldtnext
+																<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_aldtnext
 																</xsl:with-param>
 																<xsl:with-param name="sender" select="$sender" />
 															</xsl:call-template>
@@ -1338,6 +1273,14 @@
 													</xsl:if>
 												</xsl:for-each>
 												<!--Add by zzhao 2013-06-20 -->
+                        <xsl:if test="DoorCloseDateTime/EstimatedDoorCloseDateTime">
+													<pd_estimateddoorclosetime>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement" select="DoorCloseDateTime/EstimatedDoorCloseDateTime" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pd_estimateddoorclosetime>
+												</xsl:if>
 												<xsl:if test="DoorCloseDateTime/ActualDoorCloseDateTime">
 													<pd_doorclosetime>
 														<xsl:call-template name="xsltTemplate">
@@ -1359,8 +1302,7 @@
 												<xsl:if test="OperationStatus">
 													<pd_rrmk_remark>
 														<xsl:call-template name="addPriority">
-															<xsl:with-param name="key">
-																pl_turn.pt_pd_departure.pl_departure.pd_rrmk_remark
+															<xsl:with-param name="key">pl_turn.pt_pd_departure.pl_departure.pd_rrmk_remark
 															</xsl:with-param>
 															<xsl:with-param name="sender" select="$sender" />
 														</xsl:call-template>
@@ -1885,6 +1827,49 @@
 														</pl_departureaddinfo>
 													</pl_departureaddinfo_list>
 												</xsl:for-each>
+                       <!--add mapping for PassengerAmount 2017-7-31 -->
+												<xsl:for-each select="PassengerAmount">
+															<xsl:if test="TotalPassengers">
+																<pd_toatlpax>
+																	<xsl:call-template name="xsltTemplate">
+																		<xsl:with-param name="inElement" select="TotalPassengers" />
+																		<xsl:with-param name="needAddNil" select="true()" />
+																	</xsl:call-template>
+																</pd_toatlpax>
+															</xsl:if>
+															<xsl:if test="TransferPassengers">
+																<pd_transferpax>
+																	<xsl:call-template name="xsltTemplate">
+																		<xsl:with-param name="inElement" select="TransferPassengers" />
+																		<xsl:with-param name="needAddNil" select="true()" />
+																	</xsl:call-template>
+																</pd_transferpax>
+															</xsl:if>
+															<xsl:if test="TransitPassengers">
+																<pd_transitpax>
+																	<xsl:call-template name="xsltTemplate">
+																		<xsl:with-param name="inElement" select="TransitPassengers" />
+																		<xsl:with-param name="needAddNil" select="true()" />
+																	</xsl:call-template>
+																</pd_transitpax>
+															</xsl:if>
+															<xsl:if test="TotalCrews">
+																<pd_totalcrew>
+																	<xsl:call-template name="xsltTemplate">
+																		<xsl:with-param name="inElement" select="TotalCrews" />
+																		<xsl:with-param name="needAddNil" select="true()" />
+																	</xsl:call-template>
+																</pd_totalcrew>
+															</xsl:if>
+                        			<xsl:if test="TotalExtraCrews">
+																<pd_totalextracrew>
+																	<xsl:call-template name="xsltTemplate">
+																		<xsl:with-param name="inElement" select="TotalExtraCrews" />
+																		<xsl:with-param name="needAddNil" select="true()" />
+																	</xsl:call-template>
+																</pd_totalextracrew>
+															</xsl:if>
+												</xsl:for-each>
 												<xsl:if test="Gate/ActualGateStartDateTime">
 													<pd_asbt>
 														<xsl:call-template name="xsltTemplate">
@@ -1893,57 +1878,69 @@
 														</xsl:call-template>
 													</pd_asbt>
 												</xsl:if>
+                      <xsl:if test="Stand/StandID">
+													<pd_rsta_stand>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement" select="Stand/StandID" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pd_rsta_stand>
+												</xsl:if>
 											</xsl:for-each>
 										</pl_departure>
 									</pt_pd_departure>
-									<xsl:for-each select="FlightData/Airport">
-										<xsl:if test="Stand">
-											<pl_stand_list>
-												<xsl:for-each select="Stand">
-													<pl_stand>
-														<xsl:if test="StandID">
-															<pst_rsta_stand>
-																<xsl:call-template name="xsltTemplate">
-																	<xsl:with-param name="inElement" select="StandID" />
-																	<xsl:with-param name="needAddNil" select="true()" />
-																</xsl:call-template>
-															</pst_rsta_stand>
-														</xsl:if>
-														<xsl:if test="ScheduledStandStartDateTime">
-															<pst_beginplan>
-																<xsl:call-template name="xsltTemplate">
-																	<xsl:with-param name="inElement" select="ScheduledStandStartDateTime" />
-																	<xsl:with-param name="needAddNil" select="true()" />
-																</xsl:call-template>
-															</pst_beginplan>
-														</xsl:if>
-														<xsl:if test="ScheduledStandEndDateTime">
-															<pst_endplan>
-																<xsl:call-template name="xsltTemplate">
-																	<xsl:with-param name="inElement" select="ScheduledStandEndDateTime" />
-																	<xsl:with-param name="needAddNil" select="true()" />
-																</xsl:call-template>
-															</pst_endplan>
-														</xsl:if>
-														<xsl:if test="ActualStandStartDateTime">
-															<pst_beginactual>
-																<xsl:call-template name="xsltTemplate">
-																	<xsl:with-param name="inElement" select="ActualStandStartDateTime" />
-																	<xsl:with-param name="needAddNil" select="true()" />
-																</xsl:call-template>
-															</pst_beginactual>
-														</xsl:if>
-														<xsl:if test="ActualStandEndDateTime">
-															<pst_endactual>
-																<xsl:call-template name="xsltTemplate">
-																	<xsl:with-param name="inElement" select="ActualStandEndDateTime" />
-																	<xsl:with-param name="needAddNil" select="true()" />
-																</xsl:call-template>
-															</pst_endactual>
-														</xsl:if>
-													</pl_stand>
-												</xsl:for-each>
-											</pl_stand_list>
+									<xsl:for-each select="FlightData/Airport">			
+									 <xsl:if test="GroundMovement">
+										<pl_stand_list>
+										  <xsl:for-each select="GroundMovement">
+											<pl_stand>
+												<xsl:if test="StandID">
+													<pst_rsta_stand>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement" select="StandID" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pst_rsta_stand>
+												</xsl:if>
+												<xsl:if test="ScheduledStandStartDateTime">
+													<pst_beginplan>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement"
+																select="ScheduledStandStartDateTime" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pst_beginplan>
+												</xsl:if>
+												<xsl:if test="ScheduledStandEndDateTime">
+													<pst_endplan>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement"
+																select="ScheduledStandEndDateTime" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pst_endplan>
+												</xsl:if>
+												<xsl:if test="ActualStandStartDateTime">
+													<pst_beginactual>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement"
+																select="ActualStandStartDateTime" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pst_beginactual>
+												</xsl:if>
+												<xsl:if test="ActualStandEndDateTime">
+													<pst_endactual>
+														<xsl:call-template name="xsltTemplate">
+															<xsl:with-param name="inElement"
+																select="ActualStandEndDateTime" />
+															<xsl:with-param name="needAddNil" select="true()" />
+														</xsl:call-template>
+													</pst_endactual>
+												</xsl:if>
+											</pl_stand>
+											</xsl:for-each>
+										</pl_stand_list>
 										</xsl:if>
 									</xsl:for-each>
 								</xsl:if>
@@ -2033,8 +2030,9 @@
 											<stt>
 												<xsl:variable name="seceduledate" select="FlightScheduledDate" />
 												<xsl:if test="FlightScheduledDate/@old">
-													<xsl:attribute name="OldValue"><xsl:value-of select="FlightScheduledDate/@old" />
-															</xsl:attribute>
+													<xsl:attribute name="OldValue">
+                            <xsl:value-of select="FlightScheduledDate/@old" />
+                          </xsl:attribute>
 												</xsl:if>
 												<xsl:call-template name="flightScheduleDateTimeTemplate">
 													<xsl:with-param name="scheduleDatetime" select="null" />
@@ -2220,8 +2218,9 @@
 											<stt>
 												<xsl:variable name="seceduledate" select="FlightScheduledDate" />
 												<xsl:if test="FlightScheduledDate/@old">
-													<xsl:attribute name="OldValue"><xsl:value-of select="FlightScheduledDate/@old" />
-															</xsl:attribute>
+													<xsl:attribute name="OldValue">
+                            <xsl:value-of select="FlightScheduledDate/@old" />
+                          </xsl:attribute>
 												</xsl:if>
 												<xsl:call-template name="flightScheduleDateTimeTemplate">
 													<xsl:with-param name="scheduleDatetime" select="null" />
@@ -2442,8 +2441,9 @@
 		<xsl:param name="inElement" />
 		<xsl:param name="needAddNil" />
 		<xsl:if test="$inElement/@OldValue">
-			<xsl:attribute name="old"><xsl:value-of select="$inElement/@OldValue" />
-        	</xsl:attribute>
+			<xsl:attribute name="old">
+        <xsl:value-of select="$inElement/@OldValue" />
+      </xsl:attribute>
 		</xsl:if>
 		<xsl:choose>
 			<xsl:when test="$needAddNil">
@@ -2501,7 +2501,7 @@
 		<xsl:param name="sender" />
 		<xsl:variable name="sender_length" select="string-length($sender)" />
 		<xsl:attribute name="priority">
-    		<xsl:value-of select="javacode:getPriority($key, substring($sender,5,$sender_length))" />
-  		</xsl:attribute>
+      <xsl:value-of select="javacode:getPriority($key, substring($sender,5,$sender_length))" />
+    </xsl:attribute>
 	</xsl:template>
 </xsl:stylesheet>

@@ -68,7 +68,7 @@ public class XmlValidator {
 			String sch = IOUtils.toString(xslStream, "utf-8");
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
-			logger.error("System exit!");
+			
 			System.exit(0);
 		}*/
 		SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -78,6 +78,8 @@ public class XmlValidator {
 		} catch (SAXException | IOException e) {
 			// TODO Auto-generated catch block
 			logger.error(e.getMessage(),e);
+			logger.error("System exit!");
+			System.exit(0);
 		}
 		validator = schema.newValidator();
 	}
@@ -103,5 +105,12 @@ public class XmlValidator {
 		
 		
 		return true;
+	}
+	
+	public static void validateNoReturn(String xml) throws SAXException, IOException{
+		
+
+        	validator.validate(new StreamSource(new StringReader(xml)));
+
 	}
 }

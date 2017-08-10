@@ -212,9 +212,7 @@ public class XsltUtil {
 				}
 				returnStr += prefixs[i] + " is not null";
 			}
-		}
-
-		else {
+		}else {
 			for (int i = 0; i < values.length; i++) {
 				for (int j = 0; j < prefixs.length; j++) {
 					if (i > 0 || j > 0) {

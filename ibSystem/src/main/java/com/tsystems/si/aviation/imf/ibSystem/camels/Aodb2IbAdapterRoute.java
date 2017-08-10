@@ -38,7 +38,7 @@ import com.tsystems.si.aviation.imf.ibSystem.message.MqifMessageUtil;
 @Component
 public class Aodb2IbAdapterRoute extends RouteBuilder {
 	@Autowired
-	private MqifMessageProcessor mqifMessageProcessor;
+	private MqifMessageAdapterProcessor mqifMessageAdapterProcessor;
 	/**
 	  *<p> 
 	  * Overriding_Method: configure<BR>
@@ -51,8 +51,8 @@ public class Aodb2IbAdapterRoute extends RouteBuilder {
 	@Override
 	public void configure() throws Exception {
 		//FSS2 to adapter
-		from("jmsaodb:AQ.AODB.IB_FSS2").routeId("AODB.Adapter.FSS2").wireTap("jmsib:AQ.ADAPTOR.lOG").split().method(mqifMessageProcessor, "processMqif")
-	    .process(mqifMessageProcessor)
+		from("jmsaodb:AQ.AODB.IB_FSS2").routeId("AODB.Adapter.FSS2").wireTap("jmsib:AQ.ADAPTOR.lOG").split().method(mqifMessageAdapterProcessor, "processMqif")
+	    .process(mqifMessageAdapterProcessor)
 	    .choice()
         .when(header("JMSDestination").contains("SS1"))
             .to("jmsib:AQ.ADAPTOR.IB_SS1")  
@@ -61,8 +61,8 @@ public class Aodb2IbAdapterRoute extends RouteBuilder {
         .when(header("JMSDestination").contains("US"))
             .to("jmsib:AQ.ADAPTOR.IB_US");
 		
-		from("jmsaodb:AQ.AODB.IB_BSS2").routeId("AODB.Adapter.BSS2").wireTap("jmsib:AQ.ADAPTOR.lOG").split().method(mqifMessageProcessor, "processMqif")
-	    .process(mqifMessageProcessor)
+		from("jmsaodb:AQ.AODB.IB_BSS2").routeId("AODB.Adapter.BSS2").wireTap("jmsib:AQ.ADAPTOR.lOG").split().method(mqifMessageAdapterProcessor, "processMqif")
+	    .process(mqifMessageAdapterProcessor)
 	    .choice()
         .when(header("JMSDestination").contains("SS1"))
             .to("jmsib:AQ.ADAPTOR.IB_SS1")  
@@ -71,8 +71,8 @@ public class Aodb2IbAdapterRoute extends RouteBuilder {
         .when(header("JMSDestination").contains("US"))
             .to("jmsib:AQ.ADAPTOR.IB_US");
 		
-		from("jmsaodb:AQ.AODB.IB_RSS2").routeId("AODB.Adapter.RSS2").wireTap("jmsib:AQ.ADAPTOR.lOG").split().method(mqifMessageProcessor, "processMqif")
-	    .process(mqifMessageProcessor)
+		from("jmsaodb:AQ.AODB.IB_RSS2").routeId("AODB.Adapter.RSS2").wireTap("jmsib:AQ.ADAPTOR.lOG").split().method(mqifMessageAdapterProcessor, "processMqif")
+	    .process(mqifMessageAdapterProcessor)
 	    .choice()
         .when(header("JMSDestination").contains("SS1"))
             .to("jmsib:AQ.ADAPTOR.IB_SS1")  
@@ -81,8 +81,8 @@ public class Aodb2IbAdapterRoute extends RouteBuilder {
         .when(header("JMSDestination").contains("US"))
             .to("jmsib:AQ.ADAPTOR.IB_US");
 		
-		from("jmsaodb:AQ.AODB.IB_US").routeId("AODB.Adapter.US").wireTap("jmsib:AQ.ADAPTOR.lOG").split().method(mqifMessageProcessor, "processMqif")
-	    .process(mqifMessageProcessor)
+		from("jmsaodb:AQ.AODB.IB_US").routeId("AODB.Adapter.US").wireTap("jmsib:AQ.ADAPTOR.lOG").split().method(mqifMessageAdapterProcessor, "processMqif")
+	    .process(mqifMessageAdapterProcessor)
 	    .choice()
         .when(header("JMSDestination").contains("SS1"))
             .to("jmsib:AQ.ADAPTOR.IB_SS1")  
@@ -91,8 +91,8 @@ public class Aodb2IbAdapterRoute extends RouteBuilder {
         .when(header("JMSDestination").contains("US"))
             .to("jmsib:AQ.ADAPTOR.IB_US");
 		
-		from("jmsaodb:AQ.AODB.IB_SS1BOLO").routeId("AODB.Adapter.SS1").wireTap("jmsib:AQ.ADAPTOR.lOG").split().method(mqifMessageProcessor, "processMqif")
-	    .process(mqifMessageProcessor)
+		from("jmsaodb:AQ.AODB.IB_SS1BOLO").routeId("AODB.Adapter.SS1").wireTap("jmsib:AQ.ADAPTOR.lOG").split().method(mqifMessageAdapterProcessor, "processMqif")
+	    .process(mqifMessageAdapterProcessor)
 	    .choice()
         .when(header("JMSDestination").contains("SS1"))
             .to("jmsib:AQ.ADAPTOR.IB_SS1")  
@@ -104,11 +104,11 @@ public class Aodb2IbAdapterRoute extends RouteBuilder {
 		//SS1 Subscribe
 		from("quartz2://SS1?cron=0/2+17+*+*+*+?").setBody().method(MqifMessageUtil.class, "buildSS1Subscribe").to("mock:end");
 	}
-	public MqifMessageProcessor getMqifProcessor() {
-		return mqifMessageProcessor;
+	public MqifMessageAdapterProcessor getMqifProcessor() {
+		return mqifMessageAdapterProcessor;
 	}
-	public void setMqifProcessor(MqifMessageProcessor mqifMessageProcessor) {
-		this.mqifMessageProcessor = mqifMessageProcessor;
+	public void setMqifProcessor(MqifMessageAdapterProcessor mqifMessageAdapterProcessor) {
+		this.mqifMessageAdapterProcessor = mqifMessageAdapterProcessor;
 	}
   
 }

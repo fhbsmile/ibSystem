@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IMFRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	xsi:noNamespaceSchemaLocation="../imf_client.xsd">
+	<SysInfo>
+		<MessageSequenceID>9</MessageSequenceID>
+		<MessageType>Operation</MessageType>
+		<ServiceType>FSS2</ServiceType>
+		<OperationMode>SYS</OperationMode>
+		<SendDateTime>2017-08-03T13:44:46.078</SendDateTime>
+		<CreateDateTime>2017-08-03T13:44:46.078</CreateDateTime>
+		<OriginalDateTime>2017-08-03T13:44:46.079</OriginalDateTime>
+		<Receiver>IMF</Receiver>
+		<Sender>FIDS</Sender>
+		<Owner>FIDS</Owner>
+		<Priority>4</Priority>
+	</SysInfo>
+	<Operation>
+		<Subscription>
+			<FlightPeriodRequest>
+				<FlightScheduleFromDateTime>2017-08-03T13:43:59.000</FlightScheduleFromDateTime>
+				<FlightScheduleEndDateTime>2017-08-04T13:43:59.000</FlightScheduleEndDateTime>
+			</FlightPeriodRequest>
+		</Subscription>
+	</Operation>
+</IMFRoot>

@@ -1,7 +1,7 @@
 /**
  * Project	 ibSystem
  * Package   com.tsystems.si.aviation.imf.ibSystem.camels
- * FileName  Aodb2IbAdapterRouteTest.java
+ * FileName  CamelDynamicRouterBeanTest.java
  * Description TODO
  * Company	
  * Copyright 2017 
@@ -10,12 +10,12 @@
  * @author Bolo Fang
  * @version V1.0
  * Email 342067200@qq.com
- * Createdate 2017年7月27日 下午2:11:32
+ * Createdate 2017年8月10日 下午3:57:42
  *
  * Modification  History
  * Date          Author        Version        Description
  * -----------------------------------------------------------------------------------
- * 2017年7月27日       方红波          1.0             1.0
+ * 2017年8月10日       方红波          1.0             1.0
  * Why & What is modified
  */
 
@@ -27,8 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.jms.ConnectionFactory;
-
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
 import org.apache.camel.Route;
@@ -39,55 +37,35 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.connection.CachingConnectionFactory;
 
-import com.tsystems.si.aviation.imf.ibSystem.message.AdapterXmlTransformer;
+
 
 
 
 /**
-  * ClassName Aodb2IbAdapterRouteTest<BR>
+  * ClassName CamelDynamicRouterBeanTest<BR>
   * Description TODO<BR>
   * @author Bolo Fang
-  * @date 2017年7月27日 下午2:11:32
+  * @date 2017年8月10日 下午3:57:42
   *
   */
 
-public class Aodb2IbAdapterRouteTest extends CamelTestSupport {
-	private static final Logger     logger               = LoggerFactory.getLogger(Aodb2IbAdapterRouteTest.class);
+public class CamelDynamicRouterBeanTest extends CamelTestSupport {
+	private static final Logger     logger               = LoggerFactory.getLogger(CamelDynamicRouterBeanTest.class);
     protected CamelContext createCamelContext() throws Exception {
         CamelContext camelContext = super.createCamelContext();
-        
-        CachingConnectionFactory cachingConnectionFactoryAODB = new CachingConnectionFactory(new ActiveMQConnectionFactory("HNA_AODB","HNA0A1O2D9B0945","failover://(tcp://10.25.153.215:61616)?initialReconnectDelay=100"));
-        cachingConnectionFactoryAODB.setSessionCacheSize(100);
         CachingConnectionFactory cachingConnectionFactoryIB = new CachingConnectionFactory(new ActiveMQConnectionFactory("HNA_AODB","HNA0A1O2D9B0945","failover://(tcp://10.25.67.38:61616)?initialReconnectDelay=100"));
-        cachingConnectionFactoryAODB.setSessionCacheSize(100);
-        camelContext.addComponent("jmsaodb", jmsComponentClientAcknowledge(cachingConnectionFactoryAODB));
+        cachingConnectionFactoryIB.setSessionCacheSize(100);
+
         camelContext.addComponent("jmsib", jmsComponentClientAcknowledge(cachingConnectionFactoryIB));
-    	xmlTransformer.setXslPath("CGK_aodb_2_imf.xsl");
-    	xmlTransformer.initialize();
-    	xmlDepatureTransformer.setXslPath("CGK_aodb_2_imf_departure.xsl");
-    	xmlDepatureTransformer.initialize();
-    	mqifMessageAdapterProcessor.setXmlTransformer(xmlTransformer);
-    	mqifMessageAdapterProcessor.setXmlDepatureTransformer(xmlDepatureTransformer);
         return camelContext;
        
     }
-	public AdapterXmlTransformer xmlTransformer = new AdapterXmlTransformer();
-	public AdapterXmlTransformer xmlDepatureTransformer = new AdapterXmlTransformer();
-
-    MqifMessageAdapterProcessor mqifMessageAdapterProcessor = new MqifMessageAdapterProcessor();
+    
     protected RouteBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
-            //AQ.ADAPTOR.IB_SS1
             @Override
             public void configure() throws Exception {
-            	from("jmsaodb:AQ.AODB.IB_SS1BOLO").wireTap("jmsib:AQ.AODBLOG").split().method(mqifMessageAdapterProcessor, "processMqif")
-            	    .process(mqifMessageAdapterProcessor)
-            	    .choice()
-                    .when(header("JMSDestination").contains("SS1"))
-                        .to("jmsib:AQ.ADAPTOR.IB_SS1")  
-                    .when(header("JMSDestination").contains("SS2"))
-                        .to("jmsib:AQ.ADAPTOR.IB_SS2");    
-            	    
+            	from("jmsib:AQ.AA.IN").routeId("QUARTZ").dynamicRouter(method(SubSysDynamicRouterBean.class, "routeByReceiver"));
             }
         };
     }
@@ -103,7 +81,9 @@ public class Aodb2IbAdapterRouteTest extends CamelTestSupport {
    			 logger.info("key:{}, value:{}",new Object[]{entry.getKey(),entry.getValue()});
    			  }
         }
-    	Thread.sleep(1000);
-    }   
+    	Thread.sleep(30000);
+/*    	 getMockEndpoint("mock:end").expectedMessageCount(1);
 
+         assertMockEndpointsSatisfied();*/
+    }   
 }
