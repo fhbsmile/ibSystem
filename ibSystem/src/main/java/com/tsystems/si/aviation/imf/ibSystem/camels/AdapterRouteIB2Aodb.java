@@ -1,7 +1,7 @@
 /**
  * Project	 ibSystem
  * Package   com.tsystems.si.aviation.imf.ibSystem.camels
- * FileName  Ib2AodbAdapterRoute.java
+ * FileName  AdapterRouteIB2Aodb.java
  * Description TODO
  * Company	
  * Copyright 2017 
@@ -28,15 +28,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
-  * ClassName Ib2AodbAdapterRoute<BR>
+  * ClassName AdapterRouteIB2Aodb<BR>
   * Description TODO<BR>
   * @author Bolo Fang
   * @date 2017年8月1日 上午9:57:11
   *
   */
-@Component
-public class Ib2AodbAdapterRoute extends RouteBuilder {
-	private static final Logger     logger               = LoggerFactory.getLogger(Ib2AodbAdapterRoute.class);
+//@Component
+public class AdapterRouteIB2Aodb extends RouteBuilder {
+	private static final Logger     logger               = LoggerFactory.getLogger(AdapterRouteIB2Aodb.class);
 	
 	@Autowired
 	private ImfMessageAdapterProcessor imfMessageAdapterProcessor;
@@ -45,7 +45,7 @@ public class Ib2AodbAdapterRoute extends RouteBuilder {
 	  * Overriding_Method: configure<BR>
 	  * Description:<BR>
 	  * Overriding_Date: 2017年8月1日 上午9:57:11<BR></p>
-	  * @throws Exception Ib2AodbAdapterRoute
+	  * @throws Exception AdapterRouteIB2Aodb
 	  * @see org.apache.camel.builder.RouteBuilder#configure()
 	  */
 

@@ -24,51 +24,41 @@ public class SysRequest implements Serializable {
 	@Column(name="req_createTime")
 	private Date reqCreateTime;
 
-	@Column(name="req_createuser")
-	private String reqCreateuser;
+	private String req_createUser;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="req_endtime")
-	private Date reqEndtime;
+	private Date req_endTime;
 
 	@Lob
-	@Column(name="req_imfmessage")
-	private String reqImfmessage;
+	private String req_imfMessage;
 
-	@Column(name="req_interfacename")
-	private String reqInterfacename;
+	private String req_interfaceName;
 
-	@Column(name="req_interfacetype")
-	private String reqInterfacetype;
+	private String req_interfaceType;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="req_modificationstarttime")
-	private Date reqModificationstarttime;
+	private Date req_modificationStartTime;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="req_modtime")
-	private Date reqModtime;
+	private Date req_modTime;
 
-	@Column(name="req_moduser")
-	private String reqModuser;
+	private String req_modUser;
 
 	@Lob
-	@Column(name="req_mqifmessage")
-	private String reqMqifmessage;
+	private String req_mqifMessage;
 
 	@Column(name="req_requestID")
 	private String reqRequestId;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="req_starttime")
-	private Date reqStarttime;
+	private Date req_startTime;
 
 	@Column(name="req_status")
 	private String reqStatus;
 
 	//bi-directional many-to-one association to SysInterface
 	@ManyToOne
-	@JoinColumn(name="req_interfaceID")
+	@JoinColumn(name="req_interfaceId")
 	private SysInterface sysInterface;
 
 	public SysRequest() {
@@ -90,76 +80,76 @@ public class SysRequest implements Serializable {
 		this.reqCreateTime = reqCreateTime;
 	}
 
-	public String getReqCreateuser() {
-		return this.reqCreateuser;
+	public String getReq_createUser() {
+		return this.req_createUser;
 	}
 
-	public void setReqCreateuser(String reqCreateuser) {
-		this.reqCreateuser = reqCreateuser;
+	public void setReq_createUser(String req_createUser) {
+		this.req_createUser = req_createUser;
 	}
 
-	public Date getReqEndtime() {
-		return this.reqEndtime;
+	public Date getReq_endTime() {
+		return this.req_endTime;
 	}
 
-	public void setReqEndtime(Date reqEndtime) {
-		this.reqEndtime = reqEndtime;
+	public void setReq_endTime(Date req_endTime) {
+		this.req_endTime = req_endTime;
 	}
 
-	public String getReqImfmessage() {
-		return this.reqImfmessage;
+	public String getReq_imfMessage() {
+		return this.req_imfMessage;
 	}
 
-	public void setReqImfmessage(String reqImfmessage) {
-		this.reqImfmessage = reqImfmessage;
+	public void setReq_imfMessage(String req_imfMessage) {
+		this.req_imfMessage = req_imfMessage;
 	}
 
-	public String getReqInterfacename() {
-		return this.reqInterfacename;
+	public String getReq_interfaceName() {
+		return this.req_interfaceName;
 	}
 
-	public void setReqInterfacename(String reqInterfacename) {
-		this.reqInterfacename = reqInterfacename;
+	public void setReq_interfaceName(String req_interfaceName) {
+		this.req_interfaceName = req_interfaceName;
 	}
 
-	public String getReqInterfacetype() {
-		return this.reqInterfacetype;
+	public String getReq_interfaceType() {
+		return this.req_interfaceType;
 	}
 
-	public void setReqInterfacetype(String reqInterfacetype) {
-		this.reqInterfacetype = reqInterfacetype;
+	public void setReq_interfaceType(String req_interfaceType) {
+		this.req_interfaceType = req_interfaceType;
 	}
 
-	public Date getReqModificationstarttime() {
-		return this.reqModificationstarttime;
+	public Date getReq_modificationStartTime() {
+		return this.req_modificationStartTime;
 	}
 
-	public void setReqModificationstarttime(Date reqModificationstarttime) {
-		this.reqModificationstarttime = reqModificationstarttime;
+	public void setReq_modificationStartTime(Date req_modificationStartTime) {
+		this.req_modificationStartTime = req_modificationStartTime;
 	}
 
-	public Date getReqModtime() {
-		return this.reqModtime;
+	public Date getReq_modTime() {
+		return this.req_modTime;
 	}
 
-	public void setReqModtime(Date reqModtime) {
-		this.reqModtime = reqModtime;
+	public void setReq_modTime(Date req_modTime) {
+		this.req_modTime = req_modTime;
 	}
 
-	public String getReqModuser() {
-		return this.reqModuser;
+	public String getReq_modUser() {
+		return this.req_modUser;
 	}
 
-	public void setReqModuser(String reqModuser) {
-		this.reqModuser = reqModuser;
+	public void setReq_modUser(String req_modUser) {
+		this.req_modUser = req_modUser;
 	}
 
-	public String getReqMqifmessage() {
-		return this.reqMqifmessage;
+	public String getReq_mqifMessage() {
+		return this.req_mqifMessage;
 	}
 
-	public void setReqMqifmessage(String reqMqifmessage) {
-		this.reqMqifmessage = reqMqifmessage;
+	public void setReq_mqifMessage(String req_mqifMessage) {
+		this.req_mqifMessage = req_mqifMessage;
 	}
 
 	public String getReqRequestId() {
@@ -170,12 +160,12 @@ public class SysRequest implements Serializable {
 		this.reqRequestId = reqRequestId;
 	}
 
-	public Date getReqStarttime() {
-		return this.reqStarttime;
+	public Date getReq_startTime() {
+		return this.req_startTime;
 	}
 
-	public void setReqStarttime(Date reqStarttime) {
-		this.reqStarttime = reqStarttime;
+	public void setReq_startTime(Date req_startTime) {
+		this.req_startTime = req_startTime;
 	}
 
 	public String getReqStatus() {

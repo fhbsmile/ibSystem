@@ -1,7 +1,7 @@
 /**
  * Project	 ibSystem
  * Package   com.tsystems.si.aviation.imf.ibSystem.camels
- * FileName  SubsystemRouteTest.java
+ * FileName  IBRouteSubsystemTest.java
  * Description TODO
  * Company	
  * Copyright 2017 
@@ -34,15 +34,15 @@ import org.springframework.jms.connection.CachingConnectionFactory;
 import com.tsystems.si.aviation.imf.ibSystem.db.domain.SysInterface;
 
 /**
-  * ClassName SubsystemRouteTest<BR>
+  * ClassName IBRouteSubsystemTest<BR>
   * Description TODO<BR>
   * @author Bolo Fang
   * @date 2017年8月2日 下午1:53:13
   *
   */
 
-public class SubsystemRouteTest extends CamelTestSupport {
-	private static final Logger     logger               = LoggerFactory.getLogger(SubsystemRouteTest.class);
+public class IBRouteSubsystemTest extends CamelTestSupport {
+	private static final Logger     logger               = LoggerFactory.getLogger(IBRouteSubsystemTest.class);
 	protected CamelContext createCamelContext() throws Exception {
 	CamelContext camelContext = super.createCamelContext();
     
@@ -62,9 +62,9 @@ public class SubsystemRouteTest extends CamelTestSupport {
     	
     	SysInterface sysInterface = new SysInterface();
     	sysInterface.setIntName("BOLO");
-    	SubsystemRoute subsystemRoute = new SubsystemRoute();
-    	subsystemRoute.setSysInterface(sysInterface);
-    	this.context().addRoutes(subsystemRoute);
+    	IBRouteSubsystem iBRouteSubsystem = new IBRouteSubsystem();
+    	iBRouteSubsystem.setSysInterface(sysInterface);
+    	this.context().addRoutes(iBRouteSubsystem);
     	
     }
 }

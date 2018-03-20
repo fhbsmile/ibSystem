@@ -1,7 +1,7 @@
 /**
  * Project	 ibSystem
  * Package   com.tsystems.si.aviation.imf.ibSystem.camels
- * FileName  Aodb2IbAdapterRouteTest.java
+ * FileName  AdapterRouteAodb2IBTest.java
  * Description TODO
  * Company	
  * Copyright 2017 
@@ -45,7 +45,7 @@ import com.tsystems.si.aviation.imf.ibSystem.message.MqifMessageUtil;
 
 
 /**
-  * ClassName Aodb2IbAdapterRouteTest<BR>
+  * ClassName AdapterRouteAodb2IBTest<BR>
   * Description TODO<BR>
   * @author Bolo Fang
   * @date 2017年7月27日 下午2:11:32

@@ -64,11 +64,12 @@ public class ImfMessageAdapterProcessor implements Processor {
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		Map<String, Object> map = exchange.getIn().getHeaders();
+		Message msg = exchange.getIn();
+		Map<String, Object> map = msg.getHeaders();
 		 for (Entry<String, Object> entry : map.entrySet()) {
 			 logger.debug("key:{}, value:{}",new Object[]{entry.getKey(),entry.getValue()});
 			  }
-		 String message = exchange.getIn().getBody(String.class);
+		 String message = msg.getBody(String.class);
 		 logger.info("received Mqif:{}",message.replaceAll("\r\n", "").replaceAll("\n", ""));
 
 			boolean validate =true;
@@ -77,7 +78,7 @@ public class ImfMessageAdapterProcessor implements Processor {
 			}
             
 		if(validate){
-			Message msg = exchange.getOut();
+			
             LogMqifMessage logMqifMessage = MqifMessageUtil.parseMqifXmlMessage(message);
             String destination = MqifMessageUtil.getDestinationByMqifMessage(logMqifMessage);
 			msg.setHeader("JMSDestination", destination);

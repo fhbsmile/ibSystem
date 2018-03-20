@@ -18,7 +18,7 @@ public class LogMqifMessage implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="mqif_id")
-	private int mqifId;
+	private Long mqifId;
 
 	@Column(name="mqif_arrivalId")
 	private String mqifArrivalId;
@@ -31,8 +31,7 @@ public class LogMqifMessage implements Serializable {
 	private String mqifCorrelationId;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="mqif_createtime")
-	private Date mqifCreatetime;
+	private Date mqif_createTime;
 
 	@Column(name="mqif_dataType")
 	private String mqifDataType;
@@ -70,11 +69,11 @@ public class LogMqifMessage implements Serializable {
 	public LogMqifMessage() {
 	}
 
-	public int getMqifId() {
+	public Long getMqifId() {
 		return this.mqifId;
 	}
 
-	public void setMqifId(int mqifId) {
+	public void setMqifId(Long mqifId) {
 		this.mqifId = mqifId;
 	}
 
@@ -102,12 +101,12 @@ public class LogMqifMessage implements Serializable {
 		this.mqifCorrelationId = mqifCorrelationId;
 	}
 
-	public Date getMqifCreatetime() {
-		return this.mqifCreatetime;
+	public Date getMqif_createTime() {
+		return this.mqif_createTime;
 	}
 
-	public void setMqifCreatetime(Date mqifCreatetime) {
-		this.mqifCreatetime = mqifCreatetime;
+	public void setMqif_createTime(Date mqif_createTime) {
+		this.mqif_createTime = mqif_createTime;
 	}
 
 	public String getMqifDataType() {

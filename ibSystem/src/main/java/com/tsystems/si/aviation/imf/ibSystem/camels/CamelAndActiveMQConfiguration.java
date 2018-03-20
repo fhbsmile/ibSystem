@@ -1,7 +1,7 @@
 /**
  * Project	 ibSystem
  * Package   com.tsystems.si.aviation.imf.ibSystem.configurations
- * FileName  ActiveMQConfiguration.java
+ * FileName  CamelAndActiveMQConfiguration.java
  * Description TODO
  * Company	
  * Copyright 2017 
@@ -19,7 +19,7 @@
  * Why & What is modified
  */
 
-package com.tsystems.si.aviation.imf.ibSystem.configurations;
+package com.tsystems.si.aviation.imf.ibSystem.camels;
 
 import static org.apache.camel.component.jms.JmsComponent.jmsComponentClientAcknowledge;
 
@@ -34,13 +34,11 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jms.connection.CachingConnectionFactory;
 
-import com.tsystems.si.aviation.imf.ibSystem.camels.ImfMessageAdapterProcessor;
-import com.tsystems.si.aviation.imf.ibSystem.camels.MqifMessageAdapterProcessor;
 import com.tsystems.si.aviation.imf.ibSystem.message.AdapterXmlTransformer;
 import com.tsystems.si.aviation.imf.ibSystem.message.XmlTransformer;
 
 /**
-  * ClassName ActiveMQConfiguration<BR>
+  * ClassName CamelAndActiveMQConfiguration<BR>
   * Description TODO<BR>
   * @author Bolo Fang
   * @date 2017年7月22日 下午3:01:30
@@ -48,7 +46,7 @@ import com.tsystems.si.aviation.imf.ibSystem.message.XmlTransformer;
   */
 @Configuration
 @ComponentScan("com.tsystems.si.aviation.imf.ibSystem.camel")
-public class ActiveMQConfiguration {
+public class CamelAndActiveMQConfiguration {
       
 	@Bean
 	@Qualifier("cachingConnectionFactoryAODB")

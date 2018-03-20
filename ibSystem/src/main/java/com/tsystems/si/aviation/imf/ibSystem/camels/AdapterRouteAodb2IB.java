@@ -1,7 +1,7 @@
 /**
  * Project	 ibSystem
  * Package   com.tsystems.si.aviation.imf.ibSystem.camels
- * FileName  Aodb2IbAdapterRoute.java
+ * FileName  AdapterRouteAodb2IB.java
  * Description TODO
  * Company	
  * Copyright 2017 
@@ -29,14 +29,14 @@ import com.tsystems.si.aviation.imf.ibSystem.message.MqifMessageUtil;
 
 
 /**
-  * ClassName Aodb2IbAdapterRoute<BR>
+  * ClassName AdapterRouteAodb2IB<BR>
   * Description TODO<BR>
   * @author Bolo Fang
   * @date 2017年7月27日 下午1:54:49
   *
   */
-@Component
-public class Aodb2IbAdapterRoute extends RouteBuilder {
+//@Component
+public class AdapterRouteAodb2IB extends RouteBuilder {
 	@Autowired
 	private MqifMessageAdapterProcessor mqifMessageAdapterProcessor;
 	/**
@@ -44,12 +44,13 @@ public class Aodb2IbAdapterRoute extends RouteBuilder {
 	  * Overriding_Method: configure<BR>
 	  * Description:<BR>
 	  * Overriding_Date: 2017年7月27日 下午1:54:49<BR></p>
-	  * @throws Exception Aodb2IbAdapterRoute
+	  * @throws Exception AdapterRouteAodb2IB
 	  * @see org.apache.camel.builder.RouteBuilder#configure()
 	  */
 
 	@Override
 	public void configure() throws Exception {
+		//AODB to IB 
 		//FSS2 to adapter
 		from("jmsaodb:AQ.AODB.IB_FSS2").routeId("AODB.Adapter.FSS2").wireTap("jmsib:AQ.ADAPTOR.lOG").split().method(mqifMessageAdapterProcessor, "processMqif")
 	    .process(mqifMessageAdapterProcessor)
@@ -103,6 +104,9 @@ public class Aodb2IbAdapterRoute extends RouteBuilder {
 		
 		//SS1 Subscribe
 		from("quartz2://SS1?cron=0/2+17+*+*+*+?").setBody().method(MqifMessageUtil.class, "buildSS1Subscribe").to("mock:end");
+
+		
+		
 	}
 	public MqifMessageAdapterProcessor getMqifProcessor() {
 		return mqifMessageAdapterProcessor;

@@ -64,10 +64,10 @@ public class SubsystemProcessor implements Processor {
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		String subsystemMessage = exchange.getIn().getBody(String.class);	
+		 Message msg = exchange.getIn();
+		String subsystemMessage = msg.getBody(String.class);	
 		logger.info("received ImfFromSub:{}",subsystemMessage);
 		 SubProcessResult  subProcessResult =subsystemMessageProcess(subsystemMessage);
-	    Message msg = exchange.getOut();
 	       // LogImfMessage logImfMessage = ImfMessageUtil.parseImfXmlMessage(exceptionResponse);
 			msg.setHeader("JMSDestination", subProcessResult.getDestination());
 			logger.info("Set Header JMSDestination:{}",subProcessResult.getMessage());
@@ -425,4 +425,23 @@ public class SubsystemProcessor implements Processor {
 	  }
 	  return result;
   }
+
+public String getInterfaceName() {
+	return interfaceName;
+}
+
+public void setInterfaceName(String interfaceName) {
+	this.interfaceName = interfaceName;
+}
+
+public SysInterface getSysInterface() {
+	return sysInterface;
+}
+
+public void setSysInterface(SysInterface sysInterface) {
+	this.sysInterface = sysInterface;
+}
+  
+  
+  
 }

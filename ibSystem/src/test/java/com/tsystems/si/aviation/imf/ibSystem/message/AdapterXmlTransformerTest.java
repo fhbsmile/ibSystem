@@ -153,7 +153,14 @@ public class AdapterXmlTransformerTest {
 		boolean result = XmlValidator.validate(newXml);
 		logger.info("validate:\n{}",result);
 	}
-	
+	@Test
+	public void testCgkTransformerDepartureDpi(){
+		String newXml = cgkAdapterXmlTransformerDeparture.transform(cgkMqifXmlDeparture);
+		logger.info("New IMF Xml:\n{}",newXml);
+		
+		boolean result = XmlValidator.validate(newXml);
+		logger.info("validate:\n{}",result);
+	}
 	@Test
 	public void testXmlValidator(){
 		File xmlIMFFile = new File("file/IMF_US_ArrivalBelt.xml");

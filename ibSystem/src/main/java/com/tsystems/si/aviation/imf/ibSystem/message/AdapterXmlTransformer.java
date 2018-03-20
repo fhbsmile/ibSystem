@@ -52,8 +52,8 @@ import org.springframework.core.io.Resource;
 
 public class AdapterXmlTransformer implements XmlTransformer {
 	private static final Logger     logger               = LoggerFactory.getLogger(AdapterXmlTransformer.class);
-	public String xslPath;
-	public String xsl;
+	private String xslPath;
+	private String xsl;
 	private Transformer transformer;
 	
 	public String transform(String xml){

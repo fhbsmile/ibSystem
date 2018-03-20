@@ -4,8 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
-@SpringBootApplication
-//@ImportResource("ActiveMQConfiguration.xml")
+import com.tsystems.si.aviation.imf.ibSystem.camels.CamelAndActiveMQConfiguration;
+
+@SpringBootApplication(scanBasePackages={"com.tsystems.si.aviation.imf.ibSystem.configurations"})
+//@ImportResource("CamelAndActiveMQConfiguration.xml")
 public class IbSystemApplication {
 
 	public static void main(String[] args) {

@@ -40,14 +40,19 @@ public class SubSysDynamicRouterBean {
 	public String routeByReceiver(String body, @Header(Exchange.SLIP_ENDPOINT) String previous) {
 		logger.info(">>>>>>>>>>>>>>Previous:{}",previous);
 		logger.info(">>>>>>>>>>>>>>    body:{}",body);
-		 if (previous == null) {
-	        	String serviceType = StringUtils.substringBetween(body, "<ServiceType>", "</ServiceType>");
-	    		String receiver = StringUtils.substringBetween(body, "<Receiver>", "</Receiver>");
-	            return "jmsib:LQ."+receiver+".OUT";
-	        } else {
-	            // no more, so return null to indicate end of dynamic router
-	            return null;
-	        }
+		if(StringUtils.isBlank(body)){
+			return null;
+		}else{
+			 if (previous == null) {
+		        	String serviceType = StringUtils.substringBetween(body, "<ServiceType>", "</ServiceType>");
+		    		String receiver = StringUtils.substringBetween(body, "<Receiver>", "</Receiver>");
+		            return "jmsib:LQ."+receiver+".OUT";
+		        } else {
+		            // no more, so return null to indicate end of dynamic router
+		            return null;
+		        }
+		}
+
 		
     }
 }

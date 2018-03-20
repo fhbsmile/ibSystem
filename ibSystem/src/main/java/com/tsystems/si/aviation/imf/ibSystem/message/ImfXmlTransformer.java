@@ -35,7 +35,7 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,29 +49,34 @@ import org.slf4j.LoggerFactory;
   */
 
 public class ImfXmlTransformer implements XmlTransformer {
-	private static final Logger     logger               = LoggerFactory.getLogger(AdapterXmlTransformer.class);
+	private static final Logger     logger               = LoggerFactory.getLogger(ImfXmlTransformer.class);
 	//public String xslPath;
-	public String xsl;
-	public Transformer transformer;
+	private String xsl;
+	private Transformer transformer;
 	
 	public String transform(String xml){
-		
-		Source xmlInput = new StreamSource(new StringReader(xml));
-        StringWriter stringWriter = new StringWriter();
-        StreamResult xmlOutput = new StreamResult(stringWriter);
-        	try {
-				transformer.transform(xmlInput, xmlOutput);
-			} catch (TransformerException e) {
-				logger.error(e.getMessage(), e);
-			}
-        String result = xmlOutput.getWriter().toString();
+		String result = xml;
+		if(transformer==null){
+			logger.info("Transfomer is null, wouldn't transfom.");
+		}else{
+			Source xmlInput = new StreamSource(new StringReader(xml));
+	        StringWriter stringWriter = new StringWriter();
+	        StreamResult xmlOutput = new StreamResult(stringWriter);
+	        	try {
+					transformer.transform(xmlInput, xmlOutput);
+				} catch (TransformerException e) {
+					logger.error(e.getMessage(), e);
+				}
+	        result = xmlOutput.getWriter().toString();
+		}
+
         return result;
 	}
 	
 	public boolean initialize(){
-        if(xsl==null){
-        	logger.warn("xsl is null!");
-        	logger.warn("No filter!");
+        if(StringUtils.isBlank(xsl)){
+        	logger.warn(" xsl is blank!");
+        	logger.warn(" No filter!");
         }else{
         	
         	try {
@@ -87,4 +92,22 @@ public class ImfXmlTransformer implements XmlTransformer {
 		return true;
 		
 	}
+
+	public String getXsl() {
+		return xsl;
+	}
+
+	public void setXsl(String xsl) {
+		this.xsl = xsl;
+	}
+
+	public Transformer getTransformer() {
+		return transformer;
+	}
+
+	public void setTransformer(Transformer transformer) {
+		this.transformer = transformer;
+	}
+	
+	
 }

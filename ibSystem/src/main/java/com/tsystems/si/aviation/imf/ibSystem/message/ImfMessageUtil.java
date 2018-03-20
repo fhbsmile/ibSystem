@@ -97,7 +97,7 @@ public class ImfMessageUtil {
 	   	logImfMessage.setImfResourceId(imfResourceId);
 	   	logImfMessage.setImfBasicDataCategory(imfBasicDataCategory);
 	   	logImfMessage.setImfBasicDataId(imfBasicDataId);
-	   	logImfMessage.setImfCreatetime(new Date());
+	   	logImfMessage.setImfCreateTime(new Date()); 
 	   	logImfMessage.setImfContent(message);
 	   	
    	  return logImfMessage;

@@ -1784,6 +1784,110 @@
 											</TotalExtraCrews>
 									</PassengerAmount>
 								</Airport>
+								<SpecialServices>
+								<xsl:for-each select="pl_specialservice_list">
+										<xsl:choose>
+											<xsl:when test="pl_specialservice">
+												<xsl:for-each select="pl_specialservice">
+												<SpecialService>
+											<SpecialServiceID>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="pss_idseq" />
+													<xsl:with-param name="needAddNil" select="false()" />
+												</xsl:call-template>
+											</SpecialServiceID>
+											<SpecialServiceType>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="pss_type" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServiceType>
+											<SpecialServiceAmountPlanned>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="pss_amountplanned" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServiceAmountPlanned>	
+											<SpecialServiceAmountUsed>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="pss_amount" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServiceAmountUsed>	
+											<SpecialServiceAmountPayable>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="pss_amountpayable" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServiceAmountPayable>	
+											<SpecialServiceBeginDateTime>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="pss_begin" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServiceBeginDateTime>	
+											<SpecialServiceEndDateTime>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="pss_end" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServiceEndDateTime>	
+											<SpecialServicePayable>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="pss_payable" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServicePayable>	
+											<SpecialServiceDeliveryNote>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="pss_deliverynote" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServiceDeliveryNote>	
+											<SpecialServiceReceipt>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="pss_receipt" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServiceReceipt>	
+											<SpecialServiceComment>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="pss_comment" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServiceComment>	
+											<SpecialServiceResourceType>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="ref_servicecatalog/rsc_resourcetype" />
+													<xsl:with-param name="needAddNil" select="false()" />
+												</xsl:call-template>
+											</SpecialServiceResourceType>	
+											<SpecialServiceResourceID>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="ref_servicecatalog/rsc_resourceid" />
+													<xsl:with-param name="needAddNil" select="false()" />
+												</xsl:call-template>
+											</SpecialServiceResourceID>	
+											<SpecialServiceResourceDescription>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="ref_servicecatalog/rsc_description" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServiceResourceDescription>	
+											<SpecialServiceResourceUnit>
+												<xsl:call-template name="xsltTemplate">
+													<xsl:with-param name="inElement" select="ref_servicecatalog/rsc_unit" />
+													<xsl:with-param name="needAddNil" select="true()" />
+												</xsl:call-template>
+											</SpecialServiceResourceUnit>		
+											</SpecialService>	
+											
+												
+												</xsl:for-each>
+												</xsl:when>
+												</xsl:choose>
+												</xsl:for-each>
+								</SpecialServices>
 							</FlightData>
 							</xsl:if>
 						</Data>

@@ -51,7 +51,7 @@ public class XmlValidator {
 	private static final Logger     logger               = LoggerFactory.getLogger(XmlValidator.class);
 	public static Schema schema;
 	static Validator validator ;
-	static String schemaPath = "OverView.xsd";
+	static String schemaPath = "OverView_dpi.xsd";
 	
 	static{
 /*		Resource resource =   new ClassPathResource(schemaPath);

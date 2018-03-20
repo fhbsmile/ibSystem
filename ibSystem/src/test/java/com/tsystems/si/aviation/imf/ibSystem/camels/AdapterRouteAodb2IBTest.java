@@ -1,7 +1,7 @@
 /**
  * Project	 ibSystem
  * Package   com.tsystems.si.aviation.imf.ibSystem.camels
- * FileName  Ib2AodbAdapterRouteTest.java
+ * FileName  AdapterRouteAodb2IBTest.java
  * Description TODO
  * Company	
  * Copyright 2017 
@@ -10,12 +10,12 @@
  * @author Bolo Fang
  * @version V1.0
  * Email 342067200@qq.com
- * Createdate 2017年8月1日 上午9:58:43
+ * Createdate 2017年7月27日 下午2:11:32
  *
  * Modification  History
  * Date          Author        Version        Description
  * -----------------------------------------------------------------------------------
- * 2017年8月1日       方红波          1.0             1.0
+ * 2017年7月27日       方红波          1.0             1.0
  * Why & What is modified
  */
 
@@ -26,6 +26,8 @@ import static org.apache.camel.component.jms.JmsComponent.jmsComponentClientAckn
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import javax.jms.ConnectionFactory;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
@@ -39,17 +41,18 @@ import org.springframework.jms.connection.CachingConnectionFactory;
 
 import com.tsystems.si.aviation.imf.ibSystem.message.AdapterXmlTransformer;
 
+
+
 /**
-  * ClassName Ib2AodbAdapterRouteTest<BR>
+  * ClassName AdapterRouteAodb2IBTest<BR>
   * Description TODO<BR>
   * @author Bolo Fang
-  * @date 2017年8月1日 上午9:58:43
+  * @date 2017年7月27日 下午2:11:32
   *
   */
 
-public class Ib2AodbAdapterRouteTest extends CamelTestSupport {
-	private static final Logger     logger               = LoggerFactory.getLogger(Ib2AodbAdapterRouteTest.class);
-	
+public class AdapterRouteAodb2IBTest extends CamelTestSupport {
+	private static final Logger     logger               = LoggerFactory.getLogger(AdapterRouteAodb2IBTest.class);
     protected CamelContext createCamelContext() throws Exception {
         CamelContext camelContext = super.createCamelContext();
         
@@ -59,34 +62,31 @@ public class Ib2AodbAdapterRouteTest extends CamelTestSupport {
         cachingConnectionFactoryAODB.setSessionCacheSize(100);
         camelContext.addComponent("jmsaodb", jmsComponentClientAcknowledge(cachingConnectionFactoryAODB));
         camelContext.addComponent("jmsib", jmsComponentClientAcknowledge(cachingConnectionFactoryIB));
-    	xmlTransformer.setXslPath("CGK_imf_2_aodb.xsl");
+    	xmlTransformer.setXslPath("CGK_aodb_2_imf.xsl");
     	xmlTransformer.initialize();
-
-    	imfMessageAdapterProcessor.setXmlTransformer(xmlTransformer);
+    	xmlDepatureTransformer.setXslPath("CGK_aodb_2_imf_departure.xsl");
+    	xmlDepatureTransformer.initialize();
+    	mqifMessageAdapterProcessor.setXmlTransformer(xmlTransformer);
+    	mqifMessageAdapterProcessor.setXmlDepatureTransformer(xmlDepatureTransformer);
         return camelContext;
        
     }
 	public AdapterXmlTransformer xmlTransformer = new AdapterXmlTransformer();
-	ImfMessageAdapterProcessor imfMessageAdapterProcessor = new ImfMessageAdapterProcessor();
-	
+	public AdapterXmlTransformer xmlDepatureTransformer = new AdapterXmlTransformer();
+
+    MqifMessageAdapterProcessor mqifMessageAdapterProcessor = new MqifMessageAdapterProcessor();
     protected RouteBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
             //AQ.ADAPTOR.IB_SS1
             @Override
             public void configure() throws Exception {
-            	from("jmsib:LQ.IB_SS2.ADAPTER").wireTap("jmsib:LQ.IMFLOG").split().method(imfMessageAdapterProcessor, "processImf")
-            	    .process(imfMessageAdapterProcessor)
+            	from("jmsaodb:AQ.AODB.IB_SS1BOLO").wireTap("jmsib:AQ.AODBLOG").split().method(mqifMessageAdapterProcessor, "processMqif")
+            	    .process(mqifMessageAdapterProcessor)
             	    .choice()
-                    .when(header("JMSDestination").contains("BSS2"))
-                         .to("jmsaodb:AQ.IB_BSS2.AODB")  
-                    .when(header("JMSDestination").contains("FSS2"))
-                         .to("jmsaodb:AQ.IB_FSS2.AODB")
-                    .when(header("JMSDestination").contains("RSS2"))
-                         .to("jmsaodb:AQ.IB_RSS2.AODB")  
-                    .when(header("JMSDestination").contains("US"))
-                         .to("jmsaodb:AQ.IB_US.AODB")  
-                    .otherwise()
-                         .to("jmsaodb:AQ.AODB.ERROR");
+                    .when(header("JMSDestination").contains("SS1"))
+                        .to("jmsib:AQ.ADAPTOR.IB_SS1")  
+                    .when(header("JMSDestination").contains("SS2"))
+                        .to("jmsib:AQ.ADAPTOR.IB_SS2");    
             	    
             }
         };
@@ -104,5 +104,6 @@ public class Ib2AodbAdapterRouteTest extends CamelTestSupport {
    			  }
         }
     	Thread.sleep(1000);
-    }  
+    }   
+
 }

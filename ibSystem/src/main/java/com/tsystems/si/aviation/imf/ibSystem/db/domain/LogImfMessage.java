@@ -18,7 +18,7 @@ public class LogImfMessage implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="imf_id")
-	private int imfId;
+	private Long imfId;
 
 	@Column(name="imf_basicDataCategory")
 	private String imfBasicDataCategory;
@@ -31,8 +31,8 @@ public class LogImfMessage implements Serializable {
 	private String imfContent;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="imf_createtime")
-	private Date imfCreatetime;
+	@Column(name="imf_createTime")
+	private Date imfCreateTime;
 
 	@Column(name="imf_flightDirection")
 	private String imfFlightDirection;
@@ -55,15 +55,14 @@ public class LogImfMessage implements Serializable {
 	@Column(name="imf_messageType")
 	private String imfMessageType;
 
-	@Column(name="IMF_mqifId")
-	private String IMFMqifId;
+	private String imf_mqifId;
 
 	@Column(name="imf_operationMode")
 	private String imfOperationMode;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="imf_orgCreatetime")
-	private Date imfOrgCreatetime;
+	@Column(name="imf_orgCreateTime")
+	private Date imfOrgCreateTime;
 
 	@Column(name="imf_owner")
 	private String imfOwner;
@@ -86,11 +85,11 @@ public class LogImfMessage implements Serializable {
 	public LogImfMessage() {
 	}
 
-	public int getImfId() {
+	public Long getImfId() {
 		return this.imfId;
 	}
 
-	public void setImfId(int imfId) {
+	public void setImfId(Long imfId) {
 		this.imfId = imfId;
 	}
 
@@ -118,12 +117,12 @@ public class LogImfMessage implements Serializable {
 		this.imfContent = imfContent;
 	}
 
-	public Date getImfCreatetime() {
-		return this.imfCreatetime;
+	public Date getImfCreateTime() {
+		return this.imfCreateTime;
 	}
 
-	public void setImfCreatetime(Date imfCreatetime) {
-		this.imfCreatetime = imfCreatetime;
+	public void setImfCreateTime(Date imfCreateTime) {
+		this.imfCreateTime = imfCreateTime;
 	}
 
 	public String getImfFlightDirection() {
@@ -182,12 +181,12 @@ public class LogImfMessage implements Serializable {
 		this.imfMessageType = imfMessageType;
 	}
 
-	public String getIMFMqifId() {
-		return this.IMFMqifId;
+	public String getImf_mqifId() {
+		return this.imf_mqifId;
 	}
 
-	public void setIMFMqifId(String IMFMqifId) {
-		this.IMFMqifId = IMFMqifId;
+	public void setImf_mqifId(String imf_mqifId) {
+		this.imf_mqifId = imf_mqifId;
 	}
 
 	public String getImfOperationMode() {
@@ -198,12 +197,12 @@ public class LogImfMessage implements Serializable {
 		this.imfOperationMode = imfOperationMode;
 	}
 
-	public Date getImfOrgCreatetime() {
-		return this.imfOrgCreatetime;
+	public Date getImfOrgCreateTime() {
+		return this.imfOrgCreateTime;
 	}
 
-	public void setImfOrgCreatetime(Date imfOrgCreatetime) {
-		this.imfOrgCreatetime = imfOrgCreatetime;
+	public void setImfOrgCreateTime(Date imfOrgCreateTime) {
+		this.imfOrgCreateTime = imfOrgCreateTime;
 	}
 
 	public String getImfOwner() {

@@ -20,6 +20,9 @@
 		<camel-version>2.19.1</camel-version>
 		<jaxen.version>1.1.6</jaxen.version>
 		<java.version>1.8</java.version>
+		<druid.version>1.1.2</druid.version>
+		 <thymeleaf.version>3.0.7.RELEASE</thymeleaf.version>
+    <thymeleaf-layout-dialect.version>2.1.2</thymeleaf-layout-dialect.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -115,6 +118,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>druid</artifactId>
+		    <version>${druid.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
